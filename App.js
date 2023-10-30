@@ -1,19 +1,45 @@
 import React from 'react'
-import { Text, SafeAreaView, StyleSheet } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-const App = () => {
+import SplashScreen from './src/screens/SplashScreen'
+import SignInScreen from './src/screens/SignInScreen'
+import HomeScreen from './src/screens/HomeScreen'
+
+import { AuthContext } from './src/contexts/authContext'
+import { useAuthContext } from './src/hooks/useAuthContext'
+
+const Stack = createNativeStackNavigator()
+
+export default function App() {
+  const [state, authContext] = useAuthContext()
+
   return (
-    <SafeAreaView style={styles.container}>
-      <Text>Hello World</Text>
-    </SafeAreaView>
+    <AuthContext.Provider value={authContext}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          {state.isLoading ? (
+            // We haven't finished checking for the token yet
+            <Stack.Screen name="Splash" component={SplashScreen} />
+          ) : state.userToken == null ? (
+            // No token found, user isn't signed in
+            <Stack.Screen
+              name="SignIn"
+              component={SignInScreen}
+              options={{
+                title: 'Sign in',
+                // When logging out, a pop animation feels intuitive
+                animationTypeForReplace: state.isSignout ? 'pop' : 'push'
+              }}
+            />
+          ) : (
+            // User is signed in
+            <Stack.Screen name="Home" component={HomeScreen} />
+          )}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </AuthContext.Provider>
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center'
-  }
-})
-
-export default App
+//export { AuthContext }
