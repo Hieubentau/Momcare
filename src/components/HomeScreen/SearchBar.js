@@ -28,7 +28,7 @@ const styles = {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'gainsboro',
-    borderRadius: 8,
+    borderRadius: 16,
     height: 52,
     paddingHorizontal: 8,
     marginBottom: 16

@@ -12,12 +12,12 @@ const HomeScreen = () => {
   const { signOut } = React.useContext(AuthContext)
   const themeColor = useContext(ThemeColorContext)
 
-  const { container, center } = styles
+  const { container, center, textHeader } = styles
   return (
     <SafeAreaView style={container}>
-      <UserGeneral />
+      <UserGeneral usernameGreetingText={textHeader} />
       <SearchBar />
-      <DoctorSpeciality />
+      <DoctorSpeciality doctorSpecialityText={textHeader} />
       <View style={center}>
         <Text>Signed in!</Text>
         <Button title="Sign out" onPress={signOut} />
@@ -35,6 +35,10 @@ const styles = StyleSheet.create({
   center: {
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  textHeader: {
+    fontSize: 18,
+    fontWeight: 'bold'
   }
 })
 

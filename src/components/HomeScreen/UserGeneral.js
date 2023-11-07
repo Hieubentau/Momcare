@@ -2,13 +2,10 @@ import React from 'react'
 import { Text, StyleSheet, View } from 'react-native'
 import { EvilIcons, MaterialCommunityIcons } from '@expo/vector-icons'
 
-const UserGeneral = () => {
-  const {
-    userGeneralWrapper,
-    userGreetingWrapper,
-    userFavoriteWrapper,
-    usernameGreetingText
-  } = styles
+const UserGeneral = (props) => {
+  const { usernameGreetingText } = props
+  const { userGeneralWrapper, userGreetingWrapper, userFavoriteWrapper } =
+    styles
   return (
     <View style={userGeneralWrapper}>
       <View style={userGreetingWrapper}>
@@ -43,10 +40,6 @@ const styles = StyleSheet.create({
   userFavoriteWrapper: {
     flex: 1,
     alignItems: 'flex-end'
-  },
-  usernameGreetingText: {
-    fontSize: 18,
-    fontWeight: 'bold'
   }
 })
 
