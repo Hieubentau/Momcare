@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react'
 import { FlatList, View, Text, TouchableOpacity } from 'react-native'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 import { ThemeColorContext } from '../../contexts/themeColorContext'
 import { doctorSpecialityType } from '../../ultilities/doctorSpecialityType'
@@ -9,49 +8,49 @@ const ItemSeparator = () => {
   return <View style={{ width: 16 }} />
 }
 
-const ItemWithIcon = ({ item, onPress, backgroundColor, styles }) => (
-  <View style={styles.avatarWrapper}>
-    <TouchableOpacity
-      onPress={onPress}
-      style={[styles.avatarTouchable, { backgroundColor }]}
-    >
-      <MaterialCommunityIcons
-        name={item.icon}
-        size={24}
-        color={styles.themeColor}
-      />
-    </TouchableOpacity>
-    <Text numberOfLines={1}>{item.message}</Text>
-  </View>
+const ItemWithoutIcon = ({
+  item,
+  onPress,
+  backgroundColor,
+  borderColor,
+  textColor,
+  styles
+}) => (
+  <TouchableOpacity
+    onPress={onPress}
+    style={[styles.textTouchable, { backgroundColor }, { borderColor }]}
+  >
+    <Text style={{ padding: 8, color: textColor }}>{item.message}</Text>
+  </TouchableOpacity>
 )
 
 const DoctorSpeciality = (props) => {
-  const [selectedIdwithIcon, setSelectedIdwithIcon] = useState()
+  const [selectedIdwithoutIcon, setSelectedIdwithoutIcon] = useState()
 
   const themeColor = useContext(ThemeColorContext)
 
-  const { doctorSpecialityText } = props
-  const {
-    textHeaderWrapper,
-    seeAllText,
-    flatListWrapper,
-    avatarWrapper,
-    avatarTouchable
-  } = styles
+  const { topDoctorsText } = props
+  const { textHeaderWrapper, seeAllText, flatListWrapper, textTouchable } =
+    styles
 
-  const renderItemWithIcon = ({ item }) => {
+  const renderItemWithoutIcon = ({ item }) => {
     const backgroundColor =
-      item.id === selectedIdwithIcon ? 'silver' : 'gainsboro'
+      item.id === selectedIdwithoutIcon ? themeColor : 'white'
+
+    const borderColor = themeColor
+
+    const textColor = item.id === selectedIdwithoutIcon ? 'white' : themeColor
 
     return (
-      <ItemWithIcon
+      <ItemWithoutIcon
         item={item}
-        onPress={() => setSelectedIdwithIcon(item.id)}
-        onPressout={() => setSelectedIdwithIcon(item.id)}
+        onPress={() => setSelectedIdwithoutIcon(item.id)}
+        onPressout={() => setSelectedIdwithoutIcon(item.id)}
         backgroundColor={backgroundColor}
+        borderColor={borderColor}
+        textColor={textColor}
         styles={{
-          avatarWrapper,
-          avatarTouchable,
+          textTouchable,
           themeColor
         }}
       />
@@ -61,7 +60,7 @@ const DoctorSpeciality = (props) => {
   return (
     <View>
       <View style={textHeaderWrapper}>
-        <Text style={doctorSpecialityText}>Doctor Speciality</Text>
+        <Text style={topDoctorsText}>Top Doctors</Text>
         <TouchableOpacity>
           <Text style={[seeAllText, { color: themeColor }]}>See All</Text>
         </TouchableOpacity>
@@ -69,9 +68,9 @@ const DoctorSpeciality = (props) => {
       <View style={flatListWrapper}>
         <FlatList
           data={doctorSpecialityType}
-          renderItem={renderItemWithIcon}
+          renderItem={renderItemWithoutIcon}
           keyExtractor={(item) => item.id}
-          extraData={selectedIdwithIcon}
+          extraData={selectedIdwithoutIcon}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           ItemSeparatorComponent={ItemSeparator}
@@ -95,17 +94,11 @@ const styles = {
   flatListWrapper: {
     marginVertical: 8
   },
-  avatarWrapper: {
-    width: 48,
-    alignItems: 'center'
-  },
-  avatarTouchable: {
-    backgroundColor: 'gainsboro',
-    borderRadius: 50,
-    width: 48,
-    height: 48,
+  textTouchable: {
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    borderRadius: 16,
+    borderWidth: 2
   }
 }
 
