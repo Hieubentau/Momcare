@@ -1,5 +1,12 @@
 import React, { useContext } from 'react'
-import { Text, Button, SafeAreaView, StyleSheet, View } from 'react-native'
+import {
+  Text,
+  Button,
+  SafeAreaView,
+  StyleSheet,
+  View,
+  StatusBar
+} from 'react-native'
 
 import UserGeneral from '../components/HomeScreen/UserGeneral'
 import SearchBar from '../components/HomeScreen/SearchBar'
@@ -32,7 +39,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 8,
-    paddingHorizontal: 16
+    paddingHorizontal: 16,
+    marginTop: StatusBar.currentHeight || 0
   },
   center: {
     alignItems: 'center',

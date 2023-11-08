@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import SplashScreen from './src/screens/SplashScreen'
 import SignInScreen from './src/screens/SignInScreen'
-import HomeScreen from './src/screens/HomeScreen'
+import Tabs from './src/components/Tabs'
 
 import { AuthContext } from './src/contexts/authContext'
 import { ThemeColorContext } from './src/contexts/themeColorContext'
@@ -54,7 +54,11 @@ export default function App() {
               />
             ) : (
               // User is signed in
-              <Stack.Screen name="Home" component={HomeScreen} />
+              <Stack.Screen
+                name="Tabs"
+                component={Tabs}
+                options={{ headerShown: false }}
+              />
             )}
           </Stack.Navigator>
         </NavigationContainer>
