@@ -30,7 +30,7 @@ const DoctorSpeciality = (props) => {
 
   const themeColor = useContext(ThemeColorContext)
 
-  const { doctorSpecialityText } = props
+  const { doctorSpecialityText, navigation } = props
   const {
     textHeaderWrapper,
     seeAllText,
@@ -63,7 +63,12 @@ const DoctorSpeciality = (props) => {
       <View style={textHeaderWrapper}>
         <Text style={doctorSpecialityText}>Doctor Speciality</Text>
         <TouchableOpacity>
-          <Text style={[seeAllText, { color: themeColor }]}>See All</Text>
+          <Text
+            onPress={() => navigation.navigate('Doctors')}
+            style={[seeAllText, { color: themeColor }]}
+          >
+            See All
+          </Text>
         </TouchableOpacity>
       </View>
       <View style={flatListWrapper}>

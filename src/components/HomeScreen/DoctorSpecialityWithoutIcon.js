@@ -24,7 +24,7 @@ const ItemWithoutIcon = ({
   </TouchableOpacity>
 )
 
-const DoctorSpeciality = (props) => {
+const DoctorSpecialityWithoutIcon = (props) => {
   const [selectedIdwithoutIcon, setSelectedIdwithoutIcon] = useState()
 
   const themeColor = useContext(ThemeColorContext)
@@ -102,4 +102,4 @@ const styles = {
   }
 }
 
-export default DoctorSpeciality
+export default DoctorSpecialityWithoutIcon

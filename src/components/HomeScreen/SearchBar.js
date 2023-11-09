@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { View, TextInput } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 
-const SearchBar = () => {
-  const [search, setSearch] = React.useState('')
+const SearchBar = (props) => {
+  const { text, flexNum } = props
+  const [search, setSearch] = useState(text)
 
   const updateSearch = (search) => {
     setSearch(search)
@@ -12,7 +13,7 @@ const SearchBar = () => {
   const { searchBarWrapper, searchBarIcon } = styles
 
   return (
-    <View style={searchBarWrapper}>
+    <View style={[searchBarWrapper, { flex: flexNum }]}>
       <Feather name="search" size={20} color="gray" style={searchBarIcon} />
       <TextInput
         placeholder="Search"

@@ -11,12 +11,12 @@ import {
 import UserGeneral from '../components/HomeScreen/UserGeneral'
 import SearchBar from '../components/HomeScreen/SearchBar'
 import DoctorSpeciality from '../components/HomeScreen/DoctorSpeciality'
-import TopDoctors from '../components/HomeScreen/TopDoctors'
+import TopDoctors from '../components/HomeScreen/DoctorSpecialityWithoutIcon'
 
 import { AuthContext } from '../contexts/authContext'
 import { ThemeColorContext } from '../contexts/themeColorContext'
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   const { signOut } = React.useContext(AuthContext)
   const themeColor = useContext(ThemeColorContext)
 
@@ -24,8 +24,11 @@ const HomeScreen = () => {
   return (
     <SafeAreaView style={container}>
       <UserGeneral usernameGreetingText={textHeader} />
-      <SearchBar />
-      <DoctorSpeciality doctorSpecialityText={textHeader} />
+      <SearchBar text="" flexNum={0} />
+      <DoctorSpeciality
+        doctorSpecialityText={textHeader}
+        navigation={navigation}
+      />
       <TopDoctors topDoctorsText={textHeader} />
       <View style={center}>
         <Text>Signed in!</Text>

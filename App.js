@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import SplashScreen from './src/screens/SplashScreen'
 import SignInScreen from './src/screens/SignInScreen'
 import Tabs from './src/components/Tabs'
+import Doctors from './src/screens/Doctors'
 
 import { AuthContext } from './src/contexts/authContext'
 import { ThemeColorContext } from './src/contexts/themeColorContext'
@@ -60,6 +61,11 @@ export default function App() {
                 options={{ headerShown: false }}
               />
             )}
+            <Stack.Screen
+              name="Doctors"
+              component={Doctors}
+              options={{ headerShown: false }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </ThemeColorContext.Provider>
