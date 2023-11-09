@@ -4,10 +4,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 import { ThemeColorContext } from '../../contexts/themeColorContext'
 import { doctorSpecialityType } from '../../ultilities/doctorSpecialityType'
-
-const ItemSeparator = () => {
-  return <View style={{ width: 16 }} />
-}
+import { ItemSeparator } from '../Temp/ItemSeparator'
 
 const ItemWithIcon = ({ item, onPress, backgroundColor, styles }) => (
   <View style={styles.avatarWrapper}>
@@ -47,7 +44,6 @@ const DoctorSpeciality = (props) => {
       <ItemWithIcon
         item={item}
         onPress={() => setSelectedIdwithIcon(item.id)}
-        onPressout={() => setSelectedIdwithIcon(item.id)}
         backgroundColor={backgroundColor}
         styles={{
           avatarWrapper,
@@ -79,7 +75,7 @@ const DoctorSpeciality = (props) => {
           extraData={selectedIdwithIcon}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          ItemSeparatorComponent={ItemSeparator}
+          ItemSeparatorComponent={<ItemSeparator width={16} />}
         />
       </View>
     </View>

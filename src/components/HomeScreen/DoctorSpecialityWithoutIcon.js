@@ -3,26 +3,8 @@ import { FlatList, View, Text, TouchableOpacity } from 'react-native'
 
 import { ThemeColorContext } from '../../contexts/themeColorContext'
 import { doctorSpecialityType } from '../../ultilities/doctorSpecialityType'
-
-const ItemSeparator = () => {
-  return <View style={{ width: 16 }} />
-}
-
-const ItemWithoutIcon = ({
-  item,
-  onPress,
-  backgroundColor,
-  borderColor,
-  textColor,
-  styles
-}) => (
-  <TouchableOpacity
-    onPress={onPress}
-    style={[styles.textTouchable, { backgroundColor }, { borderColor }]}
-  >
-    <Text style={{ padding: 8, color: textColor }}>{item.message}</Text>
-  </TouchableOpacity>
-)
+import ListItemWithoutIcon from '../Temp/ListItemWithoutIcon'
+import { ItemSeparator } from '../Temp/ItemSeparator'
 
 const DoctorSpecialityWithoutIcon = (props) => {
   const [selectedIdwithoutIcon, setSelectedIdwithoutIcon] = useState()
@@ -30,32 +12,15 @@ const DoctorSpecialityWithoutIcon = (props) => {
   const themeColor = useContext(ThemeColorContext)
 
   const { topDoctorsText } = props
-  const { textHeaderWrapper, seeAllText, flatListWrapper, textTouchable } =
-    styles
+  const { textHeaderWrapper, seeAllText, flatListWrapper } = styles
 
-  const renderItemWithoutIcon = ({ item }) => {
-    const backgroundColor =
-      item.id === selectedIdwithoutIcon ? themeColor : 'white'
-
-    const borderColor = themeColor
-
-    const textColor = item.id === selectedIdwithoutIcon ? 'white' : themeColor
-
-    return (
-      <ItemWithoutIcon
-        item={item}
-        onPress={() => setSelectedIdwithoutIcon(item.id)}
-        onPressout={() => setSelectedIdwithoutIcon(item.id)}
-        backgroundColor={backgroundColor}
-        borderColor={borderColor}
-        textColor={textColor}
-        styles={{
-          textTouchable,
-          themeColor
-        }}
-      />
-    )
-  }
+  const renderItemWithoutIcon = ({ item }) => (
+    <ListItemWithoutIcon
+      item={item}
+      selectedIdwithoutIcon={selectedIdwithoutIcon}
+      setSelectedIdwithoutIcon={setSelectedIdwithoutIcon}
+    />
+  )
 
   return (
     <View>
@@ -73,7 +38,7 @@ const DoctorSpecialityWithoutIcon = (props) => {
           extraData={selectedIdwithoutIcon}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          ItemSeparatorComponent={ItemSeparator}
+          ItemSeparatorComponent={<ItemSeparator width={8} />}
         />
       </View>
     </View>
@@ -93,12 +58,6 @@ const styles = {
   },
   flatListWrapper: {
     marginVertical: 8
-  },
-  textTouchable: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 16,
-    borderWidth: 2
   }
 }
 

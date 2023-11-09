@@ -1,25 +1,48 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
   SafeAreaView,
-  StatusBar
+  StatusBar,
+  FlatList,
+  Modal,
+  Pressable
 } from 'react-native'
 import { AntDesign } from '@expo/vector-icons'
 
 import SearchBar from '../components/HomeScreen/SearchBar'
-import DoctorSpecialityWithoutIcon from '../components/HomeScreen/DoctorSpecialityWithoutIcon'
+import ListItemWithoutIcon from '../components/Temp/ListItemWithoutIcon'
+import FilterDoctors from '../components/Doctors/FilterDoctors'
+import { doctorSpecialityType } from '../ultilities/doctorSpecialityType'
+import { ItemSeparator } from '../components/Temp/ItemSeparator'
 
 const Doctors = ({ navigation }) => {
+  const [selectedIdwithoutIcon, setSelectedIdwithoutIcon] = useState()
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const onModalClose = () => {
+    setIsModalVisible(false)
+  }
+
+  const renderItemWithoutIcon = ({ item }) => (
+    <ListItemWithoutIcon
+      item={item}
+      selectedIdwithoutIcon={selectedIdwithoutIcon}
+      setSelectedIdwithoutIcon={setSelectedIdwithoutIcon}
+    />
+  )
+
   const {
     container,
     searchBarWrapper,
     arrowLeftIcon,
-    filterWrapper,
-    foundDoctor
+    flatListWrapper,
+    generalWrapper,
+    foundDoctor,
+    filterWrapper
   } = styles
+
   return (
     <SafeAreaView style={container}>
       <View style={searchBarWrapper}>
@@ -31,14 +54,30 @@ const Doctors = ({ navigation }) => {
         </TouchableOpacity>
         <SearchBar text="" flexNum={1} />
       </View>
-      <View style={filterWrapper}>
+      <View style={flatListWrapper}>
+        <FlatList
+          data={doctorSpecialityType}
+          renderItem={renderItemWithoutIcon}
+          keyExtractor={(item) => item.id}
+          extraData={selectedIdwithoutIcon}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          ItemSeparatorComponent={<ItemSeparator width={8} />}
+        />
+      </View>
+      <View style={generalWrapper}>
         <Text style={foundDoctor}>56 founds</Text>
-        <TouchableOpacity>
-          <View>
+        <TouchableOpacity onPress={() => setIsModalVisible(!isModalVisible)}>
+          <View style={filterWrapper}>
             <Text>Filter</Text>
-            <AntDesign name="filter" size={24} color="black" />
+            <AntDesign name="filter" size={20} color="black" />
           </View>
         </TouchableOpacity>
+        <FilterDoctors
+          isModalVisible={isModalVisible}
+          children={<Text>Filter</Text>}
+          setIsModalVisible={setIsModalVisible}
+        />
       </View>
     </SafeAreaView>
   )
@@ -57,14 +96,21 @@ const styles = StyleSheet.create({
   arrowLeftIcon: {
     marginRight: 8
   },
-  filterWrapper: {
+  flatListWrapper: {
+    marginVertical: 2
+  },
+  generalWrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginVertical: 8
   },
   foundDoctor: {
     fontSize: 18,
     fontWeight: 'bold'
+  },
+  filterWrapper: {
+    flexDirection: 'row'
   }
 })
 
