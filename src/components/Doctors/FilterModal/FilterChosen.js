@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
-import { ThemeColorContext } from '../../contexts/themeColorContext'
+import { ThemeColorContext } from '../../../contexts/themeColorContext'
 
 const FilterChosen = (props) => {
   const { selectedFilterSpeciality, setApplySelectedFilterSpeciality } = props

@@ -10,10 +10,7 @@ import {
 import { AntDesign } from '@expo/vector-icons'
 
 import SearchBar from '../components/HomeScreen/SearchBar'
-import FilterDoctorsModal from '../components/Doctors/FilterDoctorsModal'
-import FilterDoctorsSpeciality from '../components/Doctors/FilterDoctorsSpeciality'
-import FilterChosen from '../components/Doctors/FilterChosen'
-import Divider from '../components/Temp/Divider'
+import GeneralAndFilter from '../components/Doctors/GeneralAndFilter'
 
 const Doctors = ({ navigation }) => {
   const [selectedFilterSpeciality, setSelectedFilterSpeciality] = useState()
@@ -21,15 +18,7 @@ const Doctors = ({ navigation }) => {
     useState()
   const [isModalVisible, setIsModalVisible] = useState(false)
 
-  const {
-    container,
-    searchBarWrapper,
-    arrowLeftIcon,
-    generalWrapper,
-    foundDoctor,
-    filterWrapper,
-    filterTitle
-  } = styles
+  const { container, searchBarWrapper, arrowLeftIcon } = styles
 
   return (
     <SafeAreaView style={container}>
@@ -42,30 +31,14 @@ const Doctors = ({ navigation }) => {
         </TouchableOpacity>
         <SearchBar text="" flexNum={1} />
       </View>
-      <View style={generalWrapper}>
-        <Text style={foundDoctor}>56 founds</Text>
-        <TouchableOpacity onPress={() => setIsModalVisible(!isModalVisible)}>
-          <View style={filterWrapper}>
-            <Text style={filterTitle}>Filter</Text>
-            <AntDesign name="filter" size={20} color="black" />
-          </View>
-        </TouchableOpacity>
-        <FilterDoctorsModal
-          isModalVisible={isModalVisible}
-          setIsModalVisible={setIsModalVisible}
-        >
-          <Divider />
-          <FilterDoctorsSpeciality
-            selectedFilterSpeciality={selectedFilterSpeciality}
-            setSelectedFilterSpeciality={setSelectedFilterSpeciality}
-          />
-          <Divider />
-          <FilterChosen
-            selectedFilterSpeciality={selectedFilterSpeciality}
-            setApplySelectedFilterSpeciality={setApplySelectedFilterSpeciality}
-          />
-        </FilterDoctorsModal>
-      </View>
+      <GeneralAndFilter
+        selectedFilterSpeciality={selectedFilterSpeciality}
+        setSelectedFilterSpeciality={setSelectedFilterSpeciality}
+        applySelectedFilterSpeciality={applySelectedFilterSpeciality}
+        setApplySelectedFilterSpeciality={setApplySelectedFilterSpeciality}
+        isModalVisible={isModalVisible}
+        setIsModalVisible={setIsModalVisible}
+      />
     </SafeAreaView>
   )
 }
@@ -82,23 +55,6 @@ const styles = StyleSheet.create({
   },
   arrowLeftIcon: {
     marginRight: 8
-  },
-  generalWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginVertical: 8
-  },
-  foundDoctor: {
-    fontSize: 18,
-    fontWeight: 'bold'
-  },
-  filterWrapper: {
-    flexDirection: 'row'
-  },
-  filterTitle: {
-    fontSize: 16,
-    fontWeight: 'bold'
   }
 })
 
