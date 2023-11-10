@@ -12,9 +12,13 @@ import { AntDesign } from '@expo/vector-icons'
 import SearchBar from '../components/HomeScreen/SearchBar'
 import FilterDoctorsModal from '../components/Doctors/FilterDoctorsModal'
 import FilterDoctorsSpeciality from '../components/Doctors/FilterDoctorsSpeciality'
+import FilterChosen from '../components/Doctors/FilterChosen'
+import Divider from '../components/Temp/Divider'
 
 const Doctors = ({ navigation }) => {
   const [selectedFilterSpeciality, setSelectedFilterSpeciality] = useState()
+  const [applySelectedFilterSpeciality, setApplySelectedFilterSpeciality] =
+    useState()
   const [isModalVisible, setIsModalVisible] = useState(false)
 
   const {
@@ -50,9 +54,15 @@ const Doctors = ({ navigation }) => {
           isModalVisible={isModalVisible}
           setIsModalVisible={setIsModalVisible}
         >
+          <Divider />
           <FilterDoctorsSpeciality
             selectedFilterSpeciality={selectedFilterSpeciality}
             setSelectedFilterSpeciality={setSelectedFilterSpeciality}
+          />
+          <Divider />
+          <FilterChosen
+            selectedFilterSpeciality={selectedFilterSpeciality}
+            setApplySelectedFilterSpeciality={setApplySelectedFilterSpeciality}
           />
         </FilterDoctorsModal>
       </View>

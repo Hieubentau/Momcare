@@ -1,6 +1,7 @@
 import React from 'react'
 import { Modal, View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
+import Divider from '../Temp/Divider'
 
 const FilterDoctorsModal = (props) => {
   const { isModalVisible, children, setIsModalVisible } = props
@@ -13,7 +14,6 @@ const FilterDoctorsModal = (props) => {
             <MaterialIcons name="close" color="black" size={22} />
           </TouchableOpacity>
         </View>
-        <View style={styles.divider} />
         {children}
       </View>
     </Modal>
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     bottom: 0
   },
   titleContainer: {
-    height: '20%',
+    height: '10%',
     backgroundColor: 'white',
     borderTopRightRadius: 24,
     borderTopLeftRadius: 24,
@@ -44,13 +44,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     color: 'black'
-  },
-  divider: {
-    height: 1,
-    backgroundColor: '#ccc',
-    width: '90%',
-    alignItems: 'center',
-    alignSelf: 'center'
   }
 })
 

@@ -39,6 +39,7 @@ const FilterDoctorsSpeciality = (props) => {
 
 const styles = StyleSheet.create({
   filterDoctorsSpecialityWrapper: {
+    height: '30%',
     marginTop: 10
   },
   titleFilterSpeciality: {
