@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {
+  FlatList,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -11,6 +12,9 @@ import { AntDesign } from '@expo/vector-icons'
 
 import SearchBar from '../components/HomeScreen/SearchBar'
 import GeneralAndFilter from '../components/Doctors/GeneralAndFilter'
+import { ItemSeparator } from '../components/Temp/ItemSeparatorWidth'
+import ListItemWithoutIcon from '../components/Temp/ListItemWithoutIcon'
+import { filterDoctorsSpeciality } from '../ultilities/filterDoctorsSpeciality'
 
 const Doctors = ({ navigation }) => {
   const [selectedFilterSpeciality, setSelectedFilterSpeciality] = useState('')
@@ -18,7 +22,15 @@ const Doctors = ({ navigation }) => {
     useState('')
   const [isModalVisible, setIsModalVisible] = useState(false)
 
-  const { container, searchBarWrapper, arrowLeftIcon } = styles
+  const { container, searchBarWrapper, arrowLeftIcon, flatListWrapper } = styles
+
+  const renderFilterSpeciality = ({ item }) => (
+    <ListItemWithoutIcon
+      item={item}
+      selectedIdwithoutIcon={selectedFilterSpeciality}
+      setSelectedIdwithoutIcon={setSelectedFilterSpeciality}
+    />
+  )
 
   return (
     <SafeAreaView style={container}>
@@ -39,6 +51,17 @@ const Doctors = ({ navigation }) => {
         isModalVisible={isModalVisible}
         setIsModalVisible={setIsModalVisible}
       />
+      <View style={flatListWrapper}>
+        <FlatList
+          data={filterDoctorsSpeciality}
+          renderItem={renderFilterSpeciality}
+          keyExtractor={(item) => item.id}
+          extraData={selectedFilterSpeciality}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          ItemSeparatorComponent={<ItemSeparator width={8} />}
+        />
+      </View>
     </SafeAreaView>
   )
 }
@@ -55,6 +78,9 @@ const styles = StyleSheet.create({
   },
   arrowLeftIcon: {
     marginRight: 8
+  },
+  flatListWrapper: {
+    marginTop: 8
   }
 })
 
