@@ -13,9 +13,9 @@ import SearchBar from '../components/HomeScreen/SearchBar'
 import GeneralAndFilter from '../components/Doctors/GeneralAndFilter'
 
 const Doctors = ({ navigation }) => {
-  const [selectedFilterSpeciality, setSelectedFilterSpeciality] = useState()
+  const [selectedFilterSpeciality, setSelectedFilterSpeciality] = useState('')
   const [applySelectedFilterSpeciality, setApplySelectedFilterSpeciality] =
-    useState()
+    useState('')
   const [isModalVisible, setIsModalVisible] = useState(false)
 
   const { container, searchBarWrapper, arrowLeftIcon } = styles

@@ -4,15 +4,20 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { ThemeColorContext } from '../../../contexts/themeColorContext'
 
 const FilterChosen = (props) => {
-  const { selectedFilterSpeciality, setApplySelectedFilterSpeciality } = props
+  const {
+    selectedFilterSpeciality,
+    setApplySelectedFilterSpeciality,
+    setIsModalVisible
+  } = props
   const themeColor = useContext(ThemeColorContext)
   const { filterChosenWrapper, filterChosenButton, filterChosenTitle } = styles
   return (
     <View style={filterChosenWrapper}>
       <TouchableOpacity
-        onPress={() =>
+        onPress={() => {
           setApplySelectedFilterSpeciality(selectedFilterSpeciality)
-        }
+          setIsModalVisible(false)
+        }}
         style={[filterChosenButton, { backgroundColor: themeColor }]}
       >
         <Text style={filterChosenTitle}>Apply</Text>

@@ -41,6 +41,7 @@ const GeneralAndFilter = (props) => {
         <FilterChosen
           selectedFilterSpeciality={selectedFilterSpeciality}
           setApplySelectedFilterSpeciality={setApplySelectedFilterSpeciality}
+          setIsModalVisible={setIsModalVisible}
         />
       </FilterDoctorsModal>
     </View>
