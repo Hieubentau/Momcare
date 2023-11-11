@@ -13,9 +13,7 @@ import { AntDesign } from '@expo/vector-icons'
 import SearchBar from '../components/HomeScreen/SearchBar'
 import GeneralAndFilter from '../components/Doctors/GeneralAndFilter'
 import { ItemSeparatorHeight } from '../components/Temp/ItemSeparatorHeight'
-import ListItemWithoutIcon from '../components/Temp/ListItemWithoutIcon'
 import ListCards from '../components/Temp/ListCards'
-import { filterDoctorsSpeciality } from '../ultilities/filterDoctorsSpeciality'
 import { doctorGeneralInfo } from '../ultilities/doctorGeneralInfo'
 
 const Doctors = ({ navigation }) => {
