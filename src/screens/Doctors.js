@@ -13,7 +13,7 @@ import { AntDesign } from '@expo/vector-icons'
 import SearchBar from '../components/HomeScreen/SearchBar'
 import GeneralAndFilter from '../components/Doctors/GeneralAndFilter'
 import { ItemSeparatorHeight } from '../components/Temp/ItemSeparatorHeight'
-import ListCards from '../components/Temp/ListCards'
+import ListCardsInfo from '../components/Temp/ListCardsInfo'
 import { doctorGeneralInfo } from '../ultilities/doctorGeneralInfo'
 
 const Doctors = ({ navigation }) => {
@@ -26,7 +26,7 @@ const Doctors = ({ navigation }) => {
   const { container, searchBarWrapper, arrowLeftIcon, flatListWrapper } = styles
 
   const renderListDoctors = ({ item }) => (
-    <ListCards
+    <ListCardsInfo
       item={item}
       selectedDoctor={selectedDoctor}
       setSelectedDoctor={setSelectedDoctor}

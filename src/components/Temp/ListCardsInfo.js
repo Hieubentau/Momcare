@@ -12,7 +12,7 @@ const CardDoctor = ({ item, onPress, backgroundColor, styles }) => (
   </TouchableOpacity>
 )
 
-const ListCards = (props) => {
+const ListCardsInfo = (props) => {
   const themeColor = useContext(ThemeColorContext)
   const { item, selectedDoctor, setSelectedDoctor } = props
   const { cardTouchable } = styles
@@ -41,4 +41,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default ListCards
+export default ListCardsInfo
