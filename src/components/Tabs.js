@@ -2,8 +2,8 @@ import React, { useContext } from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import HomeScreen from '../screens/HomeScreen'
-import Appointment from '../screens/Appointment'
-import Prescription from '../screens/Prescription'
+import AppointmentScreen from '../screens/AppointmentScreen'
+import PrescriptionScreen from '../screens/PrescriptionScreen'
 
 import { ThemeColorContext } from '../contexts/themeColorContext'
 
@@ -23,8 +23,8 @@ const Tabs = () => {
       }}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Appointment" component={Appointment} />
-      <Tab.Screen name="Prescription" component={Prescription} />
+      <Tab.Screen name="Appointment" component={AppointmentScreen} />
+      <Tab.Screen name="Prescription" component={PrescriptionScreen} />
     </Tab.Navigator>
   )
 }

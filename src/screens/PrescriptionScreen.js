@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
-const Prescription = () => {
+const PrescriptionScreen = () => {
   return (
     <View style={styles.container}>
       <Text>Prescription</Text>
@@ -17,4 +17,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Prescription
+export default PrescriptionScreen
