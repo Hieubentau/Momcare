@@ -3,7 +3,7 @@ import { View, FlatList, Text, StyleSheet } from 'react-native'
 
 import { filterDoctorsSpeciality } from '../../../ultilities/filterDoctorsSpeciality'
 import ListItemWithoutIcon from '../../Temp/ListItemWithoutIcon'
-import { ItemSeparator } from '../../Temp/ItemSeparatorWidth'
+import { ItemSeparatorWidth } from '../../Temp/ItemSeparatorWidth'
 
 const FilterDoctorsSpeciality = (props) => {
   const { selectedFilterSpeciality, setSelectedFilterSpeciality } = props
@@ -30,7 +30,7 @@ const FilterDoctorsSpeciality = (props) => {
           extraData={selectedFilterSpeciality}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          ItemSeparatorComponent={<ItemSeparator width={8} />}
+          ItemSeparatorComponent={<ItemSeparatorWidth width={8} />}
         />
       </View>
     </View>

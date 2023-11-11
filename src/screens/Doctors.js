@@ -12,9 +12,9 @@ import { AntDesign } from '@expo/vector-icons'
 
 import SearchBar from '../components/HomeScreen/SearchBar'
 import GeneralAndFilter from '../components/Doctors/GeneralAndFilter'
-import { ItemSeparatorWidth } from '../components/Temp/ItemSeparatorWidth'
 import { ItemSeparatorHeight } from '../components/Temp/ItemSeparatorHeight'
 import ListItemWithoutIcon from '../components/Temp/ListItemWithoutIcon'
+import ListCards from '../components/Temp/ListCards'
 import { filterDoctorsSpeciality } from '../ultilities/filterDoctorsSpeciality'
 import { doctorGeneralInfo } from '../ultilities/doctorGeneralInfo'
 
@@ -27,11 +27,11 @@ const Doctors = ({ navigation }) => {
 
   const { container, searchBarWrapper, arrowLeftIcon, flatListWrapper } = styles
 
-  const renderFilterSpeciality = ({ item }) => (
-    <ListItemWithoutIcon
+  const renderListDoctors = ({ item }) => (
+    <ListCards
       item={item}
-      selectedIdwithoutIcon={selectedDoctor}
-      setSelectedIdwithoutIcon={setSelectedDoctor}
+      selectedDoctor={selectedDoctor}
+      setSelectedDoctor={setSelectedDoctor}
     />
   )
 
@@ -56,8 +56,8 @@ const Doctors = ({ navigation }) => {
       />
       <View style={flatListWrapper}>
         <FlatList
-          data={filterDoctorsSpeciality}
-          renderItem={renderFilterSpeciality}
+          data={doctorGeneralInfo}
+          renderItem={renderListDoctors}
           keyExtractor={(item) => item.id}
           extraData={selectedDoctor}
           showsVerticalScrollIndicator={false}
