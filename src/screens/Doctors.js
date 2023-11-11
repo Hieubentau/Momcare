@@ -12,23 +12,26 @@ import { AntDesign } from '@expo/vector-icons'
 
 import SearchBar from '../components/HomeScreen/SearchBar'
 import GeneralAndFilter from '../components/Doctors/GeneralAndFilter'
-import { ItemSeparator } from '../components/Temp/ItemSeparatorWidth'
+import { ItemSeparatorWidth } from '../components/Temp/ItemSeparatorWidth'
+import { ItemSeparatorHeight } from '../components/Temp/ItemSeparatorHeight'
 import ListItemWithoutIcon from '../components/Temp/ListItemWithoutIcon'
 import { filterDoctorsSpeciality } from '../ultilities/filterDoctorsSpeciality'
+import { doctorGeneralInfo } from '../ultilities/doctorGeneralInfo'
 
 const Doctors = ({ navigation }) => {
   const [selectedFilterSpeciality, setSelectedFilterSpeciality] = useState('')
   const [applySelectedFilterSpeciality, setApplySelectedFilterSpeciality] =
     useState('')
   const [isModalVisible, setIsModalVisible] = useState(false)
+  const [selectedDoctor, setSelectedDoctor] = useState('')
 
   const { container, searchBarWrapper, arrowLeftIcon, flatListWrapper } = styles
 
   const renderFilterSpeciality = ({ item }) => (
     <ListItemWithoutIcon
       item={item}
-      selectedIdwithoutIcon={selectedFilterSpeciality}
-      setSelectedIdwithoutIcon={setSelectedFilterSpeciality}
+      selectedIdwithoutIcon={selectedDoctor}
+      setSelectedIdwithoutIcon={setSelectedDoctor}
     />
   )
 
@@ -56,10 +59,9 @@ const Doctors = ({ navigation }) => {
           data={filterDoctorsSpeciality}
           renderItem={renderFilterSpeciality}
           keyExtractor={(item) => item.id}
-          extraData={selectedFilterSpeciality}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          ItemSeparatorComponent={<ItemSeparator width={8} />}
+          extraData={selectedDoctor}
+          showsVerticalScrollIndicator={false}
+          ItemSeparatorComponent={<ItemSeparatorHeight height={16} />}
         />
       </View>
     </SafeAreaView>
@@ -80,6 +82,7 @@ const styles = StyleSheet.create({
     marginRight: 8
   },
   flatListWrapper: {
+    flex: 1,
     marginTop: 8
   }
 })

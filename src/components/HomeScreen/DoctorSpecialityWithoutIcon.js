@@ -4,7 +4,7 @@ import { FlatList, View, Text, TouchableOpacity } from 'react-native'
 import { ThemeColorContext } from '../../contexts/themeColorContext'
 import { doctorSpecialityType } from '../../ultilities/doctorSpecialityType'
 import ListItemWithoutIcon from '../Temp/ListItemWithoutIcon'
-import { ItemSeparator } from '../Temp/ItemSeparator'
+import { ItemSeparatorWidth } from '../Temp/ItemSeparatorWidth'
 
 const DoctorSpecialityWithoutIcon = (props) => {
   const [selectedIdwithoutIcon, setSelectedIdwithoutIcon] = useState()
@@ -38,7 +38,7 @@ const DoctorSpecialityWithoutIcon = (props) => {
           extraData={selectedIdwithoutIcon}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          ItemSeparatorComponent={<ItemSeparator width={8} />}
+          ItemSeparatorComponent={<ItemSeparatorWidth width={8} />}
         />
       </View>
     </View>

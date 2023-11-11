@@ -75,7 +75,7 @@ const DoctorSpeciality = (props) => {
           extraData={selectedIdwithIcon}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          ItemSeparatorWidthComponent={<ItemSeparatorWidth width={16} />}
+          ItemSeparatorComponent={<ItemSeparatorWidth width={16} />}
         />
       </View>
     </View>
