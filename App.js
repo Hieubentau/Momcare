@@ -6,6 +6,7 @@ import SplashScreen from './src/screens/SplashScreen'
 import SignInScreen from './src/screens/SignInScreen'
 import Tabs from './src/components/Tabs'
 import DoctorsScreen from './src/screens/DoctorsScreen'
+import DoctorInfoScreen from './src/screens/DoctorInfoScreen'
 
 import { AuthContext } from './src/contexts/authContext'
 import { ThemeColorContext } from './src/contexts/themeColorContext'
@@ -64,6 +65,11 @@ export default function App() {
             <Stack.Screen
               name="Doctors"
               component={DoctorsScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="DoctorInfo"
+              component={DoctorInfoScreen}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>

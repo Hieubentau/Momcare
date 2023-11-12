@@ -27,6 +27,7 @@ const Doctors = ({ navigation }) => {
 
   const renderListDoctors = ({ item }) => (
     <ListCardsInfo
+      navigation={navigation}
       item={item}
       selectedDoctor={selectedDoctor}
       setSelectedDoctor={setSelectedDoctor}
