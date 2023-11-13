@@ -66,7 +66,10 @@ const DoctorInfoScreen = (props) => {
         doloremque, quas voluptatibus voluptas dolore voluptatem ipsam quae
         natus voluptatum.
       </Text>
-      <TouchableOpacity style={bookAppointmentButton}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('BookAppointment', { item })}
+        style={bookAppointmentButton}
+      >
         <Text style={bookAppointmentText}>Book Appointment</Text>
       </TouchableOpacity>
     </SafeAreaView>

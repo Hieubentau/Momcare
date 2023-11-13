@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { ThemeColorContext } from '../../contexts/themeColorContext'
-import CardInfo from './CardInfo'
+import CardInfo from '../Temp/CardInfo'
 
 const CardDoctor = ({ item, onPress, backgroundColor, styles }) => (
   <TouchableOpacity
