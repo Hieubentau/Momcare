@@ -11,32 +11,20 @@ import {
 import { AntDesign } from '@expo/vector-icons'
 
 import CardInfo from '../components/Temp/CardInfo'
+import TitleBar from '../components/Temp/TitleBar'
+import AbsoluteBottomButton from '../components/Temp/AbsoluteBottomButton'
 
 const DoctorInfoScreen = (props) => {
   const { navigation, route } = props
   const { item } = route.params
-  const {
-    container,
-    titleBarWrapper,
-    arrowLeftIcon,
-    titleBarName,
-    cardWrapper,
-    doctorInfoWrapper,
-    doctorInfoTitle,
-    bookAppointmentButton,
-    bookAppointmentText
-  } = styles
+  const { container, cardWrapper, doctorInfoWrapper, doctorInfoTitle } = styles
   return (
     <SafeAreaView style={container}>
-      <View style={titleBarWrapper}>
-        <TouchableOpacity
-          onPress={() => navigation.goBack('Doctors')}
-          style={arrowLeftIcon}
-        >
-          <AntDesign name="arrowleft" size={24} color="black" />
-        </TouchableOpacity>
-        <Text style={titleBarName}>{item.name}</Text>
-      </View>
+      <TitleBar
+        navigation={navigation}
+        previousScreen="Doctors"
+        titleName={item.name}
+      />
       <TouchableOpacity style={cardWrapper} disabled={true}>
         <CardInfo item={item} />
       </TouchableOpacity>
@@ -66,12 +54,12 @@ const DoctorInfoScreen = (props) => {
         doloremque, quas voluptatibus voluptas dolore voluptatem ipsam quae
         natus voluptatum.
       </Text>
-      <TouchableOpacity
-        onPress={() => navigation.navigate('BookAppointment', { item })}
-        style={bookAppointmentButton}
-      >
-        <Text style={bookAppointmentText}>Book Appointment</Text>
-      </TouchableOpacity>
+      <AbsoluteBottomButton
+        navigation={navigation}
+        nextScreen="BookAppointment"
+        passingData={item}
+        buttonName="Book Appointment"
+      />
     </SafeAreaView>
   )
 }
@@ -83,18 +71,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     marginTop: StatusBar.currentHeight || 0
   },
-  titleBarWrapper: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 16
-  },
-  arrowLeftIcon: {
-    marginRight: 16
-  },
-  titleBarName: {
-    fontSize: 24,
-    fontWeight: 'bold'
-  },
   cardWrapper: {
     backgroundColor: 'white',
     borderRadius: 16,
@@ -105,21 +81,6 @@ const styles = StyleSheet.create({
   doctorInfoTitle: {
     marginTop: 8,
     fontSize: 20,
-    fontWeight: 'bold'
-  },
-  bookAppointmentButton: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: '#2196F3',
-    padding: 10,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  bookAppointmentText: {
-    color: 'white',
-    fontSize: 18,
     fontWeight: 'bold'
   }
 })

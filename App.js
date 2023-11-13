@@ -8,6 +8,7 @@ import Tabs from './src/components/Tabs'
 import DoctorsScreen from './src/screens/DoctorsScreen'
 import DoctorInfoScreen from './src/screens/DoctorInfoScreen'
 import BookAppointmentScreen from './src/screens/BookAppointmentScreen'
+import BookAppointmentMethodScreen from './src/screens/BookAppointmentMethodScreen'
 
 import { AuthContext } from './src/contexts/authContext'
 import { ThemeColorContext } from './src/contexts/themeColorContext'
@@ -76,6 +77,11 @@ export default function App() {
             <Stack.Screen
               name="BookAppointment"
               component={BookAppointmentScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="BookAppointmentMethod"
+              component={BookAppointmentMethodScreen}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>
