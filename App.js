@@ -13,6 +13,7 @@ import BookAppointmentMethodScreen from './src/screens/BookAppointmentMethodScre
 import { AuthProvider } from './src/contexts/authContext'
 import { useAuthContext } from './src/hooks/useAuthContext'
 import { DefaultTheme, PaperProvider } from 'react-native-paper'
+import PatientDetailsScreen from './src/screens/PatientDetailsScreen'
 
 const Stack = createNativeStackNavigator()
 
@@ -93,6 +94,11 @@ export default function App() {
             <Stack.Screen
               name="BookAppointmentMethod"
               component={BookAppointmentMethodScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="PatientDetails"
+              component={PatientDetailsScreen}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>
