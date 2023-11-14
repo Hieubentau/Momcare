@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
-import { ThemeColorContext } from '../../contexts/themeColorContext'
+import { useTheme } from 'react-native-paper'
 import { Ionicons, AntDesign } from '@expo/vector-icons'
 import Divider from './Divider'
 
 const CardInfo = ({ item }) => {
-  const themeColor = useContext(ThemeColorContext)
+  const theme = useTheme()
+  const themeColor = theme.colors.primary
   const {
     cardWrapper,
     imageWrapper,

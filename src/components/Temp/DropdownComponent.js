@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { Dropdown } from 'react-native-element-dropdown'
-import { ThemeColorContext } from '../../contexts/themeColorContext'
+import { useTheme } from 'react-native-paper'
 import { AntDesign, Ionicons } from '@expo/vector-icons'
 
 const DropdownComponent = (props) => {
@@ -9,7 +9,8 @@ const DropdownComponent = (props) => {
   const [value, setValue] = useState(null)
   const [isFocus, setIsFocus] = useState(false)
 
-  const themeColor = useContext(ThemeColorContext)
+  const theme = useTheme()
+  const themeColor = theme.colors.primary
 
   return (
     <View style={styles.container}>

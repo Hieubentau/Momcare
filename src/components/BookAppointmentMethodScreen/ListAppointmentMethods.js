@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
-import { ThemeColorContext } from '../../contexts/themeColorContext'
+import { useTheme } from 'react-native-paper'
 import CardMethod from '../Temp/CardMethod'
 
 const CardAppointmentMethod = ({ item, onPress, backgroundColor, styles }) => (
@@ -13,7 +13,8 @@ const CardAppointmentMethod = ({ item, onPress, backgroundColor, styles }) => (
 )
 
 const ListAppointmentMethods = (props) => {
-  const themeColor = useContext(ThemeColorContext)
+  const theme = useTheme()
+  const themeColor = theme.colors.primary
   const { navigation, item, selectedMethod, setSelectedMethod } = props
   const { cardTouchable } = styles
 

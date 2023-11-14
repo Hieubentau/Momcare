@@ -5,12 +5,13 @@ import HomeScreen from '../screens/HomeScreen'
 import AppointmentScreen from '../screens/AppointmentScreen'
 import PrescriptionScreen from '../screens/PrescriptionScreen'
 
-import { ThemeColorContext } from '../contexts/themeColorContext'
+import { useTheme } from 'react-native-paper'
 
 const Tab = createBottomTabNavigator()
 
 const Tabs = () => {
-  const themeColor = useContext(ThemeColorContext)
+  const theme = useTheme()
+  const themeColor = theme.colors.primary
   return (
     <Tab.Navigator
       screenOptions={{

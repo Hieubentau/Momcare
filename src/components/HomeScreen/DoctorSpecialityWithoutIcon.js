@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { FlatList, View, Text, TouchableOpacity } from 'react-native'
 
-import { ThemeColorContext } from '../../contexts/themeColorContext'
+import { useTheme } from 'react-native-paper'
 import { doctorSpecialityType } from '../../ultilities/doctorSpecialityType'
 import ListItemWithoutIcon from '../Temp/ListItemWithoutIcon'
 import { ItemSeparatorWidth } from '../Temp/ItemSeparatorWidth'
@@ -9,7 +9,8 @@ import { ItemSeparatorWidth } from '../Temp/ItemSeparatorWidth'
 const DoctorSpecialityWithoutIcon = (props) => {
   const [selectedIdwithoutIcon, setSelectedIdwithoutIcon] = useState()
 
-  const themeColor = useContext(ThemeColorContext)
+  const theme = useTheme()
+  const themeColor = theme.colors.primary
 
   const { topDoctorsText } = props
   const { textHeaderWrapper, seeAllText, flatListWrapper } = styles

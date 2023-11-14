@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
-import { ThemeColorContext } from '../../contexts/themeColorContext'
+import { useTheme } from 'react-native-paper'
 
 import { Calendar } from 'react-native-calendars'
 
 const CalendarComponent = (props) => {
   const { selectedDay, setSelectedDay } = props
-  const themeColor = React.useContext(ThemeColorContext)
+  const theme = useTheme()
+  const themeColor = theme.colors.primary
   return (
     <Calendar
       onDayPress={(day) => {

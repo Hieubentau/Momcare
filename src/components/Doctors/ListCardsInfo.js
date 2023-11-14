@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
-import { ThemeColorContext } from '../../contexts/themeColorContext'
+import { useTheme } from 'react-native-paper'
 import CardInfo from '../Temp/CardInfo'
 
 const CardDoctor = ({ item, onPress, backgroundColor, styles }) => (
@@ -13,7 +13,8 @@ const CardDoctor = ({ item, onPress, backgroundColor, styles }) => (
 )
 
 const ListCardsInfo = (props) => {
-  const themeColor = useContext(ThemeColorContext)
+  const theme = useTheme()
+  const themeColor = theme.colors.primary
   const { navigation, item, selectedDoctor, setSelectedDoctor } = props
   const { cardTouchable } = styles
 

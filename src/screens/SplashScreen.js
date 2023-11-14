@@ -1,10 +1,11 @@
 import React, { useContext } from 'react'
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
 import { Entypo } from '@expo/vector-icons'
-import { ThemeColorContext } from '../contexts/themeColorContext'
+import { useTheme } from 'react-native-paper'
 
 const SplashScreen = () => {
-  const themeColor = useContext(ThemeColorContext)
+  const theme = useTheme()
+  const themeColor = theme.colors.primary
   const { container, logoWrapper, logoText, center } = styles
   return (
     <SafeAreaView style={[container, center]}>

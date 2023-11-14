@@ -2,9 +2,9 @@ import React, { useContext, useState } from 'react'
 import { FlatList, View, Text, TouchableOpacity } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
-import { ThemeColorContext } from '../../contexts/themeColorContext'
 import { doctorSpecialityType } from '../../ultilities/doctorSpecialityType'
 import { ItemSeparatorWidth } from '../Temp/ItemSeparatorWidth'
+import { useTheme } from 'react-native-paper'
 
 const ItemWithIcon = ({ item, onPress, backgroundColor, styles }) => (
   <View style={styles.avatarWrapper}>
@@ -25,7 +25,8 @@ const ItemWithIcon = ({ item, onPress, backgroundColor, styles }) => (
 const DoctorSpeciality = (props) => {
   const [selectedIdwithIcon, setSelectedIdwithIcon] = useState()
 
-  const themeColor = useContext(ThemeColorContext)
+  const theme = useTheme()
+  const themeColor = theme.colors.primary
 
   const { doctorSpecialityText, navigation } = props
   const {
