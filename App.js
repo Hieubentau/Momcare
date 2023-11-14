@@ -10,11 +10,9 @@ import DoctorInfoScreen from './src/screens/DoctorInfoScreen'
 import BookAppointmentScreen from './src/screens/BookAppointmentScreen'
 import BookAppointmentMethodScreen from './src/screens/BookAppointmentMethodScreen'
 
-import { AuthContext } from './src/contexts/authContext'
-import { ThemeColorContext } from './src/contexts/themeColorContext'
+import { AuthProvider } from './src/contexts/authContext'
 import { useAuthContext } from './src/hooks/useAuthContext'
-import {DefaultTheme, PaperProvider} from 'react-native-paper'
-import {Text} from "react-native";
+import { DefaultTheme, PaperProvider } from 'react-native-paper'
 
 const Stack = createNativeStackNavigator()
 
@@ -24,7 +22,7 @@ const theme = {
   colors: {
     ...DefaultTheme.colors,
     // a custom theme color often used in healthcare apps
-    primary: 'dodgerblue',
+    primary: 'dodgerblue'
     // a custom background color for content areas
   }
 }
@@ -41,7 +39,7 @@ export default function App() {
   }, [])
 
   return (
-    <AuthContext.Provider value={authContext}>
+    <AuthProvider value={authContext}>
       <PaperProvider theme={theme}>
         <NavigationContainer>
           <Stack.Navigator>
@@ -64,43 +62,42 @@ export default function App() {
                 name="SignIn"
                 component={SignInScreen}
                 options={{
+                  headerShown: false,
                   title: 'Sign In',
                   // When logging out, a pop animation feels intuitive
                   animationTypeForReplace: state.isSignout ? 'pop' : 'push'
                 }}
               />
             ) : (
-                <Text>hello</Text>
-              // User is signed in
-              // <Stack.Screen
-              //   name="Tabs"
-              //   component={Tabs}
-              //   options={{ headerShown: false }}
-              // />
+              <Stack.Screen
+                name="Tabs"
+                component={Tabs}
+                options={{ headerShown: false }}
+              />
             )}
-            {/*<Stack.Screen*/}
-            {/*  name="Doctors"*/}
-            {/*  component={DoctorsScreen}*/}
-            {/*  options={{ headerShown: false }}*/}
-            {/*/>*/}
-            {/*<Stack.Screen*/}
-            {/*  name="DoctorInfo"*/}
-            {/*  component={DoctorInfoScreen}*/}
-            {/*  options={{ headerShown: false }}*/}
-            {/*/>*/}
-            {/*<Stack.Screen*/}
-            {/*  name="BookAppointment"*/}
-            {/*  component={BookAppointmentScreen}*/}
-            {/*  options={{ headerShown: false }}*/}
-            {/*/>*/}
-            {/*<Stack.Screen*/}
-            {/*  name="BookAppointmentMethod"*/}
-            {/*  component={BookAppointmentMethodScreen}*/}
-            {/*  options={{ headerShown: false }}*/}
-            {/*/>*/}
+            <Stack.Screen
+              name="Doctors"
+              component={DoctorsScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="DoctorInfo"
+              component={DoctorInfoScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="BookAppointment"
+              component={BookAppointmentScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="BookAppointmentMethod"
+              component={BookAppointmentMethodScreen}
+              options={{ headerShown: false }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </PaperProvider>
-    </AuthContext.Provider>
+    </AuthProvider>
   )
 }

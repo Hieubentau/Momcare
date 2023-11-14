@@ -1,73 +1,57 @@
 import React, { useState, useContext } from 'react'
-import {
-  Text,
-  SafeAreaView,
-  StyleSheet,
-  View,
-  TouchableOpacity
-} from 'react-native'
-import {
-  Ionicons,
-  EvilIcons,
-  MaterialIcons,
-  MaterialCommunityIcons
-} from '@expo/vector-icons'
+import { Text, SafeAreaView, StyleSheet, View } from 'react-native'
+import { Ionicons, EvilIcons } from '@expo/vector-icons'
 import { AuthContext } from '../contexts/authContext'
-import { ThemeColorContext } from '../contexts/themeColorContext'
 import { TextInput } from 'react-native-paper'
 import { VerticalView } from '../components/Basics/VerticalView'
 import { PasswordTextInput } from '../components/Basics/PasswordTextInput'
+import { LoadableButton } from '../components/Basics/LoadableButton'
+import { useTheme } from 'react-native-paper'
 
 const SignInScreen = () => {
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [showPassword, setShowPassword] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const { signIn } = useContext(AuthContext)
-  const themeColor = useContext(ThemeColorContext)
+  const theme = useTheme()
 
-  const {
-    container,
-    leafLogoWrapper,
-    headerText,
-    center,
-    logoTextIcon,
-    inputWrapper,
-    inputTextWrapper,
-    usernameTextInput,
-    passwordTextInput,
-    showPasswordButton,
-    signInButton,
-    textInput
-  } = styles
+  const { leafLogoWrapper, headerText, signInButton, textInput } = styles
 
   return (
-    <SafeAreaView style={(container, center)}>
-      <View style={[leafLogoWrapper, center]}>
-        <Ionicons name="leaf-outline" size={36} color={themeColor} />
-        <EvilIcons name="heart" size={72} color={themeColor} />
+    <SafeAreaView
+      style={{
+        flex: 1,
+        flexDirection: 'column',
+
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}
+    >
+      <View style={{ ...leafLogoWrapper }}>
+        <Ionicons name="leaf-outline" size={36} color={theme.colors.primary} />
+        <EvilIcons name="heart" size={72} color={theme.colors.primary} />
         <Ionicons
           name="leaf-outline"
           size={36}
-          color={themeColor}
+          color={theme.colors.primary}
           style={{ transform: [{ scaleX: -1 }] }}
         />
       </View>
-
-      <Text style={headerText}>Login to Your Account</Text>
 
       <VerticalView
         style={{
           width: '80%'
         }}
       >
+        <Text style={headerText}>Welcome to Momcare</Text>
         <TextInput
           autoFocus={true}
           mode="outlined"
           label="Email"
           placeholder="Type email"
-          value={username}
-          onChangeText={setUsername}
+          value={email}
+          onChangeText={setEmail}
           left={<TextInput.Icon icon={'email'} />}
           style={textInput}
         />
@@ -77,18 +61,26 @@ const SignInScreen = () => {
           placeholder="Type password"
           value={password}
           onChangeText={setPassword}
-          secureTextEntry={!showPassword}
           left={<TextInput.Icon icon="lock" />}
           style={textInput}
         />
+        <LoadableButton
+          style={signInButton}
+          mode="contained"
+          isLoading={isLoading}
+          onPress={() => {
+            console.log('sign in button pressed')
+            setIsLoading(true)
+            signIn(email, password)
+          }}
+          contentStyle={{
+            height: '100%',
+            width: '100%'
+          }}
+        >
+          Sign In
+        </LoadableButton>
       </VerticalView>
-
-      <TouchableOpacity
-        onPress={() => signIn({ username, password })}
-        style={[inputWrapper, signInButton]}
-      >
-        <Text style={{ color: 'white' }}>Sign in</Text>
-      </TouchableOpacity>
     </SafeAreaView>
   )
 }
@@ -98,7 +90,8 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   container: {
-    flex: 1
+    flex: 1,
+    height: '100%'
   },
   leafLogoWrapper: {
     flexDirection: 'row',
@@ -138,12 +131,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   signInButton: {
-    backgroundColor: 'dodgerblue',
+    width: '100%',
     height: 50,
     borderRadius: 25,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 15
+    marginTop: 10
   }
 })
 
