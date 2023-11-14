@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react'
 import {
   Text,
   TextInput,
-  Button,
   SafeAreaView,
   StyleSheet,
   View,
@@ -16,6 +15,7 @@ import {
 } from '@expo/vector-icons'
 import { AuthContext } from '../contexts/authContext'
 import { ThemeColorContext } from '../contexts/themeColorContext'
+import { Button } from '@ant-design/react-native'
 
 const SignInScreen = () => {
   const [username, setUsername] = useState('')
@@ -52,6 +52,7 @@ const SignInScreen = () => {
       </View>
 
       <Text style={headerText}>Login to Your Account</Text>
+      <Button>sdadsasd</Button>
 
       <View style={inputWrapper}>
         <View style={[inputTextWrapper]}>

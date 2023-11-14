@@ -37,3 +37,6 @@ yarn-error.*
 
 # misc
 %ProgramData%/Microsoft/Windows/UUS/State/_active.uusver
+
+# IDEs and editors
+/.idea

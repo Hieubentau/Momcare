@@ -13,6 +13,7 @@ import BookAppointmentMethodScreen from './src/screens/BookAppointmentMethodScre
 import { AuthContext } from './src/contexts/authContext'
 import { ThemeColorContext } from './src/contexts/themeColorContext'
 import { useAuthContext } from './src/hooks/useAuthContext'
+import {Button} from '@ant-design/react-native'
 
 const Stack = createNativeStackNavigator()
 
