@@ -13,9 +13,21 @@ import BookAppointmentMethodScreen from './src/screens/BookAppointmentMethodScre
 import { AuthContext } from './src/contexts/authContext'
 import { ThemeColorContext } from './src/contexts/themeColorContext'
 import { useAuthContext } from './src/hooks/useAuthContext'
-import {Button} from '@ant-design/react-native'
+import {DefaultTheme, PaperProvider} from 'react-native-paper'
+import {Text} from "react-native";
 
 const Stack = createNativeStackNavigator()
+
+const theme = {
+  ...DefaultTheme,
+  roundness: 10,
+  colors: {
+    ...DefaultTheme.colors,
+    // a custom theme color often used in healthcare apps
+    primary: 'dodgerblue',
+    // a custom background color for content areas
+  }
+}
 
 export default function App() {
   const [state, authContext] = useAuthContext()
@@ -30,7 +42,7 @@ export default function App() {
 
   return (
     <AuthContext.Provider value={authContext}>
-      <ThemeColorContext.Provider value={themeColor}>
+      <PaperProvider theme={theme}>
         <NavigationContainer>
           <Stack.Navigator>
             {splashVisible ? (
@@ -58,36 +70,37 @@ export default function App() {
                 }}
               />
             ) : (
+                <Text>hello</Text>
               // User is signed in
-              <Stack.Screen
-                name="Tabs"
-                component={Tabs}
-                options={{ headerShown: false }}
-              />
+              // <Stack.Screen
+              //   name="Tabs"
+              //   component={Tabs}
+              //   options={{ headerShown: false }}
+              // />
             )}
-            <Stack.Screen
-              name="Doctors"
-              component={DoctorsScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="DoctorInfo"
-              component={DoctorInfoScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="BookAppointment"
-              component={BookAppointmentScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="BookAppointmentMethod"
-              component={BookAppointmentMethodScreen}
-              options={{ headerShown: false }}
-            />
+            {/*<Stack.Screen*/}
+            {/*  name="Doctors"*/}
+            {/*  component={DoctorsScreen}*/}
+            {/*  options={{ headerShown: false }}*/}
+            {/*/>*/}
+            {/*<Stack.Screen*/}
+            {/*  name="DoctorInfo"*/}
+            {/*  component={DoctorInfoScreen}*/}
+            {/*  options={{ headerShown: false }}*/}
+            {/*/>*/}
+            {/*<Stack.Screen*/}
+            {/*  name="BookAppointment"*/}
+            {/*  component={BookAppointmentScreen}*/}
+            {/*  options={{ headerShown: false }}*/}
+            {/*/>*/}
+            {/*<Stack.Screen*/}
+            {/*  name="BookAppointmentMethod"*/}
+            {/*  component={BookAppointmentMethodScreen}*/}
+            {/*  options={{ headerShown: false }}*/}
+            {/*/>*/}
           </Stack.Navigator>
         </NavigationContainer>
-      </ThemeColorContext.Provider>
+      </PaperProvider>
     </AuthContext.Provider>
   )
 }

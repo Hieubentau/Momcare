@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react'
 import {
   Text,
-  TextInput,
   SafeAreaView,
   StyleSheet,
   View,
@@ -15,7 +14,9 @@ import {
 } from '@expo/vector-icons'
 import { AuthContext } from '../contexts/authContext'
 import { ThemeColorContext } from '../contexts/themeColorContext'
-import { Button } from '@ant-design/react-native'
+import { TextInput } from 'react-native-paper'
+import { VerticalView } from '../components/Basics/VerticalView'
+import { PasswordTextInput } from '../components/Basics/PasswordTextInput'
 
 const SignInScreen = () => {
   const [username, setUsername] = useState('')
@@ -36,8 +37,10 @@ const SignInScreen = () => {
     usernameTextInput,
     passwordTextInput,
     showPasswordButton,
-    signInButton
+    signInButton,
+    textInput
   } = styles
+
   return (
     <SafeAreaView style={(container, center)}>
       <View style={[leafLogoWrapper, center]}>
@@ -52,51 +55,34 @@ const SignInScreen = () => {
       </View>
 
       <Text style={headerText}>Login to Your Account</Text>
-      <Button>sdadsasd</Button>
 
-      <View style={inputWrapper}>
-        <View style={[inputTextWrapper]}>
-          <MaterialIcons
-            name="email"
-            size={16}
-            color="black"
-            style={logoTextIcon}
-          />
-          <TextInput
-            placeholder="Username"
-            value={username}
-            onChangeText={setUsername}
-            style={usernameTextInput}
-          />
-        </View>
-        <View style={[inputTextWrapper]}>
-          <MaterialIcons
-            name="lock"
-            size={16}
-            color="black"
-            style={logoTextIcon}
-          />
-          <TextInput
-            placeholder="Password"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry={!showPassword}
-            style={passwordTextInput}
-          />
-          <TouchableOpacity
-            style={showPasswordButton}
-            onPress={() => setShowPassword(!showPassword)}
-          >
-            {/* <Text>{showPassword ? 'Hide' : 'Show'}</Text> */}
+      <VerticalView
+        style={{
+          width: '80%'
+        }}
+      >
+        <TextInput
+          autoFocus={true}
+          mode="outlined"
+          label="Email"
+          placeholder="Type email"
+          value={username}
+          onChangeText={setUsername}
+          left={<TextInput.Icon icon={'email'} />}
+          style={textInput}
+        />
+        <PasswordTextInput
+          mode="outlined"
+          label="Password"
+          placeholder="Type password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry={!showPassword}
+          left={<TextInput.Icon icon="lock" />}
+          style={textInput}
+        />
+      </VerticalView>
 
-            {showPassword ? (
-              <MaterialCommunityIcons name="eye" size={16} color="black" />
-            ) : (
-              <MaterialCommunityIcons name="eye-off" size={16} color="black" />
-            )}
-          </TouchableOpacity>
-        </View>
-      </View>
       <TouchableOpacity
         onPress={() => signIn({ username, password })}
         style={[inputWrapper, signInButton]}
@@ -108,6 +94,9 @@ const SignInScreen = () => {
 }
 
 const styles = StyleSheet.create({
+  textInput: {
+    width: '100%'
+  },
   container: {
     flex: 1
   },
