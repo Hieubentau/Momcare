@@ -4,15 +4,8 @@ import { Dropdown } from 'react-native-element-dropdown'
 import { ThemeColorContext } from '../../contexts/themeColorContext'
 import { AntDesign, Ionicons } from '@expo/vector-icons'
 
-const data = [
-  { label: '20 minutes', value: '1' },
-  { label: '30 minutes', value: '2' },
-  { label: '45 minutes', value: '3' },
-  { label: '1 hour', value: '4' },
-  { label: '2 hour', value: '5' }
-]
-
-const DropdownComponent = () => {
+const DropdownComponent = (props) => {
+  const { dataDuration, selectedDuration, setSelectedDuration } = props
   const [value, setValue] = useState(null)
   const [isFocus, setIsFocus] = useState(false)
 
@@ -26,7 +19,7 @@ const DropdownComponent = () => {
         selectedTextStyle={styles.selectedTextStyle}
         inputSearchStyle={styles.inputSearchStyle}
         iconStyle={styles.iconStyle}
-        data={data}
+        data={dataDuration}
         search
         maxHeight={300}
         labelField="label"
@@ -38,6 +31,8 @@ const DropdownComponent = () => {
         onBlur={() => setIsFocus(false)}
         onChange={(item) => {
           setValue(item.value)
+          setSelectedDuration(item.label)
+          console.log(selectedDuration)
           setIsFocus(false)
         }}
         renderLeftIcon={() => (
