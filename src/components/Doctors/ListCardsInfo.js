@@ -23,7 +23,9 @@ const ListCardsInfo = (props) => {
     <CardDoctor
       item={item}
       onPress={() => {
-        setSelectedDoctor(item.id), navigation.navigate('DoctorInfo', { item })
+        setSelectedDoctor(item.id),
+          navigation.navigate('DoctorInfo', { item }),
+          console.log(item)
       }}
       onPressout={() => setSelectedDoctor(item.id)}
       backgroundColor={backgroundColor}

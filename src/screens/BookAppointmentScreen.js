@@ -4,7 +4,6 @@ import CalendarComponent from '../components/Temp/CalendarComponent'
 import TitleBar from '../components/Temp/TitleBar'
 import ListItemWithoutIcon from '../components/Temp/ListItemWithoutIcon'
 import { ItemSeparatorWidth } from '../components/Temp/ItemSeparatorWidth'
-import { ItemSeparatorHeight } from '../components/Temp/ItemSeparatorHeight'
 
 import { bookingHour } from '../ultilities/bookingHour'
 import AbsoluteBottomButton from '../components/Temp/AbsoluteBottomButton'
@@ -13,7 +12,7 @@ const BookAppointmentScreen = (props) => {
   const [selectedDay, setSelectedDay] = useState('')
   const [selectedBookingHour, setSelectedBookingHour] = useState()
   const { navigation, route } = props
-  const { item } = route.params
+  const { passingData } = route.params
   const {
     container,
     selectDateWrapper,
@@ -62,7 +61,7 @@ const BookAppointmentScreen = (props) => {
       <AbsoluteBottomButton
         navigation={navigation}
         nextScreen="BookAppointmentMethod"
-        passingData={{ item, selectedBookingHour, selectedDay }}
+        passingData={{ passingData, selectedBookingHour, selectedDay }}
         buttonName="Next"
       />
     </View>
