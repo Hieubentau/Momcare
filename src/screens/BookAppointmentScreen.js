@@ -61,7 +61,7 @@ const BookAppointmentScreen = (props) => {
       <AbsoluteBottomButton
         navigation={navigation}
         nextScreen="BookAppointmentMethod"
-        passingData={{ passingData, selectedBookingHour, selectedDay }}
+        passingData={{ ...passingData, selectedBookingHour, selectedDay }}
         buttonName="Next"
       />
     </View>
