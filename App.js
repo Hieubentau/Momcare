@@ -58,7 +58,7 @@ export default function App() {
                 component={SplashScreen}
                 options={{ headerShown: false }}
               />
-            ) : state.userToken != null ? (
+            ) : state.userToken == null ? (
               // No token found, user isn't signed in
               <Stack.Screen
                 name="SignIn"
