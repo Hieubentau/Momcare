@@ -10,11 +10,12 @@ export const useRole = () => {
   useEffect(() => {
     // a fetch call to the server to get all possible roles
     axios
-      .get('http://localhost:3000/roles')
+      .get('http://localhost:3333/api/v1/role')
       .then((res) => {
         setRole(res.data)
       })
       .catch((err) => {
+        console.log('Error fetching roles:', err)
         console.log(err)
       })
   }, [])

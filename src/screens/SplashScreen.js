@@ -1,16 +1,16 @@
 import React, { useContext } from 'react'
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
 import { Entypo } from '@expo/vector-icons'
-import { ThemeColorContext } from '../contexts/themeColorContext'
+import { useTheme } from 'react-native-paper'
 
 const SplashScreen = () => {
-  const themeColor = useContext(ThemeColorContext)
+  const { colors } = useTheme()
   const { container, logoWrapper, logoText, center } = styles
   return (
     <SafeAreaView style={[container, center]}>
       <View style={[logoWrapper, center]}>
         <Text style={logoText}>MOMCARE </Text>
-        <Entypo name="leaf" size={36} color={themeColor} />
+        <Entypo name="leaf" size={36} color={colors.primary} />
       </View>
     </SafeAreaView>
   )
