@@ -9,6 +9,7 @@ import DoctorsScreen from './src/screens/DoctorsScreen'
 import DoctorInfoScreen from './src/screens/DoctorInfoScreen'
 import BookAppointmentScreen from './src/screens/BookAppointmentScreen'
 import BookAppointmentMethodScreen from './src/screens/BookAppointmentMethodScreen'
+import AddPaymentMethodScreen from './src/screens/AddPaymentMethodScreen'
 
 import { AuthProvider } from './src/contexts/authContext'
 import { useAuthContext } from './src/hooks/useAuthContext'
@@ -57,7 +58,7 @@ export default function App() {
                 component={SplashScreen}
                 options={{ headerShown: false }}
               />
-            ) : state.userToken == null ? (
+            ) : state.userToken != null ? (
               // No token found, user isn't signed in
               <Stack.Screen
                 name="SignIn"
@@ -99,6 +100,11 @@ export default function App() {
             <Stack.Screen
               name="PatientDetails"
               component={PatientDetailsScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="AddPaymentMethod"
+              component={AddPaymentMethodScreen}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>
