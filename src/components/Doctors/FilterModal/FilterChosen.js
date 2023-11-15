@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
-import { ThemeColorContext } from '../../../contexts/themeColorContext'
+import { useTheme } from 'react-native-paper'
 
 const FilterChosen = (props) => {
   const {
@@ -9,7 +9,8 @@ const FilterChosen = (props) => {
     setApplySelectedFilterSpeciality,
     setIsModalVisible
   } = props
-  const themeColor = useContext(ThemeColorContext)
+  const theme = useTheme()
+  const themeColor = theme.colors.primary
   const { filterChosenWrapper, filterChosenButton, filterChosenTitle } = styles
   return (
     <View style={filterChosenWrapper}>

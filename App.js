@@ -19,6 +19,7 @@ import {
   AppStateProvider
 } from './src/contexts/appStateContext'
 import { AlertNotificationRoot } from 'react-native-alert-notification'
+import PatientDetailsScreen from './src/screens/PatientDetailsScreen'
 
 const Stack = createNativeStackNavigator()
 
@@ -90,6 +91,11 @@ const InnerApp = ({ splashVisible }) => {
                 options={{ headerShown: false }}
               />
             </Stack.Navigator>
+						<Stack.Screen
+							name="PatientDetails"
+							component={PatientDetailsScreen}
+							options={{ headerShown: false }}
+						/>
           </NavigationContainer>
           <Toast autoHide={true} />
         </PaperProvider>

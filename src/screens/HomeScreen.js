@@ -14,13 +14,14 @@ import DoctorSpeciality from '../components/HomeScreen/DoctorSpeciality'
 import TopDoctors from '../components/HomeScreen/DoctorSpecialityWithoutIcon'
 
 import { AuthContext } from '../contexts/authContext'
-import { ThemeColorContext } from '../contexts/themeColorContext'
+import { useTheme } from 'react-native-paper'
 import Toast from 'react-native-toast-message'
 import { ALERT_TYPE, Dialog } from 'react-native-alert-notification'
 
 const HomeScreen = ({ navigation }) => {
   const { logout } = React.useContext(AuthContext)
-  const themeColor = useContext(ThemeColorContext)
+	const theme = useTheme()
+	const themeColor = theme.colors.primary
 
   const { container, center, textHeader } = styles
   return (

@@ -1,42 +1,30 @@
 import React, { useContext, useState } from 'react'
-import { View, StyleSheet, Text } from 'react-native'
-import { ThemeColorContext } from '../../contexts/themeColorContext'
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { useTheme } from 'react-native-paper'
 import { Ionicons, AntDesign } from '@expo/vector-icons'
-import Divider from './Divider'
 
 const CardMethod = ({ item }) => {
-  const themeColor = useContext(ThemeColorContext)
+  const theme = useTheme()
+  const themeColor = theme.colors.primary
   const {
     cardWrapper,
-    imageWrapper,
-    textInfoWrapper,
-    doctorName,
-    doctorSpeciality,
-    ratingWrapper
+    methodImageWrapper,
+    methodDescriptionWrapper,
+    methodName,
+    methodDescription,
+    methodPrice
   } = styles
 
   return (
     <View style={cardWrapper}>
-      <Ionicons
-        name="md-person-outline"
-        size={48}
-        color="black"
-        style={imageWrapper}
-      />
-      <View style={textInfoWrapper}>
-        <Text style={doctorName}>{item.name}</Text>
-        <Divider height={8} />
-        <Text style={doctorSpeciality}>
-          {item.speciality} | {item.hospital}
-        </Text>
-        <View style={ratingWrapper}>
-          <AntDesign name="star" size={16} color={themeColor} />
-          <Text>
-            {' '}
-            {item.rating} ({item.review} reviews)
-          </Text>
-        </View>
+      <TouchableOpacity disabled={true} style={methodImageWrapper}>
+        <AntDesign name={item.iconAntDesign} size={28} color={themeColor} />
+      </TouchableOpacity>
+      <View style={methodDescriptionWrapper}>
+        <Text style={methodName}>{item.method}</Text>
+        <Text style={methodDescription}>{item.description}</Text>
       </View>
+      <Text style={[methodPrice, { color: themeColor }]}>{item.price}</Text>
     </View>
   )
 }
@@ -44,24 +32,30 @@ const CardMethod = ({ item }) => {
 const styles = StyleSheet.create({
   cardWrapper: {
     flexDirection: 'row',
-    padding: 12
+    padding: 12,
+    alignItems: 'center'
   },
-  imageWrapper: {},
-  textInfoWrapper: {
+  methodImageWrapper: {
+    backgroundColor: 'gainsboro',
+    padding: 16,
+    borderRadius: 50
+  },
+  methodDescriptionWrapper: {
     flex: 1,
     marginLeft: 16
   },
-  doctorName: {
+  methodName: {
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 2
   },
-  doctorSpeciality: {
+  methodDescription: {
     marginTop: 2
   },
-  ratingWrapper: {
-    flexDirection: 'row',
-    marginTop: 4
+  methodPrice: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginBottom: 2
   }
 })
 

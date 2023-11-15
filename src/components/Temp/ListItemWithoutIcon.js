@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
-import { ThemeColorContext } from '../../contexts/themeColorContext'
+import { useTheme } from 'react-native-paper'
 
 const ItemWithoutIcon = ({
   item,
@@ -19,7 +19,8 @@ const ItemWithoutIcon = ({
 )
 
 const ListItemWithoutIcon = (props) => {
-  const themeColor = useContext(ThemeColorContext)
+  const theme = useTheme()
+  const themeColor = theme.colors.primary
   const { item, selectedIdwithoutIcon, setSelectedIdwithoutIcon } = props
   const { textTouchable } = styles
 

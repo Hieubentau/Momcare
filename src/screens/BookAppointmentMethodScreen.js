@@ -7,7 +7,7 @@ import DropdownComponent from '../components/Temp/DropdownComponent'
 import ListAppointmentMethods from '../components/BookAppointmentMethodScreen/ListAppointmentMethods'
 
 import { ItemSeparatorHeight } from '../components/Temp/ItemSeparatorHeight'
-import { doctorGeneralInfo } from '../ultilities/doctorGeneralInfo'
+import { packageBooking } from '../ultilities/packageBooking'
 
 const dataDuration = [
   { label: '20 minutes', value: '1' },
@@ -59,7 +59,7 @@ const BookAppointmentMethodScreen = (props) => {
         <Text style={[selectTitle, selectPackageTitle]}>Selected Package</Text>
         <View style={flatListWrapper}>
           <FlatList
-            data={doctorGeneralInfo}
+            data={packageBooking}
             renderItem={renderListMethods}
             keyExtractor={(item) => item.id}
             extraData={selectedMethod}
@@ -68,6 +68,12 @@ const BookAppointmentMethodScreen = (props) => {
           />
         </View>
       </View>
+      <AbsoluteBottomButton
+        navigation={navigation}
+        nextScreen="PatientDetails"
+        passingData={{ passingData, selectedDuration, selectedMethod }}
+        buttonName="Next"
+      />
     </View>
   )
 }
