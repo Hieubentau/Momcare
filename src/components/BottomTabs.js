@@ -9,7 +9,7 @@ import { useTheme } from 'react-native-paper'
 
 const Tab = createBottomTabNavigator()
 
-const Tabs = () => {
+const BottomTabs = () => {
   const theme = useTheme()
   const themeColor = theme.colors.primary
   return (
@@ -30,4 +30,4 @@ const Tabs = () => {
   )
 }
 
-export default Tabs
+export default BottomTabs

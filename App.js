@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import SplashScreen from './src/screens/SplashScreen'
 import SignInScreen from './src/screens/SignInScreen'
-import Tabs from './src/components/Tabs'
+import BottomTabs from './src/components/BottomTabs'
 import DoctorsScreen from './src/screens/DoctorsScreen'
 import DoctorInfoScreen from './src/screens/DoctorInfoScreen'
 import BookAppointmentScreen from './src/screens/BookAppointmentScreen'
@@ -73,8 +73,8 @@ export default function App() {
               />
             ) : (
               <Stack.Screen
-                name="Tabs"
-                component={Tabs}
+                name="BottomTabs"
+                component={BottomTabs}
                 options={{ headerShown: false }}
               />
             )}
