@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   View,
   Text,
@@ -7,28 +7,39 @@ import {
   StatusBar,
   TouchableOpacity
 } from 'react-native'
+import { Portal, Snackbar, useTheme } from 'react-native-paper'
 
 import { Ionicons } from '@expo/vector-icons'
 
+import ReviewDetail from '../components/ReviewSummaryScreen/ReviewDetail'
 import TitleBar from '../components/Temp/TitleBar'
 import Divider from '../components/Temp/Divider'
 
 import { bookingHour } from '../ultilities/bookingHour'
 import { packageBooking } from '../ultilities/packageBooking'
 import { durationPrices } from '../ultilities/durationPrices'
-import ReviewDetail from '../components/ReviewSummaryScreen/ReviewDetail'
 
 const ReviewSummaryScreen = (props) => {
   const { navigation, route } = props
   const { passingData } = route.params
+
+  const [visible, setVisible] = useState(false)
+  const onToggleSnackBar = () => setVisible(!visible)
+  const onDismissSnackBar = () => setVisible(false)
+
   const {
     container,
     cardWrapper,
     imageWrapper,
     doctorInfoWrapper,
     doctorName,
-    doctorSpeciality
+    doctorSpeciality,
+    confirmButton,
+    confirmText
   } = styles
+
+  const theme = useTheme()
+  const themeColor = theme.colors.primary
 
   const selectedDurationPrice = durationPrices.find(
     (item) => item.duration === passingData.selectedDuration
@@ -80,7 +91,7 @@ const ReviewSummaryScreen = (props) => {
           info={'$' + packageBooking[passingData.selectedMethod - 1].price}
         />
         <ReviewDetail
-          title={'Duration' + passingData.selectedDuration}
+          title={'Duration (' + passingData.selectedDuration + ')'}
           info={
             multiplier +
             ' x $' +
@@ -98,6 +109,28 @@ const ReviewSummaryScreen = (props) => {
       </TouchableOpacity>
       <TouchableOpacity style={[cardWrapper, { height: 75 }]} disabled={true}>
         <ReviewDetail title="Card Number" info={passingData.cardNumber} />
+      </TouchableOpacity>
+
+      <Portal>
+        <Snackbar
+          visible={visible}
+          onDismiss={onDismissSnackBar}
+          action={{
+            label: 'Back to Home',
+            onPress: () => {
+              navigation.navigate('Tabs')
+            }
+          }}
+        >
+          Confirm successfully!
+        </Snackbar>
+      </Portal>
+
+      <TouchableOpacity
+        onPress={onToggleSnackBar}
+        style={[confirmButton, { backgroundColor: themeColor }]}
+      >
+        <Text style={confirmText}>Confirm</Text>
       </TouchableOpacity>
     </SafeAreaView>
   )
@@ -130,6 +163,20 @@ const styles = StyleSheet.create({
   },
   doctorSpeciality: {
     marginTop: 4
+  },
+  confirmButton: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    padding: 10,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  confirmText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold'
   }
 })
 

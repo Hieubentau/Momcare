@@ -21,7 +21,7 @@ export const durationPrices = [
   },
   {
     id: 5,
-    duration: '2 hour',
+    duration: '2 hours',
     multiplier: 3
   }
 ]

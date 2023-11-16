@@ -14,7 +14,7 @@ const dataDuration = [
   { label: '30 minutes', value: '2' },
   { label: '45 minutes', value: '3' },
   { label: '1 hour', value: '4' },
-  { label: '2 hour', value: '5' }
+  { label: '2 hours', value: '5' }
 ]
 
 const BookAppointmentMethodScreen = (props) => {
