@@ -37,14 +37,6 @@ const Doctors = ({ navigation }) => {
 
   return (
     <SafeAreaView style={container}>
-      {/* <View style={searchBarWrapper}>
-        <TouchableOpacity
-          onPress={() => navigation.goBack('Home')}
-          style={arrowLeftIcon}
-        >
-          <AntDesign name="arrowleft" size={24} color="black" />
-        </TouchableOpacity>
-      </View> */}
       <TitleBar
         navigation={navigation}
         previousScreen="Home"

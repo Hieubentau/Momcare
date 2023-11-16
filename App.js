@@ -15,6 +15,7 @@ import { AuthProvider } from './src/contexts/authContext'
 import { useAuthContext } from './src/hooks/useAuthContext'
 import { DefaultTheme, PaperProvider } from 'react-native-paper'
 import PatientDetailsScreen from './src/screens/PatientDetailsScreen'
+import ReviewSummaryScreen from './src/screens/ReviewSummaryScreen'
 
 const Stack = createNativeStackNavigator()
 
@@ -105,6 +106,11 @@ export default function App() {
             <Stack.Screen
               name="AddPaymentMethod"
               component={AddPaymentMethodScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="ReviewSummary"
+              component={ReviewSummaryScreen}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>
