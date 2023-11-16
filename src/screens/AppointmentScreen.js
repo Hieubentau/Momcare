@@ -9,7 +9,7 @@ import Cancelled from '../components/AppointmentScreen/Cancelled'
 
 const TopTabs = createMaterialTopTabNavigator()
 
-const AppointmentScreen = () => {
+const AppointmentScreen = ({ navigation }) => {
   const theme = useTheme()
   const themeColor = theme.colors.primary
   const { container, titleName } = styles
