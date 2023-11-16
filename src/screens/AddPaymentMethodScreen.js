@@ -17,7 +17,7 @@ import AbsoluteBottomButton from '../components/Temp/AbsoluteBottomButton'
 const AddPaymentMethodScreen = (props) => {
   const [cardName, setCardName] = useState('')
   const [cardNumber, setCardNumber] = useState('')
-  const [expiryDate, setExpiryDate] = useState('')
+  const [expiryDate, setExpiryDate] = useState('01/01/2999')
   const [cvvNumber, setCvvNumber] = useState('')
 
   const [showNextButton, setShowNextButton] = useState(true)
@@ -47,17 +47,6 @@ const AddPaymentMethodScreen = (props) => {
     dateWrapper,
     cvvWrapper
   } = styles
-
-  const handleExpiryDateChange = (text) => {
-    const expiryDateMoment = moment(text, 'DD/MM/YYYY')
-    if (
-      (expiryDateMoment.isValid() &&
-        expiryDateMoment.isSameOrAfter(moment())) ||
-      text === ''
-    ) {
-      setExpiryDate(text)
-    }
-  }
 
   return (
     <View style={container}>
@@ -120,12 +109,13 @@ const AddPaymentMethodScreen = (props) => {
       {showNextButton ? (
         <AbsoluteBottomButton
           navigation={navigation}
-          nextScreen="AddPaymentMethod"
+          nextScreen="ReviewSummary"
           passingData={{
             ...passingData,
             cardName,
             cardNumber,
-            expiryDate
+            expiryDate,
+            cvvNumber
           }}
           buttonName="Next"
         />
