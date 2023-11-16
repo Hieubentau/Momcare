@@ -86,7 +86,8 @@ const DoctorSpeciality = (props) => {
 const styles = {
   textHeaderWrapper: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: 8
   },
   seeAllText: {
     flex: 1,

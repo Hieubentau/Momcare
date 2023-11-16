@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 
 import UserGeneral from '../components/HomeScreen/UserGeneral'
-import SearchBar from '../components/HomeScreen/SearchBar'
+import SearchBarComponent from '../components/HomeScreen/SearchBarComponent'
 import DoctorSpeciality from '../components/HomeScreen/DoctorSpeciality'
 import TopDoctors from '../components/HomeScreen/DoctorSpecialityWithoutIcon'
 
@@ -25,7 +25,7 @@ const HomeScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={container}>
       <UserGeneral usernameGreetingText={textHeader} />
-      <SearchBar text="" flexNum={0} />
+      <SearchBarComponent />
       <DoctorSpeciality
         doctorSpecialityText={textHeader}
         navigation={navigation}

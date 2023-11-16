@@ -10,11 +10,12 @@ import {
 } from 'react-native'
 import { AntDesign } from '@expo/vector-icons'
 
-import SearchBar from '../components/HomeScreen/SearchBar'
+import SearchBarComponent from '../components/HomeScreen/SearchBarComponent'
 import GeneralAndFilter from '../components/Doctors/GeneralAndFilter'
 import { ItemSeparatorHeight } from '../components/Temp/ItemSeparatorHeight'
 import ListCardsInfo from '../components/Doctors/ListCardsInfo'
 import { doctorGeneralInfo } from '../ultilities/doctorGeneralInfo'
+import TitleBar from '../components/Temp/TitleBar'
 
 const Doctors = ({ navigation }) => {
   const [selectedFilterSpeciality, setSelectedFilterSpeciality] = useState('')
@@ -36,15 +37,20 @@ const Doctors = ({ navigation }) => {
 
   return (
     <SafeAreaView style={container}>
-      <View style={searchBarWrapper}>
+      {/* <View style={searchBarWrapper}>
         <TouchableOpacity
           onPress={() => navigation.goBack('Home')}
           style={arrowLeftIcon}
         >
           <AntDesign name="arrowleft" size={24} color="black" />
         </TouchableOpacity>
-        <SearchBar text="" flexNum={1} />
-      </View>
+      </View> */}
+      <TitleBar
+        navigation={navigation}
+        previousScreen="Home"
+        titleName="Doctors"
+      />
+      <SearchBarComponent />
       <GeneralAndFilter
         selectedFilterSpeciality={selectedFilterSpeciality}
         setSelectedFilterSpeciality={setSelectedFilterSpeciality}
