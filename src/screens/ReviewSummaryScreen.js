@@ -7,13 +7,12 @@ import {
   StatusBar,
   TouchableOpacity
 } from 'react-native'
-import { Portal, Snackbar, useTheme } from 'react-native-paper'
+import { Divider, Portal, Snackbar, useTheme } from 'react-native-paper'
 
 import { Ionicons } from '@expo/vector-icons'
 
 import ReviewDetail from '../components/ReviewSummaryScreen/ReviewDetail'
 import TitleBar from '../components/Temp/TitleBar'
-import Divider from '../components/Temp/Divider'
 
 import { bookingHour } from '../ultilities/bookingHour'
 import { packageBooking } from '../ultilities/packageBooking'
@@ -64,7 +63,7 @@ const ReviewSummaryScreen = (props) => {
           />
           <View style={doctorInfoWrapper}>
             <Text style={doctorName}>{passingData.name}</Text>
-            <Divider height={8} />
+            <Divider />
             <Text style={doctorSpeciality}>{passingData.speciality}</Text>
             <Text style={doctorSpeciality}>{passingData.hospital}</Text>
           </View>

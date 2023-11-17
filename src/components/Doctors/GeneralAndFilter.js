@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { AntDesign } from '@expo/vector-icons'
+import { Divider } from 'react-native-paper'
 
 import FilterDoctorsModal from './FilterModal/FilterDoctorsModal'
 import FilterDoctorsSpeciality from './FilterModal/FilterDoctorsSpeciality'
 import FilterChosen from './FilterModal/FilterChosen'
-import Divider from '../Temp/Divider'
 
 const GeneralAndFilter = (props) => {
   const {

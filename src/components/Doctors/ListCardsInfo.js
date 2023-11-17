@@ -18,7 +18,7 @@ const ListCardsInfo = (props) => {
   const { navigation, item, selectedDoctor, setSelectedDoctor } = props
   const { cardTouchable } = styles
 
-  const backgroundColor = item.id === selectedDoctor ? 'gainsboro' : 'white'
+  const backgroundColor = 'white'
 
   return (
     <CardDoctor

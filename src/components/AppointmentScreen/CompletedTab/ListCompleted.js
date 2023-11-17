@@ -36,8 +36,7 @@ const ListCompleted = (props) => {
   } = props
   const { cardTouchable } = styles
 
-  const backgroundColor =
-    item.id === selectedCardAppointment ? 'gainsboro' : 'white'
+  const backgroundColor = 'white'
 
   return (
     <CardCompletedAptment

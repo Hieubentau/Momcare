@@ -18,7 +18,7 @@ const ListAppointmentMethods = (props) => {
   const { navigation, item, selectedMethod, setSelectedMethod } = props
   const { cardTouchable } = styles
 
-  const backgroundColor = item.id === selectedMethod ? 'gainsboro' : 'white'
+  const backgroundColor = 'white'
 
   return (
     <CardAppointmentMethod
