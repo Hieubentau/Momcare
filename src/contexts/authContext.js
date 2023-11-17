@@ -33,15 +33,30 @@ export const AuthProvider = ({ children }) => {
   const signIn = async (email, password) => {
     try {
       console.log(email, password)
-      const { status, data } = await axios.post(
-        'http://192.168.133.105:3333/api/v1/user/login',
-        {
-          email,
-          password
-        }
-      )
+      // const { status, data } = await axios.post(
+      //   'http://192.168.133.105:3333/api/v1/user/login',
+      //   {
+      //     email,
+      //     password
+      //   }
+      // )
 
-      if (status === 200) {
+      const fakeData = {
+        status: 200,
+        data: {
+          data: {
+            token: 'fakeToken',
+            user: {
+              id: 1,
+              role: 2
+            }
+          }
+        }
+      }
+
+      const { status: fakeStatus, data } = fakeData
+
+      if (fakeStatus === 200) {
         const { token, user } = data.data
         saveToken(token)
         setUser(user)
