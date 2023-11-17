@@ -2,65 +2,121 @@ export const appointmentDetail = [
   {
     id: 1,
     name: 'Dr. John Doe',
+    speciality: 'Cardiologist',
+    hospital: 'St. Mary Hospital',
     method: 'Video Call',
     iconAntDesign: 'videocamera',
     date: '11/11/2020',
-    time: '10:00 AM'
+    time: '10:00 AM',
+    duration: '30 minutes',
+    patientFullName: 'Andrew Ainsley',
+    patientGender: 'Male',
+    patientAge: 27,
+    patientProblem: 'Lorem ipsum dolor sit amet'
   },
   {
     id: 2,
     name: 'Dr. John Doe',
+    speciality: 'Cardiologist',
+    hospital: 'St. Mary Hospital',
     method: 'Video Call',
     iconAntDesign: 'videocamera',
     date: '11/11/2020',
-    time: '10:00 AM'
+    time: '10:00 AM',
+    duration: '30 minutes',
+    patientFullName: 'Andrew Ainsley',
+    patientGender: 'Male',
+    patientAge: 27,
+    patientProblem: 'Lorem ipsum dolor sit amet'
   },
   {
     id: 3,
     name: 'Dr. John Doe',
+    speciality: 'Cardiologist',
+    hospital: 'St. Mary Hospital',
     method: 'Video Call',
     iconAntDesign: 'videocamera',
     date: '11/11/2020',
-    time: '10:00 AM'
+    time: '10:00 AM',
+    duration: '30 minutes',
+    patientFullName: 'Andrew Ainsley',
+    patientGender: 'Male',
+    patientAge: 27,
+    patientProblem: 'Lorem ipsum dolor sit amet'
   },
   {
     id: 4,
     name: 'Dr. John Doe',
+    speciality: 'Cardiologist',
+    hospital: 'St. Mary Hospital',
     method: 'Video Call',
     iconAntDesign: 'videocamera',
     date: '11/11/2020',
-    time: '10:00 AM'
+    time: '10:00 AM',
+    duration: '30 minutes',
+    patientFullName: 'Andrew Ainsley',
+    patientGender: 'Male',
+    patientAge: 27,
+    patientProblem: 'Lorem ipsum dolor sit amet'
   },
   {
     id: 5,
     name: 'Dr. John Doe',
+    speciality: 'Cardiologist',
+    hospital: 'St. Mary Hospital',
     method: 'Video Call',
     iconAntDesign: 'videocamera',
     date: '11/11/2020',
-    time: '10:00 AM'
+    time: '10:00 AM',
+    duration: '30 minutes',
+    patientFullName: 'Andrew Ainsley',
+    patientGender: 'Male',
+    patientAge: 27,
+    patientProblem: 'Lorem ipsum dolor sit amet'
   },
   {
     id: 6,
     name: 'Dr. John Doe',
+    speciality: 'Cardiologist',
+    hospital: 'St. Mary Hospital',
     method: 'Video Call',
     iconAntDesign: 'videocamera',
     date: '11/11/2020',
-    time: '10:00 AM'
+    time: '10:00 AM',
+    duration: '30 minutes',
+    patientFullName: 'Andrew Ainsley',
+    patientGender: 'Male',
+    patientAge: 27,
+    patientProblem: 'Lorem ipsum dolor sit amet'
   },
   {
     id: 7,
     name: 'Dr. John Doe',
+    speciality: 'Cardiologist',
+    hospital: 'St. Mary Hospital',
     method: 'Video Call',
     iconAntDesign: 'videocamera',
     date: '11/11/2020',
-    time: '10:00 AM'
+    time: '10:00 AM',
+    duration: '30 minutes',
+    patientFullName: 'Andrew Ainsley',
+    patientGender: 'Male',
+    patientAge: 27,
+    patientProblem: 'Lorem ipsum dolor sit amet'
   },
   {
     id: 8,
     name: 'Dr. John Doe',
+    speciality: 'Cardiologist',
+    hospital: 'St. Mary Hospital',
     method: 'Video Call',
     iconAntDesign: 'videocamera',
     date: '11/11/2020',
-    time: '10:00 AM'
+    time: '10:00 AM',
+    duration: '30 minutes',
+    patientFullName: 'Andrew Ainsley',
+    patientGender: 'Male',
+    patientAge: 27,
+    patientProblem: 'Lorem ipsum dolor sit amet'
   }
 ]

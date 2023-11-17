@@ -6,23 +6,25 @@ import {
   SafeAreaView,
   StatusBar
 } from 'react-native'
-import { AntDesign } from '@expo/vector-icons'
 
 import { ItemSeparatorHeight } from '../Temp/ItemSeparatorHeight'
-import ListCardsInfo from '../Doctors/ListCardsInfo'
-import { doctorGeneralInfo } from '../../ultilities/doctorGeneralInfo'
+import ListCompleted from './CompletedTab/ListCompleted'
+import { appointmentDetail } from '../../ultilities/appoimentDetail'
 
 const Completed = ({ navigation }) => {
-  const [selectedDoctor, setSelectedDoctor] = useState('')
+  const [selectedCardAppointment, setSelectedCardAppointment] = useState('')
 
   const { container, flatListWrapper } = styles
 
-  const renderListDoctors = ({ item }) => (
-    <ListCardsInfo
+  const renderListCompleted = ({ item }) => (
+    <ListCompleted
       navigation={navigation}
       item={item}
-      selectedDoctor={selectedDoctor}
-      setSelectedDoctor={setSelectedDoctor}
+      selectedCardAppointment={selectedCardAppointment}
+      setSelectedCardAppointment={setSelectedCardAppointment}
+      statusAppointmentText="Completed"
+      statusAppointmentColor="green"
+      appointmentNextScreen="CompletedAppointment"
     />
   )
 
@@ -30,10 +32,10 @@ const Completed = ({ navigation }) => {
     <SafeAreaView style={container}>
       <View style={flatListWrapper}>
         <FlatList
-          data={doctorGeneralInfo}
-          renderItem={renderListDoctors}
+          data={appointmentDetail}
+          renderItem={renderListCompleted}
           keyExtractor={(item) => item.id}
-          extraData={selectedDoctor}
+          extraData={selectedCardAppointment}
           showsVerticalScrollIndicator={false}
           ItemSeparatorComponent={<ItemSeparatorHeight height={16} />}
         />
