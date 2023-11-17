@@ -7,13 +7,15 @@ import { VerticalView } from '../components/Basics/VerticalView'
 import { PasswordTextInput } from '../components/Basics/PasswordTextInput'
 import { LoadableButton } from '../components/Basics/LoadableButton'
 import { useTheme } from 'react-native-paper'
+import Toast from 'react-native-toast-message'
+import { AppStateContext } from '../contexts/appStateContext'
 
 const SignInScreen = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
 
   const { signIn } = useContext(AuthContext)
+  const { isLoading, setIsLoading } = useContext(AppStateContext)
   const theme = useTheme()
 
   const { leafLogoWrapper, headerText, signInButton, textInput } = styles
@@ -23,7 +25,6 @@ const SignInScreen = () => {
       style={{
         flex: 1,
         flexDirection: 'column',
-
         alignItems: 'center',
         justifyContent: 'center'
       }}
@@ -71,7 +72,23 @@ const SignInScreen = () => {
           onPress={() => {
             console.log('sign in button pressed')
             setIsLoading(true)
-            signIn(email, password)
+            signIn(email, password).then((res) => {
+              setIsLoading(false)
+              if (!res) {
+                Toast.show({
+                  type: 'error',
+                  text1: 'Sign in failed',
+                  text2: 'Please check your email and password'
+                })
+              } else {
+                Toast.show({
+                  type: 'success',
+                  text1: 'Sign in success',
+                  text2: 'Welcome to Momcare',
+                  autoHide: true
+                })
+              }
+            })
           }}
           contentStyle={{
             height: '100%',

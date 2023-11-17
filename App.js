@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
@@ -14,6 +14,12 @@ import AddPaymentMethodScreen from './src/screens/AddPaymentMethodScreen'
 import { AuthProvider } from './src/contexts/authContext'
 import { useAuthContext } from './src/hooks/useAuthContext'
 import { DefaultTheme, PaperProvider } from 'react-native-paper'
+import Toast from 'react-native-toast-message'
+import {
+  AppStateContext,
+  AppStateProvider
+} from './src/contexts/appStateContext'
+import { AlertNotificationRoot } from 'react-native-alert-notification'
 import PatientDetailsScreen from './src/screens/PatientDetailsScreen'
 import ReviewSummaryScreen from './src/screens/ReviewSummaryScreen'
 
@@ -30,9 +36,88 @@ const theme = {
   }
 }
 
+const InnerApp = ({ splashVisible }) => {
+  const { isLoggedIn } = useContext(AppStateContext)
+  console.log(isLoggedIn)
+
+  return (
+    <AlertNotificationRoot theme={'dark'}>
+      <AuthProvider>
+        <PaperProvider theme={theme}>
+          <NavigationContainer>
+            <Stack.Navigator>
+              {splashVisible ? (
+                <Stack.Screen
+                  name="Splash"
+                  component={SplashScreen}
+                  options={{ headerShown: false }}
+                />
+              ) : !isLoggedIn ? (
+                // No token found, user isn't signed in
+                <Stack.Screen
+                  name="SignIn"
+                  component={SignInScreen}
+                  options={{
+                    headerShown: false,
+                    title: 'Sign In'
+                    // When logging out, a pop animation feels intuitive
+                    //animationTypeForReplace: state.isSignout ? 'pop' : 'push'
+                  }}
+                />
+              ) : (
+                <Stack.Screen
+                  name="Tabs"
+                  component={BottomTabs}
+                  options={{ headerShown: false }}
+                />
+              )}
+              <Stack.Screen
+                name="Doctors"
+                component={DoctorsScreen}
+                options={{ headerShown: false }}
+              />
+
+              <Stack.Screen
+                name="DoctorInfo"
+                component={DoctorInfoScreen}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="BookAppointment"
+                component={BookAppointmentScreen}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="BookAppointmentMethod"
+                component={BookAppointmentMethodScreen}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="PatientDetails"
+                component={PatientDetailsScreen}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="AddPaymentMethod"
+                component={AddPaymentMethodScreen}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="ReviewSummary"
+                component={ReviewSummaryScreen}
+                options={{ headerShown: false }}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
+          <Toast autoHide={true} />
+        </PaperProvider>
+      </AuthProvider>
+    </AlertNotificationRoot>
+  )
+}
+
 export default function App() {
-  const [state, authContext] = useAuthContext()
-  const themeColor = 'dodgerblue'
+  const { isLoggedIn } = useContext(AppStateContext)
   const [splashVisible, setSplashVisible] = React.useState(true)
 
   useEffect(() => {
@@ -41,81 +126,11 @@ export default function App() {
     }, 1000)
   }, [])
 
+  console.log(isLoggedIn)
+
   return (
-    <AuthProvider value={authContext}>
-      <PaperProvider theme={theme}>
-        <NavigationContainer>
-          <Stack.Navigator>
-            {splashVisible ? (
-              <Stack.Screen
-                name="Splash"
-                component={SplashScreen}
-                options={{ headerShown: false }}
-              />
-            ) : state.isLoading ? (
-              // We haven't finished checking for the token yet
-              <Stack.Screen
-                name="Splash"
-                component={SplashScreen}
-                options={{ headerShown: false }}
-              />
-            ) : state.userToken == null ? (
-              // No token found, user isn't signed in
-              <Stack.Screen
-                name="SignIn"
-                component={SignInScreen}
-                options={{
-                  headerShown: false,
-                  title: 'Sign In',
-                  // When logging out, a pop animation feels intuitive
-                  animationTypeForReplace: state.isSignout ? 'pop' : 'push'
-                }}
-              />
-            ) : (
-              <Stack.Screen
-                name="BottomTabs"
-                component={BottomTabs}
-                options={{ headerShown: false }}
-              />
-            )}
-            <Stack.Screen
-              name="Doctors"
-              component={DoctorsScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="DoctorInfo"
-              component={DoctorInfoScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="BookAppointment"
-              component={BookAppointmentScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="BookAppointmentMethod"
-              component={BookAppointmentMethodScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="PatientDetails"
-              component={PatientDetailsScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="AddPaymentMethod"
-              component={AddPaymentMethodScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="ReviewSummary"
-              component={ReviewSummaryScreen}
-              options={{ headerShown: false }}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </PaperProvider>
-    </AuthProvider>
+    <AppStateProvider>
+      <InnerApp splashVisible={splashVisible} />
+    </AppStateProvider>
   )
 }

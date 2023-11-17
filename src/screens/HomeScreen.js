@@ -15,11 +15,13 @@ import TopDoctors from '../components/HomeScreen/DoctorSpecialityWithoutIcon'
 
 import { AuthContext } from '../contexts/authContext'
 import { useTheme } from 'react-native-paper'
+import Toast from 'react-native-toast-message'
+import { ALERT_TYPE, Dialog } from 'react-native-alert-notification'
 
 const HomeScreen = ({ navigation }) => {
-  const { signOut } = React.useContext(AuthContext)
-  const theme = useTheme()
-  const themeColor = theme.colors.primary
+  const { logout } = React.useContext(AuthContext)
+	const theme = useTheme()
+	const themeColor = theme.colors.primary
 
   const { container, center, textHeader } = styles
   return (
@@ -33,7 +35,28 @@ const HomeScreen = ({ navigation }) => {
       <TopDoctors topDoctorsText={textHeader} />
       <View style={center}>
         <Text>Signed in!</Text>
-        <Button title="Sign out" onPress={signOut} />
+        <Button
+          title="Sign out"
+          onPress={() => {
+            logout().then((res) => {
+              if (res) {
+                Dialog.show({
+                  type: ALERT_TYPE.SUCCESS,
+                  title: 'Logout',
+                  textBody: 'Logout successfully!',
+                  autoClose: 1000
+                })
+              } else {
+                Dialog.show({
+                  type: ALERT_TYPE.WARNING,
+                  title: 'Logout',
+                  textBody: 'Some error occurred. Force logout!',
+                  autoClose: 1000
+                })
+              }
+            })
+          }}
+        />
       </View>
     </SafeAreaView>
   )
