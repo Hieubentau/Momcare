@@ -15,7 +15,7 @@ const AppointmentScreen = ({ navigation }) => {
   const { container, titleName } = styles
   return (
     <View style={container}>
-      <Text style={titleName}>Appointment</Text>
+      <Text style={titleName}>My Appointment</Text>
       <TopTabs.Navigator
         screenOptions={{
           tabBarActiveTintColor: themeColor,

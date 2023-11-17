@@ -15,7 +15,7 @@ import GeneralAndFilter from '../components/Doctors/GeneralAndFilter'
 import { ItemSeparatorHeight } from '../components/Basics/ItemSeparatorHeight'
 import ListCardsInfo from '../components/Doctors/ListCardsInfo'
 import { doctorGeneralInfo } from '../ultilities/doctorGeneralInfo'
-import TitleBar from '../components/Temp/TitleBar'
+import TitleBar from '../components/Basics/TitleBar'
 
 const Doctors = ({ navigation }) => {
   const [selectedFilterSpeciality, setSelectedFilterSpeciality] = useState('')

@@ -12,7 +12,7 @@ import { Divider, Portal, Snackbar, useTheme } from 'react-native-paper'
 import { Ionicons } from '@expo/vector-icons'
 
 import ReviewDetail from '../components/ReviewSummaryScreen/ReviewDetail'
-import TitleBar from '../components/Temp/TitleBar'
+import TitleBar from '../components/Basics/TitleBar'
 
 import { bookingHour } from '../ultilities/bookingHour'
 import { packageBooking } from '../ultilities/packageBooking'
