@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react'
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { useTheme } from 'react-native-paper'
-import CardCompleted from './CardCompleted'
+import CardNotCancelled from './CardNotCancelled'
 
-const CardCompletedAptment = ({
+const CardNotCancelledAptment = ({
   item,
   onPress,
   backgroundColor,
@@ -14,7 +14,7 @@ const CardCompletedAptment = ({
     onPress={onPress}
     style={[styles.cardTouchable, { backgroundColor }]}
   >
-    <CardCompleted
+    <CardNotCancelled
       item={item}
       statusAppointmentText={statusAppointmentText}
       statusAppointmentColor={styles.statusAppointmentColor}
@@ -22,7 +22,7 @@ const CardCompletedAptment = ({
   </TouchableOpacity>
 )
 
-const ListCompleted = (props) => {
+const ListNotCancelled = (props) => {
   const theme = useTheme()
   const themeColor = theme.colors.primary
   const {
@@ -39,7 +39,7 @@ const ListCompleted = (props) => {
   const backgroundColor = 'white'
 
   return (
-    <CardCompletedAptment
+    <CardNotCancelledAptment
       item={item}
       onPress={() => {
         setSelectedCardAppointment(item.id),
@@ -66,4 +66,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default ListCompleted
+export default ListNotCancelled

@@ -12,7 +12,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview'
 import moment from 'moment'
 
 import TitleBar from '../components/Temp/TitleBar'
-import AbsoluteBottomButton from '../components/Temp/AbsoluteBottomButton'
+import AbsoluteBottomButton from '../components/Basics/AbsoluteBottomButton'
 
 const AddPaymentMethodScreen = (props) => {
   const [cardName, setCardName] = useState('')

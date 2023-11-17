@@ -10,9 +10,9 @@ import {
 
 import { AntDesign } from '@expo/vector-icons'
 
-import CardInfo from '../components/Temp/CardInfo'
+import CardInfo from '../components/Basics/CardInfo'
 import TitleBar from '../components/Temp/TitleBar'
-import AbsoluteBottomButton from '../components/Temp/AbsoluteBottomButton'
+import AbsoluteBottomButton from '../components/Basics/AbsoluteBottomButton'
 
 const DoctorInfoScreen = (props) => {
   const { navigation, route } = props

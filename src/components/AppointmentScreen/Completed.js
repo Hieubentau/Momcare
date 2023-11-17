@@ -7,8 +7,8 @@ import {
   StatusBar
 } from 'react-native'
 
-import { ItemSeparatorHeight } from '../Temp/ItemSeparatorHeight'
-import ListCompleted from './CompletedTab/ListCompleted'
+import { ItemSeparatorHeight } from '../Basics/ItemSeparatorHeight'
+import ListNotCancelled from './ListNotCancelled'
 import { appointmentDetail } from '../../ultilities/appoimentDetail'
 
 const Completed = ({ navigation }) => {
@@ -17,7 +17,7 @@ const Completed = ({ navigation }) => {
   const { container, flatListWrapper } = styles
 
   const renderListCompleted = ({ item }) => (
-    <ListCompleted
+    <ListNotCancelled
       navigation={navigation}
       item={item}
       selectedCardAppointment={selectedCardAppointment}

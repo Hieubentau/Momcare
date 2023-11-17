@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { FlatList, View, Text, StyleSheet, StatusBar } from 'react-native'
-import TitleBar from '../components/Temp/TitleBar'
+import TitleBar from '../components/Basics/TitleBar'
 
-import AbsoluteBottomButton from '../components/Temp/AbsoluteBottomButton'
-import DropdownComponent from '../components/Temp/DropdownComponent'
+import AbsoluteBottomButton from '../components/Basics/AbsoluteBottomButton'
+import DropdownComponent from '../components/BookAppointmentMethodScreen/DropdownComponent'
 import ListAppointmentMethods from '../components/BookAppointmentMethodScreen/ListAppointmentMethods'
 
-import { ItemSeparatorHeight } from '../components/Temp/ItemSeparatorHeight'
+import { ItemSeparatorHeight } from '../components/Basics/ItemSeparatorHeight'
 import { packageBooking } from '../ultilities/packageBooking'
 
 const dataDuration = [

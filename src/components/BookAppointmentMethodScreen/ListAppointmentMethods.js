@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { useTheme } from 'react-native-paper'
-import CardMethod from '../Temp/CardMethod'
+import CardMethod from '../Basics/CardMethod'
 
 const CardAppointmentMethod = ({ item, onPress, backgroundColor, styles }) => (
   <TouchableOpacity

@@ -12,7 +12,7 @@ import { AntDesign } from '@expo/vector-icons'
 
 import SearchBarComponent from '../components/HomeScreen/SearchBarComponent'
 import GeneralAndFilter from '../components/Doctors/GeneralAndFilter'
-import { ItemSeparatorHeight } from '../components/Temp/ItemSeparatorHeight'
+import { ItemSeparatorHeight } from '../components/Basics/ItemSeparatorHeight'
 import ListCardsInfo from '../components/Doctors/ListCardsInfo'
 import { doctorGeneralInfo } from '../ultilities/doctorGeneralInfo'
 import TitleBar from '../components/Temp/TitleBar'

@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { useTheme } from 'react-native-paper'
 import { Ionicons, AntDesign } from '@expo/vector-icons'
 
-const CardCancelled = (props) => {
+const CardNotCancelled = (props) => {
   const { item, statusAppointmentText, statusAppointmentColor } = props
   const theme = useTheme()
   const themeColor = theme.colors.primary
@@ -88,4 +88,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default CardCancelled
+export default CardNotCancelled
