@@ -4,11 +4,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import SplashScreen from './src/screens/SplashScreen'
 import SignInScreen from './src/screens/SignInScreen'
-import Tabs from './src/components/Tabs'
+import BottomTabs from './src/components/BottomTabs'
 import DoctorsScreen from './src/screens/DoctorsScreen'
 import DoctorInfoScreen from './src/screens/DoctorInfoScreen'
 import BookAppointmentScreen from './src/screens/BookAppointmentScreen'
 import BookAppointmentMethodScreen from './src/screens/BookAppointmentMethodScreen'
+import AddPaymentMethodScreen from './src/screens/AddPaymentMethodScreen'
 
 import { AuthProvider } from './src/contexts/authContext'
 import { useAuthContext } from './src/hooks/useAuthContext'
@@ -20,6 +21,7 @@ import {
 } from './src/contexts/appStateContext'
 import { AlertNotificationRoot } from 'react-native-alert-notification'
 import PatientDetailsScreen from './src/screens/PatientDetailsScreen'
+import ReviewSummaryScreen from './src/screens/ReviewSummaryScreen'
 
 const Stack = createNativeStackNavigator()
 
@@ -90,12 +92,22 @@ const InnerApp = ({ splashVisible }) => {
                 component={BookAppointmentMethodScreen}
                 options={{ headerShown: false }}
               />
+							<Stack.Screen
+								name="PatientDetails"
+								component={PatientDetailsScreen}
+								options={{ headerShown: false }}
+							/>
+							<Stack.Screen
+								name="AddPaymentMethod"
+								component={AddPaymentMethodScreen}
+								options={{ headerShown: false }}
+							/>
+							<Stack.Screen
+								name="ReviewSummary"
+								component={ReviewSummaryScreen}
+								options={{ headerShown: false }}
+							/>
             </Stack.Navigator>
-						<Stack.Screen
-							name="PatientDetails"
-							component={PatientDetailsScreen}
-							options={{ headerShown: false }}
-						/>
           </NavigationContainer>
           <Toast autoHide={true} />
         </PaperProvider>

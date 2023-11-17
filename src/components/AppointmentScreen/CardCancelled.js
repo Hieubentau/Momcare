@@ -1,10 +1,9 @@
 import React, { useContext, useState } from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { useTheme } from 'react-native-paper'
 import { Ionicons, AntDesign } from '@expo/vector-icons'
-import Divider from './Divider'
 
-const CardInfo = ({ item }) => {
+const CardCancelled = ({ item }) => {
   const theme = useTheme()
   const themeColor = theme.colors.primary
   const {
@@ -12,8 +11,10 @@ const CardInfo = ({ item }) => {
     imageWrapper,
     textInfoWrapper,
     doctorName,
-    doctorSpeciality,
-    ratingWrapper
+    methodWrapper,
+    statusWrapper,
+    dateAndTimeWrapper,
+    methodImageWrapper
   } = styles
 
   return (
@@ -26,18 +27,17 @@ const CardInfo = ({ item }) => {
       />
       <View style={textInfoWrapper}>
         <Text style={doctorName}>{item.name}</Text>
-        <Divider height={8} />
-        <Text style={doctorSpeciality}>
-          {item.speciality} | {item.hospital}
-        </Text>
-        <View style={ratingWrapper}>
-          <AntDesign name="star" size={16} color={themeColor} />
-          <Text>
-            {' '}
-            {item.rating} ({item.review} reviews)
-          </Text>
+        <View style={methodWrapper}>
+          <Text>{item.method} - </Text>
+          <Text style={statusWrapper}>Cancelled</Text>
         </View>
+        <Text style={dateAndTimeWrapper}>
+          {item.date} | {item.time}
+        </Text>
       </View>
+      <TouchableOpacity disabled={true} style={methodImageWrapper}>
+        <AntDesign name={item.iconAntDesign} size={18} color={themeColor} />
+      </TouchableOpacity>
     </View>
   )
 }
@@ -56,15 +56,27 @@ const styles = StyleSheet.create({
   doctorName: {
     fontSize: 20,
     fontWeight: 'bold',
-    marginBottom: 2
+    marginBottom: 4
   },
-  doctorSpeciality: {
-    marginTop: 2
-  },
-  ratingWrapper: {
+  methodWrapper: {
     flexDirection: 'row',
+    alignItems: 'center'
+  },
+  statusWrapper: {
+    padding: 4,
+    borderWidth: 1,
+    borderRadius: 15,
+    borderColor: 'red',
+    color: 'red'
+  },
+  dateAndTimeWrapper: {
     marginTop: 4
+  },
+  methodImageWrapper: {
+    backgroundColor: 'gainsboro',
+    padding: 12,
+    borderRadius: 50
   }
 })
 
-export default CardInfo
+export default CardCancelled

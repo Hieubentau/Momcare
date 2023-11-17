@@ -1,16 +1,19 @@
 import React from 'react'
 import { Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { useTheme } from 'react-native-paper'
 
 const AbsoluteBottomButton = (props) => {
   const { navigation, nextScreen, passingData, buttonName } = props
   const { bookAppointmentButton, bookAppointmentText } = styles
+  const theme = useTheme()
+  const themeColor = theme.colors.primary
   return (
     <TouchableOpacity
       onPress={() => {
         navigation.navigate(nextScreen, { passingData }),
           console.log('passing data', passingData)
       }}
-      style={bookAppointmentButton}
+      style={[bookAppointmentButton, { backgroundColor: themeColor }]}
     >
       <Text style={bookAppointmentText}>{buttonName}</Text>
     </TouchableOpacity>
@@ -23,7 +26,6 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: '#2196F3',
     padding: 10,
     alignItems: 'center',
     justifyContent: 'center'
