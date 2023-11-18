@@ -11,8 +11,8 @@ import {
 import { Checkbox } from 'react-native-paper'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview'
 
-import TitleBar from '../components/Temp/TitleBar'
-import AbsoluteBottomButton from '../components/Temp/AbsoluteBottomButton'
+import TitleBar from '../components/Basics/TitleBar'
+import AbsoluteBottomButton from '../components/Basics/AbsoluteBottomButton'
 
 const PatientDetailsScreen = (props) => {
   const [patientFullName, setPatientFullName] = useState('')

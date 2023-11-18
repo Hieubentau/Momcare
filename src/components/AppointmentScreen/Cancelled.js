@@ -7,11 +7,10 @@ import {
   StatusBar,
   SafeAreaView
 } from 'react-native'
-import ListCancelled from './ListCancelled'
+import ListCancelled from './CancelledTab/ListCancelled'
 
-import { doctorGeneralInfo } from '../../ultilities/doctorGeneralInfo'
 import { appointmentDetail } from '../../ultilities/appoimentDetail'
-import { ItemSeparatorHeight } from '../Temp/ItemSeparatorHeight'
+import { ItemSeparatorHeight } from '../Basics/ItemSeparatorHeight'
 
 const Cancelled = ({ navigation }) => {
   const { container, flatListWrapper } = styles

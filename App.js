@@ -22,6 +22,8 @@ import {
 import { AlertNotificationRoot } from 'react-native-alert-notification'
 import PatientDetailsScreen from './src/screens/PatientDetailsScreen'
 import ReviewSummaryScreen from './src/screens/ReviewSummaryScreen'
+import CompletedAppointmentScreen from './src/screens/CompletedAppointmentScreen'
+import UpcomingAppointmentScreen from './src/screens/UpcomingAppointmentScreen'
 
 const Stack = createNativeStackNavigator()
 
@@ -105,6 +107,16 @@ const InnerApp = ({ splashVisible }) => {
               <Stack.Screen
                 name="ReviewSummary"
                 component={ReviewSummaryScreen}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="CompletedAppointment"
+                component={CompletedAppointmentScreen}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="UpcomingAppointment"
+                component={UpcomingAppointmentScreen}
                 options={{ headerShown: false }}
               />
             </Stack.Navigator>

@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { FlatList, View, Text, StyleSheet, StatusBar } from 'react-native'
-import CalendarComponent from '../components/Temp/CalendarComponent'
-import TitleBar from '../components/Temp/TitleBar'
-import ListItemWithoutIcon from '../components/Temp/ListItemWithoutIcon'
-import { ItemSeparatorWidth } from '../components/Temp/ItemSeparatorWidth'
+import CalendarComponent from '../components/Basics/CalendarComponent'
+import TitleBar from '../components/Basics/TitleBar'
+import ListItemWithoutIcon from '../components/Basics/ListItemWithoutIcon'
+import { ItemSeparatorWidth } from '../components/Basics/ItemSeparatorWidth'
 
 import { bookingHour } from '../ultilities/bookingHour'
-import AbsoluteBottomButton from '../components/Temp/AbsoluteBottomButton'
+import AbsoluteBottomButton from '../components/Basics/AbsoluteBottomButton'
 
 const BookAppointmentScreen = (props) => {
   const [selectedDay, setSelectedDay] = useState('')

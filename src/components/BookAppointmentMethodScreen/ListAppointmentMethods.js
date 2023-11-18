@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { useTheme } from 'react-native-paper'
-import CardMethod from '../Temp/CardMethod'
+import CardMethod from '../Basics/CardMethod'
 
 const CardAppointmentMethod = ({ item, onPress, backgroundColor, styles }) => (
   <TouchableOpacity
@@ -18,7 +18,7 @@ const ListAppointmentMethods = (props) => {
   const { navigation, item, selectedMethod, setSelectedMethod } = props
   const { cardTouchable } = styles
 
-  const backgroundColor = item.id === selectedMethod ? 'gainsboro' : 'white'
+  const backgroundColor = 'white'
 
   return (
     <CardAppointmentMethod

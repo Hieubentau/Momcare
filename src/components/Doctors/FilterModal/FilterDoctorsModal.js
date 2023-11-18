@@ -6,6 +6,7 @@ const FilterDoctorsModal = (props) => {
   const { isModalVisible, children, setIsModalVisible } = props
   return (
     <Modal animationType="slide" transparent={true} visible={isModalVisible}>
+      <View style={styles.overlay} />
       <View style={styles.modalContent}>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>Filter</Text>
@@ -20,6 +21,10 @@ const FilterDoctorsModal = (props) => {
 }
 
 const styles = StyleSheet.create({
+  overlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)'
+  },
   modalContent: {
     height: '50%',
     width: '100%',

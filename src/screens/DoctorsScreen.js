@@ -12,10 +12,10 @@ import { AntDesign } from '@expo/vector-icons'
 
 import SearchBarComponent from '../components/HomeScreen/SearchBarComponent'
 import GeneralAndFilter from '../components/Doctors/GeneralAndFilter'
-import { ItemSeparatorHeight } from '../components/Temp/ItemSeparatorHeight'
+import { ItemSeparatorHeight } from '../components/Basics/ItemSeparatorHeight'
 import ListCardsInfo from '../components/Doctors/ListCardsInfo'
 import { doctorGeneralInfo } from '../ultilities/doctorGeneralInfo'
-import TitleBar from '../components/Temp/TitleBar'
+import TitleBar from '../components/Basics/TitleBar'
 
 const Doctors = ({ navigation }) => {
   const [selectedFilterSpeciality, setSelectedFilterSpeciality] = useState('')
@@ -24,7 +24,7 @@ const Doctors = ({ navigation }) => {
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [selectedDoctor, setSelectedDoctor] = useState('')
 
-  const { container, searchBarWrapper, arrowLeftIcon, flatListWrapper } = styles
+  const { container, flatListWrapper } = styles
 
   const renderListDoctors = ({ item }) => (
     <ListCardsInfo
@@ -71,12 +71,6 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingHorizontal: 16,
     marginTop: StatusBar.currentHeight || 0
-  },
-  searchBarWrapper: {
-    flexDirection: 'row'
-  },
-  arrowLeftIcon: {
-    marginRight: 8
   },
   flatListWrapper: {
     flex: 1,

@@ -3,8 +3,8 @@ import { FlatList, View, Text, TouchableOpacity } from 'react-native'
 
 import { useTheme } from 'react-native-paper'
 import { doctorSpecialityType } from '../../ultilities/doctorSpecialityType'
-import ListItemWithoutIcon from '../Temp/ListItemWithoutIcon'
-import { ItemSeparatorWidth } from '../Temp/ItemSeparatorWidth'
+import ListItemWithoutIcon from '../Basics/ListItemWithoutIcon'
+import { ItemSeparatorWidth } from '../Basics/ItemSeparatorWidth'
 
 const DoctorSpecialityWithoutIcon = (props) => {
   const [selectedIdwithoutIcon, setSelectedIdwithoutIcon] = useState()

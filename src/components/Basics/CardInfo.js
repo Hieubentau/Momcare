@@ -1,8 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
-import { useTheme } from 'react-native-paper'
+import { Divider, useTheme } from 'react-native-paper'
 import { Ionicons, AntDesign } from '@expo/vector-icons'
-import Divider from './Divider'
 
 const CardInfo = ({ item }) => {
   const theme = useTheme()
@@ -26,7 +25,7 @@ const CardInfo = ({ item }) => {
       />
       <View style={textInfoWrapper}>
         <Text style={doctorName}>{item.name}</Text>
-        <Divider height={8} />
+        <Divider />
         <Text style={doctorSpeciality}>
           {item.speciality} | {item.hospital}
         </Text>
