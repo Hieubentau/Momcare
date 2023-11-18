@@ -31,8 +31,8 @@ const theme = {
   colors: {
     ...DefaultTheme.colors,
     // a custom theme color often used in healthcare apps
-    primary: 'dodgerblue'
-    // a custom background color for content areas
+    primary: 'dodgerblue',
+    secondaryContainer: 'transparent'
   }
 }
 

@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { Text, SafeAreaView, StyleSheet, View } from 'react-native'
 import { Ionicons, EvilIcons } from '@expo/vector-icons'
 import { AuthContext } from '../contexts/authContext'
-import { TextInput } from 'react-native-paper'
+import { Icon, TextInput } from 'react-native-paper'
 import { VerticalView } from '../components/Basics/VerticalView'
 import { PasswordTextInput } from '../components/Basics/PasswordTextInput'
 import { LoadableButton } from '../components/Basics/LoadableButton'
@@ -66,8 +66,10 @@ const SignInScreen = () => {
           style={textInput}
         />
         <LoadableButton
+          buttonColor={theme.colors.primary}
+          textColor={theme.colors.background}
           style={signInButton}
-          mode="contained"
+          mode="elevated"
           isLoading={isLoading}
           onPress={() => {
             console.log('sign in button pressed')
@@ -96,6 +98,24 @@ const SignInScreen = () => {
           }}
         >
           Sign In
+        </LoadableButton>
+        <LoadableButton
+          style={signInButton}
+          mode="elevated"
+          isLoading={isLoading}
+          icon={() => (
+            <Icon
+              source={{
+                uri: 'https://img.icons8.com/color/48/000000/google-logo.png'
+              }}
+              size={24}
+            />
+          )}
+          onPress={() => {
+            console.log('sign in with google button pressed')
+          }}
+        >
+          Sign In with Google
         </LoadableButton>
       </VerticalView>
     </SafeAreaView>
