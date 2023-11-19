@@ -61,7 +61,7 @@ const DoctorSpeciality = (props) => {
         <Text style={doctorSpecialityText}>Doctor Speciality</Text>
         <TouchableOpacity>
           <Text
-            onPress={() => navigation.navigate('SearchDoctor')}
+            onPress={() => navigation.navigate('Doctors')}
             style={[seeAllText, { color: themeColor }]}
           >
             See All

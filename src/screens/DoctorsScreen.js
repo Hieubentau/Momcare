@@ -40,7 +40,7 @@ const Doctors = ({ navigation }) => {
       <TitleBar
         navigation={navigation}
         previousScreen="Home"
-        titleName="Search Doctors"
+        titleName="Doctors"
       />
       <SearchBarComponent />
       <GeneralAndFilter

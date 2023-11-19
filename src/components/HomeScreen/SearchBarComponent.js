@@ -3,7 +3,6 @@ import { View, TextInput } from 'react-native'
 import { Searchbar } from 'react-native-paper'
 
 const SearchBarComponent = (props) => {
-  const { navigation } = props
   const [searchQuery, setSearchQuery] = useState('')
 
   const onChangeSearch = (query) => setSearchQuery(query)
