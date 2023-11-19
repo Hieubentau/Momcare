@@ -15,22 +15,19 @@ export const fetchData = async (method, url, auth = false, payload = {}) => {
       try {
         const token = await AsyncStorage.getItem('token')
         headers['Authorization'] = `Bearer ${token}`
-        console.log(headers)
-      } catch (err) {
-        console.log(err)
-      }
+      } catch (err) {}
     }
 
     if (method.toLowerCase() === 'get') {
       const res = await axios.get(
-        `http://${process.env.BASE_URL}:${process.env.BASE_PORT}/api/v1` + url,
+        `http://${process.env.BASE_URL}:${process.env.BASE_PORT}` + url,
         { headers }
       )
 
       return { response: res.data, error: null, loading: false }
     } else if (method.toLowerCase() === 'post') {
       const res = await axios.post(
-        `http://${process.env.BASE_URL}:${process.env.BASE_PORT}/api/v1` + url,
+        `http://${process.env.BASE_URL}:${process.env.BASE_PORT}` + url,
         payload,
         { headers }
       )
@@ -38,7 +35,7 @@ export const fetchData = async (method, url, auth = false, payload = {}) => {
       return { response: res.data, error: null, loading: false }
     } else if (method.toLowerCase() === 'put') {
       const res = await axios.put(
-        `http://${process.env.BASE_URL}:${process.env.BASE_PORT}/api/v1` + url,
+        `http://${process.env.BASE_URL}:${process.env.BASE_PORT}` + url,
         payload,
         { headers }
       )
@@ -46,7 +43,7 @@ export const fetchData = async (method, url, auth = false, payload = {}) => {
       return { response: res.data, error: null, loading: false }
     } else if (method.toLowerCase() === 'delete') {
       const res = await axios.delete(
-        `http://${process.env.BASE_URL}:${process.env.BASE_PORT}/api/v1` + url,
+        `http://${process.env.BASE_URL}:${process.env.BASE_PORT}` + url,
         { headers }
       )
 

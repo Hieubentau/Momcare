@@ -1,8 +1,6 @@
 import React from 'react'
 import { createMaterialBottomTabNavigator } from 'react-native-paper/react-navigation'
 
-import HomeScreen from '../screens/HomeScreen'
-import AppointmentScreen from '../screens/AppointmentScreen'
 import PrescriptionScreen from '../screens/PrescriptionScreen'
 
 import { BottomNavigation, useTheme } from 'react-native-paper'
@@ -10,6 +8,8 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import { UserScreen } from '../screens/UserScreen'
 import { Foundation } from '@expo/vector-icons'
+import HomeStack from '../stack/HomeStack'
+import AppointmentStack from '../stack/AppointmentStack'
 
 const Tab = createMaterialBottomTabNavigator()
 
@@ -32,18 +32,24 @@ const BottomTabs = () => {
       shifting={true}
       activeColor={themeColor}
       barStyle={{
-        backgroundColor: '#faf3f3',
+        backgroundColor: 'white',
         // a shadow to the top of the tab bar
         shadow: '5px 5px 5px #000',
         borderTopLeftRadius: 16,
         borderTopRightRadius: 16,
-        elevation: 0
+        elevation: 0,
+        borderTopWidth: 2,
+        borderLeftWidth: 1,
+        borderRightWidth: 1,
+        borderTopStyle: 'solid',
+        borderColor: '#cecece',
+        overflow: 'hidden'
       }}
       animationEasing={'ease-in-out'}
     >
       <Tab.Screen
-        name="Home"
-        component={HomeScreen}
+        name="HomeStack"
+        component={HomeStack}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, focused }) => (
@@ -52,8 +58,8 @@ const BottomTabs = () => {
         }}
       />
       <Tab.Screen
-        name="Appointment"
-        component={AppointmentScreen}
+        name="AppointmentStack"
+        component={AppointmentStack}
         options={{
           tabBarLabel: 'Appointment',
           tabBarIcon: ({ color, focused }) => (

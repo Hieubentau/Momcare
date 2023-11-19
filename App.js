@@ -73,52 +73,6 @@ const InnerApp = ({ splashVisible }) => {
                   options={{ headerShown: false }}
                 />
               )}
-              <Stack.Screen
-                name="Doctors"
-                component={DoctorsScreen}
-                options={{ headerShown: false }}
-              />
-
-              <Stack.Screen
-                name="DoctorInfo"
-                component={DoctorInfoScreen}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="BookAppointment"
-                component={BookAppointmentScreen}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="BookAppointmentMethod"
-                component={BookAppointmentMethodScreen}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="PatientDetails"
-                component={PatientDetailsScreen}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="AddPaymentMethod"
-                component={AddPaymentMethodScreen}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="ReviewSummary"
-                component={ReviewSummaryScreen}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="CompletedAppointment"
-                component={CompletedAppointmentScreen}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="UpcomingAppointment"
-                component={UpcomingAppointmentScreen}
-                options={{ headerShown: false }}
-              />
             </Stack.Navigator>
           </NavigationContainer>
           <Toast autoHide={true} />
