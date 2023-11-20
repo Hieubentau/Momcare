@@ -24,7 +24,7 @@ const CardMethod = ({ item }) => {
         <Text style={methodName}>{item.method}</Text>
         <Text style={methodDescription}>{item.description}</Text>
       </View>
-      <Text style={[methodPrice, { color: themeColor }]}>{item.price}</Text>
+      <Text style={[methodPrice, { color: themeColor }]}>${item.price}</Text>
     </View>
   )
 }

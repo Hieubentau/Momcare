@@ -130,7 +130,7 @@ const InnerApp = ({ splashVisible }) => {
               <Stack.Screen
                 name="UpcomingAppointment"
                 component={UpcomingAppointmentScreen}
-                options={{ headerShown: false }}
+                options={{ headerTitle: 'My Appointment' }}
               />
             </Stack.Navigator>
           </NavigationContainer>

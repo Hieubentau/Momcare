@@ -12,6 +12,9 @@ import { Divider, useTheme } from 'react-native-paper'
 import { Ionicons } from '@expo/vector-icons'
 
 import TitleBar from '../components/Basics/TitleBar'
+import AppointmentInfoText from '../components/UpcomingAppointmentScreen/AppointmentInfoText'
+import CardMethod from '../components/Basics/CardMethod'
+import AbsoluteBottomButton from '../components/Basics/AbsoluteBottomButton'
 
 const UpcomingAppointmentScreen = (props) => {
   const { navigation, route } = props
@@ -25,8 +28,11 @@ const UpcomingAppointmentScreen = (props) => {
     doctorName,
     doctorSpeciality,
     optionAppointmentWrapper,
-    appointmentButton,
-    appointmentText
+    optionAppointmentButton,
+    optionAppointmentText,
+    appointmentInfoTitle,
+    appointmentInfoText,
+    cardPackageMethod
   } = styles
 
   const theme = useTheme()
@@ -34,11 +40,6 @@ const UpcomingAppointmentScreen = (props) => {
 
   return (
     <SafeAreaView style={container}>
-      <TitleBar
-        navigation={navigation}
-        previousScreen="Appointment"
-        titleName="My Appointment"
-      />
       <TouchableOpacity style={[cardWrapper, { height: 100 }]} disabled={true}>
         <View style={{ flexDirection: 'row' }}>
           <Ionicons
@@ -58,25 +59,61 @@ const UpcomingAppointmentScreen = (props) => {
       <View style={optionAppointmentWrapper}>
         <TouchableOpacity
           style={[
-            appointmentButton,
+            optionAppointmentButton,
             { backgroundColor: 'white', borderColor: themeColor }
           ]}
         >
-          <Text style={[appointmentText, { color: themeColor }]}>
+          <Text style={[optionAppointmentText, { color: themeColor }]}>
             Cancel Appointment
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[
-            appointmentButton,
+            optionAppointmentButton,
             { backgroundColor: themeColor, borderColor: themeColor }
           ]}
         >
-          <Text style={[appointmentText, { color: 'white' }]}>
+          <Text style={[optionAppointmentText, { color: 'white' }]}>
             Reschedule Appointment
           </Text>
         </TouchableOpacity>
       </View>
+      <Text style={appointmentInfoTitle}>Scheduled Appointment</Text>
+      <Text style={appointmentInfoText}>{item.date}</Text>
+      <Text>
+        {item.time} ({item.duration})
+      </Text>
+      <Text style={appointmentInfoTitle}>Patient Information</Text>
+      <AppointmentInfoText
+        appointmentInfoText={appointmentInfoText}
+        category="Full Name"
+        content={item.patientFullName}
+      />
+      <AppointmentInfoText
+        appointmentInfoText={appointmentInfoText}
+        category="Gender"
+        content={item.patientGender}
+      />
+      <AppointmentInfoText
+        appointmentInfoText={appointmentInfoText}
+        category="Age"
+        content={item.patientAge}
+      />
+      <AppointmentInfoText
+        appointmentInfoText={appointmentInfoText}
+        category="Problem"
+        content={item.patientProblem}
+      />
+      <Text style={appointmentInfoTitle}>Your Package</Text>
+      <TouchableOpacity disabled={true} style={cardPackageMethod}>
+        <CardMethod item={item} />
+      </TouchableOpacity>
+      <AbsoluteBottomButton
+        navigation={navigation}
+        nextScreen=""
+        passingData={item}
+        buttonName={item.method}
+      />
     </SafeAreaView>
   )
 }
@@ -112,15 +149,30 @@ const styles = StyleSheet.create({
   optionAppointmentWrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 6
+    marginTop: 8
   },
-  appointmentButton: {
+  optionAppointmentButton: {
     borderRadius: 16,
     borderWidth: 1,
     padding: 8
   },
-  appointmentText: {
+  optionAppointmentText: {
     fontSize: 14
+  },
+  appointmentInfoTitle: {
+    marginTop: 8,
+    fontSize: 20,
+    fontWeight: 'bold'
+  },
+  appointmentInfoText: {
+    marginTop: 4
+  },
+  cardPackageMethod: {
+    backgroundColor: 'white',
+    borderRadius: 16,
+    height: 100,
+    justifyContent: 'center',
+    marginTop: 6
   }
 })
 
