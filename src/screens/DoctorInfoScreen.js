@@ -20,11 +20,6 @@ const DoctorInfoScreen = (props) => {
   const { container, cardWrapper, doctorInfoWrapper, doctorInfoTitle } = styles
   return (
     <SafeAreaView style={container}>
-      <TitleBar
-        navigation={navigation}
-        previousScreen="Doctors"
-        titleName={item.name}
-      />
       <TouchableOpacity style={cardWrapper} disabled={true}>
         <CardInfo item={item} />
       </TouchableOpacity>

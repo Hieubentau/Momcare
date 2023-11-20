@@ -56,11 +56,6 @@ const PatientDetailsScreen = (props) => {
         resetScrollToCoords={{ x: 0, y: 0 }}
         scrollEnabled={true}
       >
-        <TitleBar
-          navigation={navigation}
-          previousScreen="BookAppointmentMethod"
-          titleName="Patient Details"
-        />
         <View>
           <Text style={patientDetailsTitle}>Full Name</Text>
           <TextInput

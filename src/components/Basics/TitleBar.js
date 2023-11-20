@@ -1,20 +1,32 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { StyleSheet, TouchableOpacity } from 'react-native'
 import { AntDesign } from '@expo/vector-icons'
+import { Appbar, useTheme } from 'react-native-paper'
+import { getHeaderTitle } from '@react-navigation/elements'
 
 const TitleBar = (props) => {
-  const { navigation, previousScreen, titleName } = props
+  const { navigation, route, options, back, ...otherAction } = props
+  const previous = navigation.canGoBack()
+  const theme = useTheme()
+
   const { titleBarWrapper, arrowLeftIcon, titleBarName } = styles
   return (
-    <View style={titleBarWrapper}>
-      <TouchableOpacity
-        onPress={() => navigation.goBack(previousScreen)}
-        style={arrowLeftIcon}
-      >
-        <AntDesign name="arrowleft" size={24} color="black" />
-      </TouchableOpacity>
-      <Text style={titleBarName}>{titleName}</Text>
-    </View>
+    <Appbar.Header>
+      {previous ? (
+        <Appbar.BackAction
+          onPress={navigation.goBack}
+          style={arrowLeftIcon}
+          iconColor={theme.colors.primary}
+        />
+      ) : undefined}
+      {options?.headerShown === false ? null : (
+        <Appbar.Content
+          title={options?.headerTitle}
+          titleStyle={titleBarName}
+        />
+      )}
+      {options?.headerRight ? options?.headerRight({ ...otherAction }) : null}
+    </Appbar.Header>
   )
 }
 

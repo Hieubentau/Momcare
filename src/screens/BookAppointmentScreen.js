@@ -32,11 +32,6 @@ const BookAppointmentScreen = (props) => {
 
   return (
     <View style={container}>
-      <TitleBar
-        navigation={navigation}
-        previousScreen="DoctorInfo"
-        titleName="Book Appointment"
-      />
       <View style={selectDateWrapper}>
         <Text style={selectTitle}>Selected Date</Text>
         <CalendarComponent

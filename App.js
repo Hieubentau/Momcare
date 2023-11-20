@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createStackNavigator } from '@react-navigation/stack'
 
 import SplashScreen from './src/screens/SplashScreen'
 import SignInScreen from './src/screens/SignInScreen'
@@ -12,7 +12,6 @@ import BookAppointmentMethodScreen from './src/screens/BookAppointmentMethodScre
 import AddPaymentMethodScreen from './src/screens/AddPaymentMethodScreen'
 
 import { AuthProvider } from './src/contexts/authContext'
-import { useAuthContext } from './src/hooks/useAuthContext'
 import { DefaultTheme, PaperProvider } from 'react-native-paper'
 import Toast from 'react-native-toast-message'
 import {
@@ -24,8 +23,9 @@ import PatientDetailsScreen from './src/screens/PatientDetailsScreen'
 import ReviewSummaryScreen from './src/screens/ReviewSummaryScreen'
 import CompletedAppointmentScreen from './src/screens/CompletedAppointmentScreen'
 import UpcomingAppointmentScreen from './src/screens/UpcomingAppointmentScreen'
+import TitleBar from './src/components/Basics/TitleBar'
 
-const Stack = createNativeStackNavigator()
+const Stack = createStackNavigator()
 
 const theme = {
   ...DefaultTheme,
@@ -40,14 +40,28 @@ const theme = {
 
 const InnerApp = ({ splashVisible }) => {
   const { isLoggedIn } = useContext(AppStateContext)
-  console.log(isLoggedIn)
 
   return (
     <AlertNotificationRoot theme={'dark'}>
       <AuthProvider>
         <PaperProvider theme={theme}>
           <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator
+              initialRouteName={splashVisible ? 'Splash' : 'SignIn'}
+              screenOptions={{
+                header: ({ navigation, route, options, back }) => {
+                  return (
+                    <TitleBar
+                      navigation={navigation}
+                      route={route}
+                      options={options}
+                      back={back}
+                    />
+                  )
+                },
+                headerMode: 'screen'
+              }}
+            >
               {splashVisible ? (
                 <Stack.Screen
                   name="Splash"
@@ -61,9 +75,8 @@ const InnerApp = ({ splashVisible }) => {
                   component={SignInScreen}
                   options={{
                     headerShown: false,
-                    title: 'Sign In'
-                    // When logging out, a pop animation feels intuitive
-                    //animationTypeForReplace: state.isSignout ? 'pop' : 'push'
+                    title: 'Sign In',
+                    animationTypeForReplace: !isLoggedIn ? 'pop' : 'push'
                   }}
                 />
               ) : (
@@ -76,23 +89,23 @@ const InnerApp = ({ splashVisible }) => {
               <Stack.Screen
                 name="Doctors"
                 component={DoctorsScreen}
-                options={{ headerShown: false }}
+                options={{ headerTitle: 'Search Doctors' }}
               />
 
               <Stack.Screen
                 name="DoctorInfo"
                 component={DoctorInfoScreen}
-                options={{ headerShown: false }}
+                options={{ headerTitle: 'Doctor Info' }}
               />
               <Stack.Screen
                 name="BookAppointment"
                 component={BookAppointmentScreen}
-                options={{ headerShown: false }}
+                options={{ headerTitle: 'Book Appointment' }}
               />
               <Stack.Screen
                 name="BookAppointmentMethod"
                 component={BookAppointmentMethodScreen}
-                options={{ headerShown: false }}
+                options={{ headerTitle: 'Appointment Schedule' }}
               />
               <Stack.Screen
                 name="PatientDetails"

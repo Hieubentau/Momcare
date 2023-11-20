@@ -37,11 +37,6 @@ const Doctors = ({ navigation }) => {
 
   return (
     <SafeAreaView style={container}>
-      <TitleBar
-        navigation={navigation}
-        previousScreen="Home"
-        titleName="Doctors"
-      />
       <SearchBarComponent />
       <GeneralAndFilter
         selectedFilterSpeciality={selectedFilterSpeciality}

@@ -5,7 +5,7 @@ import HomeScreen from '../screens/HomeScreen'
 import AppointmentScreen from '../screens/AppointmentScreen'
 import PrescriptionScreen from '../screens/PrescriptionScreen'
 
-import { BottomNavigation, useTheme } from 'react-native-paper'
+import { useTheme } from 'react-native-paper'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import { UserScreen } from '../screens/UserScreen'

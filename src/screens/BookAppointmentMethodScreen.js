@@ -42,11 +42,6 @@ const BookAppointmentMethodScreen = (props) => {
 
   return (
     <View style={container}>
-      <TitleBar
-        navigation={navigation}
-        previousScreen="BookAppointment"
-        titleName="Select Package"
-      />
       <View style={selectDurationWrapper}>
         <Text style={selectTitle}>Selected Duration</Text>
         <DropdownComponent
