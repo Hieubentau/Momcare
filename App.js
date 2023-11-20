@@ -110,17 +110,17 @@ const InnerApp = ({ splashVisible }) => {
               <Stack.Screen
                 name="PatientDetails"
                 component={PatientDetailsScreen}
-                options={{ headerShown: false }}
+                options={{ headerTitle: 'Patient Details' }}
               />
               <Stack.Screen
                 name="AddPaymentMethod"
                 component={AddPaymentMethodScreen}
-                options={{ headerShown: false }}
+                options={{ headerTitle: 'Add New Card' }}
               />
               <Stack.Screen
                 name="ReviewSummary"
                 component={ReviewSummaryScreen}
-                options={{ headerShown: false }}
+                options={{ headerTitle: 'Review Summary' }}
               />
               <Stack.Screen
                 name="CompletedAppointment"

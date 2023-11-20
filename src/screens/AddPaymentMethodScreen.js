@@ -54,11 +54,6 @@ const AddPaymentMethodScreen = (props) => {
         resetScrollToCoords={{ x: 0, y: 0 }}
         scrollEnabled={true}
       >
-        <TitleBar
-          navigation={navigation}
-          previousScreen="PatientDetails"
-          titleName="Add New Card"
-        />
         <View>
           <Text style={cardDetailsTitle}>Card Name</Text>
           <TextInput

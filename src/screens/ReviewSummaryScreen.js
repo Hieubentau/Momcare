@@ -48,11 +48,6 @@ const ReviewSummaryScreen = (props) => {
     : 1 // Default to 1 if no matching duration is found
   return (
     <SafeAreaView style={container}>
-      <TitleBar
-        navigation={navigation}
-        previousScreen="Doctors"
-        titleName="Review Summary"
-      />
       <TouchableOpacity style={[cardWrapper, { height: 100 }]} disabled={true}>
         <View style={{ flexDirection: 'row' }}>
           <Ionicons
