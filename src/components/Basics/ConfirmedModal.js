@@ -6,16 +6,17 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 const ConfirmedModal = (props) => {
   const {
-    isConfirmedCancelModalVisible,
-    setIsConfirmedCancelModalVisible,
+    navigation,
+    isConfirmedModalVisible,
+    setIsConfirmedModalVisible,
     iconMaterialCommunityIcons,
     confirmModalTitleText,
-    confirmModalMessageText
+    confirmModalMessageText,
+    goBackText
   } = props
 
-  const showModal = () => setIsConfirmedCancelModalVisible(true)
-  const hideModal = () => setIsConfirmedCancelModalVisible(false)
-  const navigation = useNavigation()
+  const showModal = () => setIsConfirmedModalVisible(true)
+  const hideModal = () => setIsConfirmedModalVisible(false)
   const theme = useTheme()
   const themeColor = theme.colors.primary
 
@@ -26,7 +27,7 @@ const ConfirmedModal = (props) => {
   return (
     <Portal>
       <Modal
-        visible={isConfirmedCancelModalVisible}
+        visible={isConfirmedModalVisible}
         contentContainerStyle={containerStyle}
       >
         <MaterialCommunityIcons
@@ -41,10 +42,10 @@ const ConfirmedModal = (props) => {
         <Button
           mode="contained"
           onPress={() => {
-            hideModal, navigation.goBack('Home')
+            hideModal, navigation.goBack()
           }}
         >
-          Go back Home
+          {goBackText}
         </Button>
       </Modal>
     </Portal>

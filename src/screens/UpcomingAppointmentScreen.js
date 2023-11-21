@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   View,
   Text,
@@ -11,7 +11,6 @@ import { Divider, useTheme } from 'react-native-paper'
 
 import { Ionicons } from '@expo/vector-icons'
 
-import TitleBar from '../components/Basics/TitleBar'
 import AppointmentInfoText from '../components/UpcomingAppointmentScreen/AppointmentInfoText'
 import CardMethod from '../components/Basics/CardMethod'
 import AbsoluteBottomButton from '../components/Basics/AbsoluteBottomButton'
@@ -76,6 +75,9 @@ const UpcomingAppointmentScreen = (props) => {
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('RescheduleAppointment', { passingData: item })
+          }
           style={[
             optionAppointmentButton,
             { backgroundColor: themeColor, borderColor: themeColor }
@@ -99,11 +101,13 @@ const UpcomingAppointmentScreen = (props) => {
         />
       </CancelModal>
       <ConfirmedModal
-        isConfirmedCancelModalVisible={isConfirmedCancelModalVisible}
-        setIsConfirmedCancelModalVisible={setIsConfirmedCancelModalVisible}
+        navigation={navigation}
+        isConfirmedModalVisible={isConfirmedCancelModalVisible}
+        setIsConfirmedModalVisible={setIsConfirmedCancelModalVisible}
         iconMaterialCommunityIcons="folder-check-outline"
         confirmModalTitleText="Cancel Appointment Success!"
         confirmModalMessageText="We are very sad that you have canceled your appointment. We will always improve our service to satisfy you in the next appointment."
+        goBackText="Go back"
       />
 
       <Text style={appointmentInfoTitle}>Scheduled Appointment</Text>

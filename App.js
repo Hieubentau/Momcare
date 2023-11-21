@@ -23,6 +23,7 @@ import PatientDetailsScreen from './src/screens/PatientDetailsScreen'
 import ReviewSummaryScreen from './src/screens/ReviewSummaryScreen'
 import CompletedAppointmentScreen from './src/screens/CompletedAppointmentScreen'
 import UpcomingAppointmentScreen from './src/screens/UpcomingAppointmentScreen'
+import RescheduleAppointmentScreen from './src/screens/RescheduleAppoimentScreen'
 import TitleBar from './src/components/Basics/TitleBar'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 
@@ -133,6 +134,11 @@ const InnerApp = ({ splashVisible }) => {
                   name="UpcomingAppointment"
                   component={UpcomingAppointmentScreen}
                   options={{ headerTitle: 'My Appointment' }}
+                />
+                <Stack.Screen
+                  name="RescheduleAppointment"
+                  component={RescheduleAppointmentScreen}
+                  options={{ headerTitle: 'Reschedule Appointment' }}
                 />
               </Stack.Navigator>
             </NavigationContainer>
