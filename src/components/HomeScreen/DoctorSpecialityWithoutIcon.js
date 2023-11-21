@@ -1,10 +1,11 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FlatList, View, Text, TouchableOpacity } from 'react-native'
 
 import { useTheme } from 'react-native-paper'
 import { doctorSpecialityType } from '../../ultilities/doctorSpecialityType'
 import ListItemWithoutIcon from '../Basics/ListItemWithoutIcon'
 import { ItemSeparatorWidth } from '../Basics/ItemSeparatorWidth'
+import { useMedicalSpecialty } from '../../hooks/useMisc'
 
 const DoctorSpecialityWithoutIcon = (props) => {
   const [selectedIdwithoutIcon, setSelectedIdwithoutIcon] = useState()
@@ -14,6 +15,12 @@ const DoctorSpecialityWithoutIcon = (props) => {
 
   const { topDoctorsText } = props
   const { textHeaderWrapper, seeAllText, flatListWrapper } = styles
+
+  const medicalSpeciality = useMedicalSpecialty()
+  const modifiedMedicalSpeciality = medicalSpeciality.map((item) => ({
+    id: item.medicalSpecialtyId,
+    message: item.vietnameseName
+  }))
 
   const renderItemWithoutIcon = ({ item }) => (
     <ListItemWithoutIcon
@@ -33,7 +40,7 @@ const DoctorSpecialityWithoutIcon = (props) => {
       </View>
       <View style={flatListWrapper}>
         <FlatList
-          data={doctorSpecialityType}
+          data={modifiedMedicalSpeciality}
           renderItem={renderItemWithoutIcon}
           keyExtractor={(item) => item.id}
           extraData={selectedIdwithoutIcon}

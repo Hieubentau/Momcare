@@ -20,24 +20,22 @@ const BottomTabs = () => {
   return (
     <Tab.Navigator
       initialRouteName={'Home'}
-      // screenOptions={{
-      //   tabBarActiveTintColor: themeColor,
-      //   tabBarInactiveTintColor: 'grey',
-      //   tabBarStyle: {
-      //     backgroundColor: 'white'
-      //   },
-      //   headerShown: false
-      // }}
       theme={theme}
       shifting={true}
       activeColor={themeColor}
+      inactiveColor={'grey'}
       barStyle={{
-        backgroundColor: '#faf3f3',
-        // a shadow to the top of the tab bar
+        backgroundColor: 'white',
         shadow: '5px 5px 5px #000',
         borderTopLeftRadius: 16,
         borderTopRightRadius: 16,
-        elevation: 0
+        elevation: 0,
+        borderTopWidth: 2,
+        borderLeftWidth: 1,
+        borderRightWidth: 1,
+        borderTopStyle: 'solid',
+        borderColor: '#cecece',
+        overflow: 'hidden'
       }}
       animationEasing={'ease-in-out'}
     >

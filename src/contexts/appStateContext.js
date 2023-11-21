@@ -10,6 +10,7 @@ export const AppStateContext = createContext({
 export const AppStateProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [language, setLanguage] = useState('en')
 
   return (
     <AppStateContext.Provider

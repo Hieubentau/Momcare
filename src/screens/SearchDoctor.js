@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import {
   FlatList,
   StyleSheet,
@@ -16,15 +16,24 @@ import { ItemSeparatorHeight } from '../components/Basics/ItemSeparatorHeight'
 import ListCardsInfo from '../components/Doctors/ListCardsInfo'
 import { doctorGeneralInfo } from '../ultilities/doctorGeneralInfo'
 import TitleBar from '../components/Basics/TitleBar'
+import { useFocusEffect } from '@react-navigation/native'
 
-const Doctors = ({ navigation }) => {
+const SearchDoctor = ({ navigation, route }) => {
   const [selectedFilterSpeciality, setSelectedFilterSpeciality] = useState('')
   const [applySelectedFilterSpeciality, setApplySelectedFilterSpeciality] =
     useState('')
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [selectedDoctor, setSelectedDoctor] = useState('')
-
   const { container, flatListWrapper } = styles
+
+  // create a ref to focus the search bar
+  const { focusSearchBar } = route.params || {}
+  const refSearchBar = useRef(null)
+  useFocusEffect(() => {
+    if (focusSearchBar && refSearchBar.current) {
+      refSearchBar.current.focus()
+    }
+  })
 
   const renderListDoctors = ({ item }) => (
     <ListCardsInfo
@@ -37,7 +46,7 @@ const Doctors = ({ navigation }) => {
 
   return (
     <SafeAreaView style={container}>
-      <SearchBarComponent />
+      <SearchBarComponent ref={refSearchBar} />
       <GeneralAndFilter
         selectedFilterSpeciality={selectedFilterSpeciality}
         setSelectedFilterSpeciality={setSelectedFilterSpeciality}
@@ -73,4 +82,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Doctors
+export default SearchDoctor
