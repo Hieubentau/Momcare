@@ -14,7 +14,9 @@ const ItemWithoutIcon = ({
     onPress={onPress}
     style={[styles.textTouchable, { backgroundColor }, { borderColor }]}
   >
-    <Text style={{ padding: 8, color: textColor }}>{item.message}</Text>
+    <Text style={{ padding: 8, color: textColor }}>
+      {item.message ?? item.englishName}
+    </Text>
   </TouchableOpacity>
 )
 

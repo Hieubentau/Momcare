@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import SplashScreen from './src/screens/SplashScreen'
 import SignInScreen from './src/screens/SignInScreen'
 import BottomTabs from './src/components/BottomTabs'
-import DoctorsScreen from './src/screens/DoctorsScreen'
+import DoctorsScreen from './src/screens/SearchDoctor'
 import DoctorInfoScreen from './src/screens/DoctorInfoScreen'
 import BookAppointmentScreen from './src/screens/BookAppointmentScreen'
 import BookAppointmentMethodScreen from './src/screens/BookAppointmentMethodScreen'
@@ -24,6 +24,7 @@ import ReviewSummaryScreen from './src/screens/ReviewSummaryScreen'
 import CompletedAppointmentScreen from './src/screens/CompletedAppointmentScreen'
 import UpcomingAppointmentScreen from './src/screens/UpcomingAppointmentScreen'
 import TitleBar from './src/components/Basics/TitleBar'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 const Stack = createStackNavigator()
 
@@ -45,96 +46,98 @@ const InnerApp = ({ splashVisible }) => {
     <AlertNotificationRoot theme={'dark'}>
       <AuthProvider>
         <PaperProvider theme={theme}>
-          <NavigationContainer>
-            <Stack.Navigator
-              initialRouteName={splashVisible ? 'Splash' : 'SignIn'}
-              screenOptions={{
-                header: ({ navigation, route, options, back }) => {
-                  return (
-                    <TitleBar
-                      navigation={navigation}
-                      route={route}
-                      options={options}
-                      back={back}
-                    />
-                  )
-                },
-                headerMode: 'screen'
-              }}
-            >
-              {splashVisible ? (
+          <SafeAreaProvider>
+            <NavigationContainer>
+              <Stack.Navigator
+                initialRouteName={splashVisible ? 'Splash' : 'SignIn'}
+                screenOptions={{
+                  header: ({ navigation, route, options, back }) => {
+                    return (
+                      <TitleBar
+                        navigation={navigation}
+                        route={route}
+                        options={options}
+                        back={back}
+                      />
+                    )
+                  },
+                  headerMode: 'screen'
+                }}
+              >
+                {splashVisible ? (
+                  <Stack.Screen
+                    name="Splash"
+                    component={SplashScreen}
+                    options={{ headerShown: false }}
+                  />
+                ) : !isLoggedIn ? (
+                  // No token found, user isn't signed in
+                  <Stack.Screen
+                    name="SignIn"
+                    component={SignInScreen}
+                    options={{
+                      headerShown: false,
+                      title: 'Sign In',
+                      animationTypeForReplace: !isLoggedIn ? 'pop' : 'push'
+                    }}
+                  />
+                ) : (
+                  <Stack.Screen
+                    name="Tabs"
+                    component={BottomTabs}
+                    options={{ headerShown: false }}
+                  />
+                )}
                 <Stack.Screen
-                  name="Splash"
-                  component={SplashScreen}
-                  options={{ headerShown: false }}
+                  name="SearchDoctor"
+                  component={DoctorsScreen}
+                  options={{ headerTitle: 'Search Doctor' }}
                 />
-              ) : !isLoggedIn ? (
-                // No token found, user isn't signed in
-                <Stack.Screen
-                  name="SignIn"
-                  component={SignInScreen}
-                  options={{
-                    headerShown: false,
-                    title: 'Sign In',
-                    animationTypeForReplace: !isLoggedIn ? 'pop' : 'push'
-                  }}
-                />
-              ) : (
-                <Stack.Screen
-                  name="Tabs"
-                  component={BottomTabs}
-                  options={{ headerShown: false }}
-                />
-              )}
-              <Stack.Screen
-                name="Doctors"
-                component={DoctorsScreen}
-                options={{ headerTitle: 'Search Doctors' }}
-              />
 
-              <Stack.Screen
-                name="DoctorInfo"
-                component={DoctorInfoScreen}
-                options={{ headerTitle: 'Doctor Info' }}
-              />
-              <Stack.Screen
-                name="BookAppointment"
-                component={BookAppointmentScreen}
-                options={{ headerTitle: 'Book Appointment' }}
-              />
-              <Stack.Screen
-                name="BookAppointmentMethod"
-                component={BookAppointmentMethodScreen}
-                options={{ headerTitle: 'Appointment Schedule' }}
-              />
-              <Stack.Screen
-                name="PatientDetails"
-                component={PatientDetailsScreen}
-                options={{ headerTitle: 'Patient Details' }}
-              />
-              <Stack.Screen
-                name="AddPaymentMethod"
-                component={AddPaymentMethodScreen}
-                options={{ headerTitle: 'Add New Card' }}
-              />
-              <Stack.Screen
-                name="ReviewSummary"
-                component={ReviewSummaryScreen}
-                options={{ headerTitle: 'Review Summary' }}
-              />
-              <Stack.Screen
-                name="CompletedAppointment"
-                component={CompletedAppointmentScreen}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="UpcomingAppointment"
-                component={UpcomingAppointmentScreen}
-                options={{ headerTitle: 'My Appointment' }}
-              />
-            </Stack.Navigator>
-          </NavigationContainer>
-          <Toast autoHide={true} />
+                <Stack.Screen
+                  name="DoctorInfo"
+                  component={DoctorInfoScreen}
+                  options={{ headerTitle: 'Doctor Info' }}
+                />
+                <Stack.Screen
+                  name="BookAppointment"
+                  component={BookAppointmentScreen}
+                  options={{ headerTitle: 'Book Appointment' }}
+                />
+                <Stack.Screen
+                  name="BookAppointmentMethod"
+                  component={BookAppointmentMethodScreen}
+                  options={{ headerTitle: 'Appointment Schedule' }}
+                />
+                <Stack.Screen
+                  name="PatientDetails"
+                  component={PatientDetailsScreen}
+                  options={{ headerTitle: 'Patient Details' }}
+                />
+                <Stack.Screen
+                  name="AddPaymentMethod"
+                  component={AddPaymentMethodScreen}
+                  options={{ headerTitle: 'Add New Card' }}
+                />
+                <Stack.Screen
+                  name="ReviewSummary"
+                  component={ReviewSummaryScreen}
+                  options={{ headerTitle: 'Review Summary' }}
+                />
+                <Stack.Screen
+                  name="CompletedAppointment"
+                  component={CompletedAppointmentScreen}
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                  name="UpcomingAppointment"
+                  component={UpcomingAppointmentScreen}
+                  options={{ headerTitle: 'My Appointment' }}
+                />
+              </Stack.Navigator>
+            </NavigationContainer>
+            <Toast autoHide={true} />
+          </SafeAreaProvider>
         </PaperProvider>
       </AuthProvider>
     </AlertNotificationRoot>

@@ -1,9 +1,11 @@
 import React from 'react'
 import { Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { useTheme } from 'react-native-paper'
+import { useNavigation } from '@react-navigation/native'
 
 const AbsoluteBottomButton = (props) => {
-  const { navigation, nextScreen, passingData, buttonName } = props
+  const { nextScreen, passingData, buttonName } = props
+  const navigation = useNavigation()
   const { bookAppointmentButton, bookAppointmentText } = styles
   const theme = useTheme()
   const themeColor = theme.colors.primary

@@ -17,17 +17,23 @@ import { AuthContext } from '../contexts/authContext'
 import { useTheme } from 'react-native-paper'
 import Toast from 'react-native-toast-message'
 import { ALERT_TYPE, Dialog } from 'react-native-alert-notification'
+import CustomSafeAreaView from '../components/Basics/CustomSafeAreaView'
 
 const HomeScreen = ({ navigation }) => {
   const { logout } = React.useContext(AuthContext)
-	const theme = useTheme()
-	const themeColor = theme.colors.primary
+  const theme = useTheme()
+  const themeColor = theme.colors.primary
 
   const { container, center, textHeader } = styles
+
   return (
-    <SafeAreaView style={container}>
-      <UserGeneral usernameGreetingText={textHeader} />
-      <SearchBarComponent />
+    <CustomSafeAreaView style={container}>
+      <UserGeneral />
+      <SearchBarComponent
+        onPress={() =>
+          navigation.navigate('SearchDoctor', { focusSearchBar: true })
+        }
+      />
       <DoctorSpeciality
         doctorSpecialityText={textHeader}
         navigation={navigation}
@@ -58,7 +64,7 @@ const HomeScreen = ({ navigation }) => {
           }}
         />
       </View>
-    </SafeAreaView>
+    </CustomSafeAreaView>
   )
 }
 

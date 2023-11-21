@@ -17,7 +17,6 @@ export const AuthProvider = ({ children }) => {
   const { setIsLoggedIn } = useContext(AppStateContext)
   const [user, setUser] = useState(null)
   const [role, setRole] = useState(2)
-  // const validRole = useRole()
 
   const saveToken = (token) => {
     // save token in async storage
