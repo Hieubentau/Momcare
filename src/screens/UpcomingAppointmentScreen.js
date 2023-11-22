@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   View,
   Text,
@@ -11,12 +11,18 @@ import { Divider, useTheme } from 'react-native-paper'
 
 import { Ionicons } from '@expo/vector-icons'
 
-import TitleBar from '../components/Basics/TitleBar'
 import AppointmentInfoText from '../components/UpcomingAppointmentScreen/AppointmentInfoText'
 import CardMethod from '../components/Basics/CardMethod'
 import AbsoluteBottomButton from '../components/Basics/AbsoluteBottomButton'
+import CancelModal from '../components/UpcomingAppointmentScreen/CancelModal'
+import CancelModalButton from '../components/UpcomingAppointmentScreen/CancelModalButton'
+import ConfirmedModal from '../components/Basics/ConfirmedModal'
 
 const UpcomingAppointmentScreen = (props) => {
+  const [isCancelModalVisible, setIsCancelModalVisible] = useState(false)
+  const [isConfirmedCancelModalVisible, setIsConfirmedCancelModalVisible] =
+    useState(false)
+
   const { navigation, route } = props
   const { item } = route.params
 
@@ -58,6 +64,7 @@ const UpcomingAppointmentScreen = (props) => {
       </TouchableOpacity>
       <View style={optionAppointmentWrapper}>
         <TouchableOpacity
+          onPress={() => setIsCancelModalVisible(!isCancelModalVisible)}
           style={[
             optionAppointmentButton,
             { backgroundColor: 'white', borderColor: themeColor }
@@ -68,6 +75,9 @@ const UpcomingAppointmentScreen = (props) => {
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('RescheduleAppointment', { passingData: item })
+          }
           style={[
             optionAppointmentButton,
             { backgroundColor: themeColor, borderColor: themeColor }
@@ -78,6 +88,28 @@ const UpcomingAppointmentScreen = (props) => {
           </Text>
         </TouchableOpacity>
       </View>
+
+      <CancelModal
+        isCancelModalVisible={isCancelModalVisible}
+        setIsCancelModalVisible={setIsCancelModalVisible}
+      >
+        <CancelModalButton
+          isCancelModalVisible={isCancelModalVisible}
+          setIsCancelModalVisible={setIsCancelModalVisible}
+          isConfirmedCancelModalVisible={isConfirmedCancelModalVisible}
+          setIsConfirmedCancelModalVisible={setIsConfirmedCancelModalVisible}
+        />
+      </CancelModal>
+      <ConfirmedModal
+        navigation={navigation}
+        isConfirmedModalVisible={isConfirmedCancelModalVisible}
+        setIsConfirmedModalVisible={setIsConfirmedCancelModalVisible}
+        iconMaterialCommunityIcons="folder-check-outline"
+        confirmModalTitleText="Cancel Appointment Success!"
+        confirmModalMessageText="We are very sad that you have canceled your appointment. We will always improve our service to satisfy you in the next appointment."
+        goBackText="Go back"
+      />
+
       <Text style={appointmentInfoTitle}>Scheduled Appointment</Text>
       <Text style={appointmentInfoText}>{item.date}</Text>
       <Text>
