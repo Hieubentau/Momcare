@@ -9,6 +9,7 @@ import FilterChosen from './FilterModal/FilterChosen'
 
 const GeneralAndFilter = (props) => {
   const {
+    count,
     selectedFilterSpeciality,
     setSelectedFilterSpeciality,
     applySelectedFilterSpeciality,
@@ -21,7 +22,7 @@ const GeneralAndFilter = (props) => {
 
   return (
     <View style={generalWrapper}>
-      <Text style={foundDoctor}>56 founds</Text>
+      <Text style={foundDoctor}>{`${count} match${count > 1 ? 'es' : ''}`}</Text>
       <TouchableOpacity onPress={() => setIsModalVisible(!isModalVisible)}>
         <View style={filterWrapper}>
           <Text style={filterTitle}>Filter</Text>

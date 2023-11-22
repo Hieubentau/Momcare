@@ -21,7 +21,7 @@ const BookAppointmentMethodScreen = (props) => {
   const { navigation, route } = props
   const { passingData } = route.params
   const [selectedDuration, setSelectedDuration] = useState('')
-  const [selectedMethod, setSelectedMethod] = useState('')
+  const [selectedMethod, setSelectedMethod] = useState(1)
   const {
     container,
     selectDurationWrapper,

@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import { Divider, useTheme } from 'react-native-paper'
 import { Ionicons, AntDesign } from '@expo/vector-icons'
+import { useMedicalSpecialty } from '../../hooks/useMisc'
 
 const CardInfo = ({ item }) => {
   const theme = useTheme()
@@ -27,13 +28,13 @@ const CardInfo = ({ item }) => {
         <Text style={doctorName}>{item.name}</Text>
         <Divider />
         <Text style={doctorSpeciality}>
-          {item.speciality} | {item.hospital}
+          {item.medicalSpecialty} | {item.hospitalId}
         </Text>
         <View style={ratingWrapper}>
           <AntDesign name="star" size={16} color={themeColor} />
           <Text>
             {' '}
-            {item.rating} ({item.review} reviews)
+            {item.point ?? 0} ({item.review} reviews)
           </Text>
         </View>
       </View>

@@ -23,12 +23,13 @@ const ListCardsInfo = (props) => {
   return (
     <CardDoctor
       item={item}
+      key={item.doctorId}
       onPress={() => {
-        setSelectedDoctor(item.id),
+        setSelectedDoctor(item.doctorId),
           navigation.navigate('DoctorInfo', { item }),
           console.log(item)
       }}
-      onPressout={() => setSelectedDoctor(item.id)}
+      onPressout={() => setSelectedDoctor(item.doctorId)}
       backgroundColor={backgroundColor}
       styles={{
         cardTouchable,

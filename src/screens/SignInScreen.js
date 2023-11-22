@@ -102,7 +102,7 @@ const SignInScreen = () => {
         <LoadableButton
           style={signInButton}
           mode="elevated"
-          isLoading={isLoading}
+          // isLoading={isLoading}
           icon={() => (
             <Icon
               source={{

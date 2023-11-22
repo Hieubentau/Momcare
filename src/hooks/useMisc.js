@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
+export const DEV_URL_NGROK = 'https://0b6c-118-71-137-209.ngrok-free.app'
+
 /**
  * A hook to get all possible roles from the server
  */
@@ -21,29 +23,4 @@ export const useRole = () => {
   }, [])
 
   return role
-}
-
-export const useMedicalSpecialty = (search = null, en = true) => {
-  const [medicalSpecialty, setMedicalSpecialty] = useState([])
-  useEffect(() => {
-    axios
-      .get(`${process.env.DEV_URL_NGROK}/medspec/`)
-      .then((res) => {
-        setMedicalSpecialty(res.data)
-      })
-      .catch((err) => {
-        console.log('Error fetching medical specialty:', err)
-      })
-  }, [])
-
-  if (search) {
-    return medicalSpecialty.filter((item) => {
-      if (en) {
-        return item.englishName.toLowerCase().includes(search.toLowerCase())
-      }
-      return item.vietnameseName.toLowerCase().includes(search.toLowerCase())
-    })
-  }
-
-  return medicalSpecialty
 }

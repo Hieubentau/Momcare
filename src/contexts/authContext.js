@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import useAxios, { fetchData } from '../hooks/useAxios'
 import { AppStateContext } from './appStateContext'
@@ -14,7 +14,7 @@ export const AuthContext = createContext({
 })
 
 export const AuthProvider = ({ children }) => {
-  const { setIsLoggedIn } = useContext(AppStateContext)
+  const { isLoggedIn, setIsLoggedIn } = useContext(AppStateContext)
   const [user, setUser] = useState(null)
   const [role, setRole] = useState(2)
 
@@ -32,31 +32,19 @@ export const AuthProvider = ({ children }) => {
   const signIn = async (email, password) => {
     try {
       console.log(email, password)
-      // const { status, data } = await axios.post(
-      //   'http://192.168.133.105:3333/api/v1/user/login',
-      //   {
-      //     email,
-      //     password
-      //   }
-      // )
-
-      const fakeData = {
-        status: 200,
-        data: {
-          data: {
-            token: 'fakeToken',
-            user: {
-              id: 1,
-              role: 2
-            }
+      console.log(process.env.DEV_URL_NGROK)
+      const { status, data } = await axios.get(
+        `${process.env.DEV_URL_NGROK}/login`,
+        {
+          params: {
+            email: email,
+            password: password
           }
         }
-      }
+      )
 
-      const { status: fakeStatus, data } = fakeData
-
-      if (fakeStatus === 200) {
-        const { token, user } = data.data
+      if (status === 200) {
+        const { token, user } = data
         saveToken(token)
         setUser(user)
         setIsLoggedIn(true)
@@ -79,6 +67,35 @@ export const AuthProvider = ({ children }) => {
     setRole(null)
     return response ? response.status === 200 : false
   }
+
+  useEffect(() => {
+    const checkToken = async () => {
+      try {
+        const token = await AsyncStorage.getItem('token')
+        if (token) {
+          const { status, data } = await axios.get(
+            `${process.env.DEV_URL_NGROK}/check`,
+            {
+              params: {
+                token: token
+              }
+            }
+          )
+          if (status === 200 && data.userID && data.role) {
+            setUser(data)
+            setIsLoggedIn(true)
+            setRole(data.role)
+          }
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    if (!isLoggedIn && setIsLoggedIn) {
+      checkToken()
+    }
+  }, [isLoggedIn, setIsLoggedIn])
 
   return (
     <AuthContext.Provider

@@ -1,22 +1,23 @@
-import React, { useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import {
   FlatList,
   StyleSheet,
-  Text,
-  TouchableOpacity,
   View,
   SafeAreaView,
   StatusBar
 } from 'react-native'
-import { AntDesign } from '@expo/vector-icons'
 
 import SearchBarComponent from '../components/HomeScreen/SearchBarComponent'
 import GeneralAndFilter from '../components/Doctors/GeneralAndFilter'
 import { ItemSeparatorHeight } from '../components/Basics/ItemSeparatorHeight'
 import ListCardsInfo from '../components/Doctors/ListCardsInfo'
 import { doctorGeneralInfo } from '../ultilities/doctorGeneralInfo'
-import TitleBar from '../components/Basics/TitleBar'
 import { useFocusEffect } from '@react-navigation/native'
+import axios from 'axios'
+import { DEV_URL_NGROK, useMedicalSpecialty } from '../hooks/useMisc'
+import { AppStateContext } from '../contexts/appStateContext'
+import { ActivityIndicator } from 'react-native-paper'
+import { ALERT_TYPE, Dialog } from 'react-native-alert-notification'
 
 const SearchDoctor = ({ navigation, route }) => {
   const [selectedFilterSpeciality, setSelectedFilterSpeciality] = useState('')
@@ -26,6 +27,54 @@ const SearchDoctor = ({ navigation, route }) => {
   const [selectedDoctor, setSelectedDoctor] = useState('')
   const { container, flatListWrapper } = styles
 
+  const { MedicalSpecialty } = useContext(AppStateContext)
+
+  // search
+  const [loading, setLoading] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [filteredResult, setFilteredResult] = useState([])
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true)
+        const { status, data } = await axios.get(
+          `${DEV_URL_NGROK}/doctor/name/`,
+          {
+            params: {
+              name: searchQuery
+            }
+          }
+        )
+
+        setLoading(false)
+        if (status === 200) {
+          setFilteredResult(data)
+        } else {
+          setFilteredResult([])
+        }
+      } catch (err) {
+        setLoading(false)
+        setFilteredResult([])
+        Dialog.show({
+          type: ALERT_TYPE.DANGER,
+          title: 'Error',
+          textBody: 'Cannot fetch data!',
+          autoClose: 1000
+        })
+      }
+    }
+
+    const debounce = setTimeout(() => {
+      if (searchQuery) {
+        fetchData()
+      } else {
+        setFilteredResult([])
+      }
+    }, 500)
+
+    return () => clearTimeout(debounce)
+  }, [searchQuery])
+
   // create a ref to focus the search bar
   const { focusSearchBar } = route.params || {}
   const refSearchBar = useRef(null)
@@ -34,6 +83,20 @@ const SearchDoctor = ({ navigation, route }) => {
       refSearchBar.current.focus()
     }
   })
+
+  // map medical specialty to filter result
+  const modFilterResult = (filterResult) => {
+    return filterResult.map((item) => {
+      const medicalSpecialty = MedicalSpecialty.find(
+        (ms) => ms.medicalSpecialtyId === item.medicalSpecialtyId
+      ).vietnameseName
+
+      return {
+        ...item,
+        medicalSpecialty
+      }
+    })
+  }
 
   const renderListDoctors = ({ item }) => (
     <ListCardsInfo
@@ -46,8 +109,13 @@ const SearchDoctor = ({ navigation, route }) => {
 
   return (
     <SafeAreaView style={container}>
-      <SearchBarComponent ref={refSearchBar} />
+      <SearchBarComponent
+        ref={refSearchBar}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+      />
       <GeneralAndFilter
+        count={filteredResult.length}
         selectedFilterSpeciality={selectedFilterSpeciality}
         setSelectedFilterSpeciality={setSelectedFilterSpeciality}
         applySelectedFilterSpeciality={applySelectedFilterSpeciality}
@@ -55,16 +123,20 @@ const SearchDoctor = ({ navigation, route }) => {
         isModalVisible={isModalVisible}
         setIsModalVisible={setIsModalVisible}
       />
-      <View style={flatListWrapper}>
-        <FlatList
-          data={doctorGeneralInfo}
-          renderItem={renderListDoctors}
-          keyExtractor={(item) => item.id}
-          extraData={selectedDoctor}
-          showsVerticalScrollIndicator={false}
-          ItemSeparatorComponent={<ItemSeparatorHeight height={16} />}
-        />
-      </View>
+      {loading ? (
+        <ActivityIndicator size="large" />
+      ) : (
+        <View style={flatListWrapper}>
+          <FlatList
+            data={modFilterResult(filteredResult)}
+            renderItem={renderListDoctors}
+            keyExtractor={(item) => item.doctorId}
+            extraData={selectedDoctor}
+            showsVerticalScrollIndicator={false}
+            ItemSeparatorComponent={<ItemSeparatorHeight height={16} />}
+          />
+        </View>
+      )}
     </SafeAreaView>
   )
 }

@@ -10,6 +10,10 @@ const CalendarComponent = (props) => {
   const themeColor = theme.colors.primary
   return (
     <Calendar
+      minDate={Date()}
+      enableSwipeMonths={true}
+      firstDay={1}
+      current={Date()}
       onDayPress={(day) => {
         setSelectedDay(day.dateString), console.log('selected day', day)
       }}
