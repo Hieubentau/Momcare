@@ -17,6 +17,7 @@ import TitleBar from '../components/Basics/TitleBar'
 import { bookingHour } from '../ultilities/bookingHour'
 import { packageBooking } from '../ultilities/packageBooking'
 import { durationPrices } from '../ultilities/durationPrices'
+import ConfirmedModal from '../components/Basics/ConfirmedModal'
 
 const ReviewSummaryScreen = (props) => {
   const { navigation, route } = props
@@ -25,6 +26,9 @@ const ReviewSummaryScreen = (props) => {
   const [visible, setVisible] = useState(false)
   const onToggleSnackBar = () => setVisible(!visible)
   const onDismissSnackBar = () => setVisible(false)
+
+  const [isConfirmedBookModalVisible, setIsConfirmedBookModalVisible] =
+    useState(false)
 
   const {
     container,
@@ -105,7 +109,7 @@ const ReviewSummaryScreen = (props) => {
         <ReviewDetail title="Card Number" info={passingData.cardNumber} />
       </TouchableOpacity>
 
-      <Portal>
+      {/* <Portal>
         <Snackbar
           visible={visible}
           onDismiss={onDismissSnackBar}
@@ -118,10 +122,22 @@ const ReviewSummaryScreen = (props) => {
         >
           Confirm successfully!
         </Snackbar>
-      </Portal>
+      </Portal> */}
+      <ConfirmedModal
+        navigation={navigation}
+        isConfirmedModalVisible={isConfirmedBookModalVisible}
+        setIsConfirmedModalVisible={setIsConfirmedBookModalVisible}
+        iconMaterialCommunityIcons="check-circle"
+        confirmModalTitleText="Payment Successful!"
+        confirmModalMessageText={`You have successfully booked appointment with ${passingData.name}.`}
+        goBackText="Go back Home"
+        goBackScreen="Tabs"
+      />
 
       <TouchableOpacity
-        onPress={onToggleSnackBar}
+        onPress={() => {
+          setIsConfirmedBookModalVisible(!isConfirmedBookModalVisible)
+        }}
         style={[confirmButton, { backgroundColor: themeColor }]}
       >
         <Text style={confirmText}>Confirm</Text>

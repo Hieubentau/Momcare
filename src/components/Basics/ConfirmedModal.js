@@ -12,7 +12,8 @@ const ConfirmedModal = (props) => {
     iconMaterialCommunityIcons,
     confirmModalTitleText,
     confirmModalMessageText,
-    goBackText
+    goBackText,
+    goBackScreen
   } = props
 
   const showModal = () => setIsConfirmedModalVisible(true)
@@ -42,7 +43,7 @@ const ConfirmedModal = (props) => {
         <Button
           mode="contained"
           onPress={() => {
-            hideModal, navigation.goBack()
+            hideModal, navigation.navigate(goBackScreen)
           }}
         >
           {goBackText}

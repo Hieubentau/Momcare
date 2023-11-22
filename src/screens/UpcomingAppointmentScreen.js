@@ -108,6 +108,7 @@ const UpcomingAppointmentScreen = (props) => {
         confirmModalTitleText="Cancel Appointment Success!"
         confirmModalMessageText="We are very sad that you have canceled your appointment. We will always improve our service to satisfy you in the next appointment."
         goBackText="Go back"
+        goBackScreen="Tabs"
       />
 
       <Text style={appointmentInfoTitle}>Scheduled Appointment</Text>
