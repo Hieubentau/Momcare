@@ -26,6 +26,7 @@ import UpcomingAppointmentScreen from './src/screens/UpcomingAppointmentScreen'
 import RescheduleAppointmentScreen from './src/screens/RescheduleAppoimentScreen'
 import TitleBar from './src/components/Basics/TitleBar'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
+import WriteReviewScreen from './src/screens/WriteReviewScreen'
 
 const Stack = createStackNavigator()
 
@@ -128,7 +129,7 @@ const InnerApp = ({ splashVisible }) => {
                 <Stack.Screen
                   name="CompletedAppointment"
                   component={CompletedAppointmentScreen}
-                  options={{ headerShown: false }}
+                  options={{ headerTitle: 'My Appointment' }}
                 />
                 <Stack.Screen
                   name="UpcomingAppointment"
@@ -139,6 +140,11 @@ const InnerApp = ({ splashVisible }) => {
                   name="RescheduleAppointment"
                   component={RescheduleAppointmentScreen}
                   options={{ headerTitle: 'Reschedule Appointment' }}
+                />
+                <Stack.Screen
+                  name="WriteReview"
+                  component={WriteReviewScreen}
+                  options={{ headerTitle: 'Write a Review' }}
                 />
               </Stack.Navigator>
             </NavigationContainer>

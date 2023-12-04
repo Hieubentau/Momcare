@@ -78,6 +78,7 @@ const RescheduleAppointmentScreen = (props) => {
         confirmModalTitleText="Rescheduling Success!"
         confirmModalMessageText="Appointment successfully changed. You will receive a notification and the doctor you selected will contact you."
         goBackText="Go back"
+        goBackScreen="Tabs"
       />
 
       <TouchableOpacity
