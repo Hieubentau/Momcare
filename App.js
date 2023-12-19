@@ -27,6 +27,7 @@ import RescheduleAppointmentScreen from './src/screens/RescheduleAppoimentScreen
 import TitleBar from './src/components/Basics/TitleBar'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import WriteReviewScreen from './src/screens/WriteReviewScreen'
+import SignUpScreen from './src/screens/SignUpScreen'
 
 const Stack = createStackNavigator()
 
@@ -42,7 +43,7 @@ const theme = {
 }
 
 const InnerApp = ({ splashVisible }) => {
-  const { isLoggedIn } = useContext(AppStateContext)
+  const { isLoggedIn, role } = useContext(AppStateContext)
 
   return (
     <AlertNotificationRoot theme={'dark'}>
@@ -82,14 +83,24 @@ const InnerApp = ({ splashVisible }) => {
                       title: 'Sign In',
                       animationTypeForReplace: !isLoggedIn ? 'pop' : 'push'
                     }}
+                    
                   />
-                ) : (
+                ) : role === 2 ? (<></>) : (
                   <Stack.Screen
                     name="Tabs"
                     component={BottomTabs}
                     options={{ headerShown: false }}
                   />
                 )}
+
+                <Stack.Screen
+                  name="SignUp"
+                  component={SignUpScreen}
+                  options={{
+                    headerShown: false,
+                    title: 'Sign up',
+                  }}
+                />
                 <Stack.Screen
                   name="SearchDoctor"
                   component={DoctorsScreen}

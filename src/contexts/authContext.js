@@ -31,17 +31,20 @@ export const AuthProvider = ({ children }) => {
 
   const signIn = async (email, password) => {
     try {
-      console.log(email, password)
-      console.log(process.env.DEV_URL_NGROK)
-      const { status, data } = await axios.get(
-        `${process.env.DEV_URL_NGROK}/login`,
-        {
-          params: {
-            email: email,
-            password: password
-          }
-        }
-      )
+      // console.log(email, password)
+      // console.log(process.env.DEV_URL_NGROK)
+      // const { status, data } = await axios.get(
+      //   `${process.env.DEV_URL_NGROK}/login`,
+      //   {
+      //     params: {
+      //       email: email,
+      //       password: password
+      //     }
+      //   }
+      // )
+      setRole(2)
+      setIsLoggedIn(true);
+      return true;
 
       if (status === 200) {
         const { token, user } = data

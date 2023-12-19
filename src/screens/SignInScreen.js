@@ -9,14 +9,16 @@ import { LoadableButton } from '../components/Basics/LoadableButton'
 import { useTheme } from 'react-native-paper'
 import Toast from 'react-native-toast-message'
 import { AppStateContext } from '../contexts/appStateContext'
+import { useNavigation } from '@react-navigation/native'
 
-const SignInScreen = () => {
+const SignInScreen = ({}) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const { signIn } = useContext(AuthContext)
   const { isLoading, setIsLoading } = useContext(AppStateContext)
   const theme = useTheme()
+  const navigation = useNavigation();
 
   const { leafLogoWrapper, headerText, signInButton, textInput } = styles
 
@@ -117,6 +119,14 @@ const SignInScreen = () => {
         >
           Sign In with Google
         </LoadableButton>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Text style={{color: 'gray'}}>Don't have an account yet ? </Text>
+          <Text style={{fontWeight: 'bold', fontSize:'16', color: theme.colors.primary}}
+            onPress={() => navigation.navigate('SignUp')}
+          >
+            Sign up
+          </Text>
+        </View>
       </VerticalView>
     </SafeAreaView>
   )
