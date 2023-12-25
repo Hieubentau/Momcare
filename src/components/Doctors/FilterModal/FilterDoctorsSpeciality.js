@@ -2,8 +2,8 @@ import React from 'react'
 import { View, FlatList, Text, StyleSheet } from 'react-native'
 
 import { filterDoctorsSpeciality } from '../../../ultilities/filterDoctorsSpeciality'
-import ListItemWithoutIcon from '../../Basics/ListItemWithoutIcon'
-import { ItemSeparatorWidth } from '../../Basics/ItemSeparatorWidth'
+import ListItemWithoutIcon from '../../basics/ListItemWithoutIcon'
+import { ItemSeparatorWidth } from '../../basics/ItemSeparatorWidth'
 
 const FilterDoctorsSpeciality = (props) => {
   const { selectedFilterSpeciality, setSelectedFilterSpeciality } = props

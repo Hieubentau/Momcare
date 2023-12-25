@@ -11,11 +11,11 @@ import { Divider, useTheme } from 'react-native-paper'
 
 import { Ionicons } from '@expo/vector-icons'
 
-import AbsoluteBottomButton from '../components/Basics/AbsoluteBottomButton'
+import AbsoluteBottomButton from '../components/basics/AbsoluteBottomButton'
 import CancelModal from '../components/UpcomingAppointmentScreen/CancelModal'
 import CancelModalButton from '../components/UpcomingAppointmentScreen/CancelModalButton'
-import ConfirmedModal from '../components/Basics/ConfirmedModal'
-import AppointmentInfo from '../components/Basics/AppointmentInfo'
+import ConfirmedModal from '../components/basics/ConfirmedModal'
+import AppointmentInfo from '../components/basics/AppointmentInfo'
 
 const UpcomingAppointmentScreen = (props) => {
   const [isCancelModalVisible, setIsCancelModalVisible] = useState(false)

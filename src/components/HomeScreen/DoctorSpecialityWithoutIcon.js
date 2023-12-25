@@ -3,8 +3,8 @@ import { FlatList, View, Text, TouchableOpacity } from 'react-native'
 
 import { useTheme } from 'react-native-paper'
 import { doctorSpecialityType } from '../../ultilities/doctorSpecialityType'
-import ListItemWithoutIcon from '../Basics/ListItemWithoutIcon'
-import { ItemSeparatorWidth } from '../Basics/ItemSeparatorWidth'
+import ListItemWithoutIcon from '../basics/ListItemWithoutIcon'
+import { ItemSeparatorWidth } from '../basics/ItemSeparatorWidth'
 import { useMedicalSpecialty } from '../../hooks/useMisc'
 import { AppStateContext } from '../../contexts/appStateContext'
 

@@ -12,12 +12,12 @@ import { Divider, Portal, Snackbar, useTheme } from 'react-native-paper'
 import { Ionicons } from '@expo/vector-icons'
 
 import ReviewDetail from '../components/ReviewSummaryScreen/ReviewDetail'
-import TitleBar from '../components/Basics/TitleBar'
+import TitleBar from '../components/basics/TitleBar'
 
 import { bookingHour } from '../ultilities/bookingHour'
 import { packageBooking } from '../ultilities/packageBooking'
 import { durationPrices } from '../ultilities/durationPrices'
-import ConfirmedModal from '../components/Basics/ConfirmedModal'
+import ConfirmedModal from '../components/basics/ConfirmedModal'
 
 const ReviewSummaryScreen = (props) => {
   const { navigation, route } = props

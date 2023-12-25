@@ -9,7 +9,7 @@ import {
 
 import SearchBarComponent from '../components/HomeScreen/SearchBarComponent'
 import GeneralAndFilter from '../components/Doctors/GeneralAndFilter'
-import { ItemSeparatorHeight } from '../components/Basics/ItemSeparatorHeight'
+import { ItemSeparatorHeight } from '../components/basics/ItemSeparatorHeight'
 import ListCardsInfo from '../components/Doctors/ListCardsInfo'
 import { doctorGeneralInfo } from '../ultilities/doctorGeneralInfo'
 import { useFocusEffect } from '@react-navigation/native'

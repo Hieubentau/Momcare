@@ -12,7 +12,7 @@ import {
 import { Divider, TextInput, useTheme } from 'react-native-paper'
 import { Ionicons } from '@expo/vector-icons'
 import { Rating, AirbnbRating } from 'react-native-ratings'
-import ConfirmedModal from '../components/Basics/ConfirmedModal'
+import ConfirmedModal from '../components/basics/ConfirmedModal'
 
 const WriteReviewScreen = (props) => {
   const [reviewText, setReviewText] = useState('')

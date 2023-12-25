@@ -8,12 +8,12 @@ import {
   TouchableOpacity
 } from 'react-native'
 import { useTheme } from 'react-native-paper'
-import CalendarComponent from '../components/Basics/CalendarComponent'
-import ListItemWithoutIcon from '../components/Basics/ListItemWithoutIcon'
-import { ItemSeparatorWidth } from '../components/Basics/ItemSeparatorWidth'
+import CalendarComponent from '../components/basics/CalendarComponent'
+import ListItemWithoutIcon from '../components/basics/ListItemWithoutIcon'
+import { ItemSeparatorWidth } from '../components/basics/ItemSeparatorWidth'
 
 import { bookingHour } from '../ultilities/bookingHour'
-import ConfirmedModal from '../components/Basics/ConfirmedModal'
+import ConfirmedModal from '../components/basics/ConfirmedModal'
 
 const RescheduleAppointmentScreen = (props) => {
   const [selectedDay, setSelectedDay] = useState('')

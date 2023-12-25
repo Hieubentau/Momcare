@@ -8,7 +8,7 @@ import {
 } from 'react-native'
 import { useTheme } from 'react-native-paper'
 
-import { ItemSeparatorHeight } from '../Basics/ItemSeparatorHeight'
+import { ItemSeparatorHeight } from '../basics/ItemSeparatorHeight'
 import ListNotCancelled from './ListNotCancelled'
 import { appointmentDetail } from '../../ultilities/appoimentDetail'
 

@@ -11,7 +11,7 @@ import { Divider, useTheme } from 'react-native-paper'
 
 import { Ionicons } from '@expo/vector-icons'
 
-import AppointmentInfo from '../components/Basics/AppointmentInfo'
+import AppointmentInfo from '../components/basics/AppointmentInfo'
 
 const CompletedAppointmentScreen = (props) => {
   const { navigation, route } = props

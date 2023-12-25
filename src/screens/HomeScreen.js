@@ -17,7 +17,7 @@ import { AuthContext } from '../contexts/authContext'
 import { useTheme } from 'react-native-paper'
 import Toast from 'react-native-toast-message'
 import { ALERT_TYPE, Dialog } from 'react-native-alert-notification'
-import CustomSafeAreaView from '../components/Basics/CustomSafeAreaView'
+import CustomSafeAreaView from '../components/basics/CustomSafeAreaView'
 
 const HomeScreen = ({ navigation }) => {
   const { logout } = React.useContext(AuthContext)

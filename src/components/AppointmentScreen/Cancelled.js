@@ -10,7 +10,7 @@ import {
 import ListCancelled from './CancelledTab/ListCancelled'
 
 import { appointmentDetail } from '../../ultilities/appoimentDetail'
-import { ItemSeparatorHeight } from '../Basics/ItemSeparatorHeight'
+import { ItemSeparatorHeight } from '../basics/ItemSeparatorHeight'
 
 const Cancelled = ({ navigation }) => {
   const { container, flatListWrapper } = styles

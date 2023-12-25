@@ -7,7 +7,7 @@ import {
   StatusBar
 } from 'react-native'
 
-import { ItemSeparatorHeight } from '../Basics/ItemSeparatorHeight'
+import { ItemSeparatorHeight } from '../basics/ItemSeparatorHeight'
 import ListNotCancelled from './ListNotCancelled'
 import { appointmentDetail } from '../../ultilities/appoimentDetail'
 

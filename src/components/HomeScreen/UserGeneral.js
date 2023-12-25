@@ -5,7 +5,7 @@ import {
   FontAwesome,
   MaterialCommunityIcons
 } from '@expo/vector-icons'
-import MainTabScreenHeader from '../Basics/MainTabScreenHeader'
+import MainTabScreenHeader from '../basics/MainTabScreenHeader'
 import { Appbar, Avatar, Badge } from 'react-native-paper'
 
 const UserGeneral = (props) => {

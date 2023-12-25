@@ -3,7 +3,7 @@ import { FlatList, View, Text, TouchableOpacity } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 import { doctorSpecialityType } from '../../ultilities/doctorSpecialityType'
-import { ItemSeparatorWidth } from '../Basics/ItemSeparatorWidth'
+import { ItemSeparatorWidth } from '../basics/ItemSeparatorWidth'
 import { useTheme } from 'react-native-paper'
 
 const ItemWithIcon = ({ item, onPress, backgroundColor, styles }) => (
