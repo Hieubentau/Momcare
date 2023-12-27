@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-filename-extension */
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 
 import { FlatList, View, Text, StyleSheet, StatusBar } from 'react-native'
 import { Button } from 'react-native-paper'
@@ -8,9 +8,12 @@ import { useTheme } from 'react-native-paper'
 import { doctorGeneralInfo } from '../../ultilities/doctorGeneralInfo'
 import { ItemSeparatorHeight } from '../basics/ItemSeparatorHeight'
 import ListCardsInfo from '../Doctors/ListCardsInfo'
+import SearchBarComponent from '../HomeScreen/SearchBarComponent'
 
 const HospitalManagementDoctor = ({ navigation }) => {
   const [selectedDoctor, setSelectedDoctor] = useState('')
+  const [searchQuery, setSearchQuery] = useState('')
+  const refSearchBar = useRef(null)
 
   const theme = useTheme()
   const themeColor = theme.colors.primary
@@ -28,10 +31,15 @@ const HospitalManagementDoctor = ({ navigation }) => {
 
   return (
     <View style={container}>
+      <SearchBarComponent
+        ref={refSearchBar}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+      />
       <View style={addNewDoctor}>
         <Button
           icon="account-plus"
-          mode="text"
+          mode="elevated"
           onPress={() => {
             navigation.navigate('DoctorInfoManagement', { item: {} })
           }}
@@ -58,15 +66,17 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 8,
     paddingHorizontal: 16,
-    backgroundColor: 'gainsboro',
+    backgroundColor: 'grey',
     marginTop: StatusBar.currentHeight || 0
   },
   addNewDoctor: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    marginBottom: 4
+    marginTop: 12
   },
-  flatListWrapper: {}
+  flatListWrapper: {
+    marginTop: 12
+  }
 })
 
 export default HospitalManagementDoctor
