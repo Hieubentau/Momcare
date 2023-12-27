@@ -15,7 +15,8 @@ const CardDoctor = ({ item, onPress, backgroundColor, styles }) => (
 const ListCardsInfo = (props) => {
   const theme = useTheme()
   const themeColor = theme.colors.primary
-  const { navigation, item, selectedDoctor, setSelectedDoctor } = props
+  const { navigation, item, nextScreen, selectedDoctor, setSelectedDoctor } =
+    props
   const { cardTouchable } = styles
 
   const backgroundColor = 'white'
@@ -26,7 +27,7 @@ const ListCardsInfo = (props) => {
       key={item.doctorId}
       onPress={() => {
         setSelectedDoctor(item.doctorId),
-          navigation.navigate('DoctorInfo', { item }),
+          navigation.navigate(nextScreen, { item }),
           console.log(item)
       }}
       onPressout={() => setSelectedDoctor(item.doctorId)}
