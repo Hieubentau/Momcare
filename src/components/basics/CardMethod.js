@@ -1,11 +1,12 @@
+/* eslint-disable react/jsx-filename-extension */
 import React, { useContext, useState } from 'react'
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
-import { useTheme } from 'react-native-paper'
-import { Ionicons, AntDesign } from '@expo/vector-icons'
+import statusAppointmentColor from './StatusAppointmentColor'
+import { AntDesign } from '@expo/vector-icons'
 
 const CardMethod = ({ item }) => {
-  const theme = useTheme()
-  const themeColor = theme.colors.primary
+  const appointmentColor = statusAppointmentColor(item.appointmentStatus)
+
   const {
     cardWrapper,
     methodImageWrapper,
@@ -18,13 +19,19 @@ const CardMethod = ({ item }) => {
   return (
     <View style={cardWrapper}>
       <TouchableOpacity disabled={true} style={methodImageWrapper}>
-        <AntDesign name={item.iconAntDesign} size={28} color={themeColor} />
+        <AntDesign
+          name={item.iconAntDesign}
+          size={28}
+          color={appointmentColor}
+        />
       </TouchableOpacity>
       <View style={methodDescriptionWrapper}>
         <Text style={methodName}>{item.method}</Text>
         <Text style={methodDescription}>{item.description}</Text>
       </View>
-      <Text style={[methodPrice, { color: themeColor }]}>${item.price}</Text>
+      <Text style={[methodPrice, { color: appointmentColor }]}>
+        ${item.price}
+      </Text>
     </View>
   )
 }

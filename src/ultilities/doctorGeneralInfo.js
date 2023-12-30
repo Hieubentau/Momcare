@@ -4,6 +4,8 @@ export const doctorGeneralInfo = [
     name: 'Dr. John Doe',
     medicalSpecialty: 'Cardiologist',
     hospitalId: 'St. Mary Hospital',
+    age: 53,
+    sex: 'MALE',
     point: 4.5,
     review: 17
   },

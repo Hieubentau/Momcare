@@ -4,15 +4,15 @@ import { View, Text, StyleSheet, StatusBar, Keyboard } from 'react-native'
 import { TextInput, Button } from 'react-native-paper'
 
 import { Ionicons } from '@expo/vector-icons'
-import DoctorInfoTextInput from '../components/HospitalScreen/DoctorInfoTextInput'
+import DoctorInfoTextInput from '../components/HospitalScreen/HospitalManagementDoctor/DoctorInfoTextInput'
 import { InputContainerWithHelper } from '../components/basics'
-import DropdownDoctorInfo from '../components/HospitalScreen/DropdownDoctorInfo'
-import { hospitals } from '../ultilities/hospitals'
+import DropdownDoctorInfo from '../components/HospitalScreen/HospitalManagementDoctor/DropdownDoctorInfo'
+import { genders } from '../ultilities/genders'
 import { medicalSpecialties } from '../ultilities/medicalSpecialties'
 
 const DoctorInfoManagementScreen = (props) => {
   const { navigation, route } = props
-  const { item: passingData } = route.params
+  const { item: passingData, listMedicalSpecialty } = route.params
 
   const [showNextButton, setShowNextButton] = useState(true)
 
@@ -23,7 +23,8 @@ const DoctorInfoManagementScreen = (props) => {
       () => {
         setShowNextButton(true)
         nameRef.current && nameRef.current.blur()
-        medicalSpecialtyRef.current && medicalSpecialtyRef.current.blur()
+        ageRef.current && ageRef.current.blur()
+        phoneRef.current && phoneRef.current.blur()
       }
     )
 
@@ -33,14 +34,23 @@ const DoctorInfoManagementScreen = (props) => {
     }
   }, [])
   const nameRef = useRef()
-  const medicalSpecialtyRef = useRef()
+  const ageRef = useRef()
+  const phoneRef = useRef()
 
   const [name, setName] = useState({
     value: passingData.name ?? '',
     error: null
   })
-  const [hospital, setHospital] = useState({
-    value: passingData.hospitalId ?? '',
+  const [age, setAge] = useState({
+    value: passingData.age?.toString() ?? '',
+    error: null
+  })
+  const [phone, setPhone] = useState({
+    value: passingData.phone ?? '',
+    error: null
+  })
+  const [gender, setGender] = useState({
+    value: passingData.sex ?? '',
     error: null
   })
   const [medicalSpecialty, setMedicalSpecialty] = useState({
@@ -69,28 +79,59 @@ const DoctorInfoManagementScreen = (props) => {
             value={name.value}
             error={!!name.error}
             mode="outlined"
+            inputMode="text"
             style={textInputWrapper}
             onChangeText={(e) => setValue(e, setName)}
             onFocus={() => setShowNextButton(false)}
+            isDisabled={false}
           />
         </InputContainerWithHelper>
 
-        <View style={{ marginTop: 16 }}>
-          <InputContainerWithHelper helperText={hospital.error}>
+        <InputContainerWithHelper helperText={age.error}>
+          <DoctorInfoTextInput
+            ref={ageRef}
+            label="Tuổi"
+            value={age.value}
+            error={!!age.error}
+            mode="outlined"
+            inputMode="numeric"
+            style={textInputWrapper}
+            onChangeText={(e) => setValue(e, setAge)}
+            onFocus={() => setShowNextButton(false)}
+            isDisabled={false}
+          />
+        </InputContainerWithHelper>
+        <InputContainerWithHelper helperText={phone.error}>
+          <DoctorInfoTextInput
+            ref={phoneRef}
+            label="Số điện thoại"
+            value={phone.value}
+            error={!!phone.error}
+            mode="outlined"
+            inputMode="numeric"
+            style={textInputWrapper}
+            onChangeText={(e) => setValue(e, setPhone)}
+            onFocus={() => setShowNextButton(false)}
+            isDisabled={false}
+          />
+        </InputContainerWithHelper>
+
+        <View style={textInputWrapper}>
+          <InputContainerWithHelper helperText={gender.error}>
             <DropdownDoctorInfo
-              listDataValue={hospitals}
-              dataValue={hospital}
-              setDataValue={setHospital}
-              title={passingData.hospitalId ?? 'Chọn bệnh viện công tác'}
-              titleIconMaterialCommunityIcons="hospital-marker"
+              listDataValue={genders}
+              dataValue={gender}
+              setDataValue={setGender}
+              title={passingData.gender ?? 'Chọn giới tính'}
+              titleIconMaterialCommunityIcons="account"
             />
           </InputContainerWithHelper>
         </View>
 
-        <View style={{ marginTop: 16 }}>
+        <View style={textInputWrapper}>
           <InputContainerWithHelper helperText={medicalSpecialty.error}>
             <DropdownDoctorInfo
-              listDataValue={medicalSpecialties}
+              listDataValue={listMedicalSpecialty}
               dataValue={medicalSpecialty}
               setDataValue={setMedicalSpecialty}
               title={passingData.medicalSpecialty ?? 'Chọn chuyên khoa'}
@@ -98,18 +139,14 @@ const DoctorInfoManagementScreen = (props) => {
             />
           </InputContainerWithHelper>
         </View>
-        {/* <InputContainerWithHelper helperText={medicalSpecialty.error}>
-          <DoctorInfoTextInput
-            ref={medicalSpecialtyRef}
-            label="Chuyên khoa"
-            value={medicalSpecialty.value}
-            error={!!medicalSpecialty.error}
-            mode="outlined"
-            style={textInputWrapper}
-            onChangeText={(e) => setValue(e, setMedicalSpecialty)}
-            onFocus={() => setShowNextButton(false)}
-          />
-        </InputContainerWithHelper> */}
+
+        <DoctorInfoTextInput
+          label="Bệnh viện công tác"
+          value={passingData.hospitalName}
+          mode="outlined"
+          style={textInputWrapper}
+          isDisabled={true}
+        />
       </View>
       {showNextButton ? (
         <Button
@@ -120,10 +157,19 @@ const DoctorInfoManagementScreen = (props) => {
               setName({ ...name, error: 'Vui lòng nhập tên bác sĩ' })
               return
             }
-            if (hospital.value === '') {
-              setHospital({
-                ...hospital,
-                error: 'Vui lòng chọn bệnh viện công tác'
+            if (!isFieldValid(age)) {
+              console.log(age.value.length)
+              setAge({ ...age, error: 'Vui lòng nhập tuổi' })
+              return
+            }
+            if (!isFieldValid(phone)) {
+              setPhone({ ...phone, error: 'Vui lòng nhập số điện thoại' })
+              return
+            }
+            if (gender.value === '') {
+              setGender({
+                ...gender,
+                error: 'Vui lòng chọn giới tính'
               })
               return
             }
@@ -159,7 +205,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   textInputWrapper: {
-    marginTop: 24
+    marginTop: 16
   },
   buttonUpdateWrapper: {}
 })

@@ -5,8 +5,8 @@ import { createMaterialBottomTabNavigator } from 'react-native-paper/react-navig
 import { useTheme } from 'react-native-paper'
 import { MaterialCommunityIcons, Foundation } from '@expo/vector-icons'
 
-import HospitalManagementDoctor from './HospitalScreen/HospitalManagementDoctor'
-import HospitalManagementSchedule from './HospitalScreen/HospitalManagementSchedule'
+import HospitalManagementDoctor from './HospitalScreen/HospitalManagementDoctor/HospitalManagementDoctor'
+import HospitalManagementAppointment from './HospitalScreen/HospitalManagementAppointment'
 
 const Tab = createMaterialBottomTabNavigator()
 
@@ -52,7 +52,7 @@ const HospitalBottomTabs = () => {
       />
       <Tab.Screen
         name="Schedule"
-        component={HospitalManagementSchedule}
+        component={HospitalManagementAppointment}
         options={{
           tabBarLabel: 'Schedule',
           tabBarIcon: ({ color, focused }) => (

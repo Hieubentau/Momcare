@@ -49,7 +49,6 @@ const DropdownDoctorInfo = (props) => {
         onChange={(item) => {
           setValue(item.value)
           setDataValue({ value: item.label, error: null })
-          console.log(dataValue)
           setIsFocus(false)
         }}
         renderLeftIcon={() => (
