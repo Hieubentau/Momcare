@@ -1,4 +1,5 @@
-export const API_URL = 'https://21ac-171-241-62-227.ngrok-free.app'
+export const API_URL =
+  'https://1029-2402-9d80-283-c6ae-a4d8-7c9-12f5-da29.ngrok-free.app'
 
 export const REQ_RETURN_STATUS = Object.freeze({
   OK: 0,

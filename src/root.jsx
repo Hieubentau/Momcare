@@ -6,6 +6,10 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { LoginScreen, SignUpScreen } from './screens'
 import { useAuth } from './contexts'
 import { UserScreen } from './screens/UserScreen'
+import HospitalScreen from './screens/HospitalScreen'
+import DoctorInfoManagementScreen from './screens/DoctorInfoManagementScreen'
+import HospitalManagementDoctor from './components/HospitalScreen/HospitalManagementDoctor/HospitalManagementDoctor'
+import AppointmentInfoManagementScreen from './screens/AppointmentInfoManagementScreen'
 
 const Stack = createStackNavigator()
 
@@ -34,7 +38,7 @@ const InnerApp = () => {
         {/*  //*/}
         {/*  <Stack.Screen name={'Bo'} component={SignInScreen} />*/}
         {/*</Stack.Navigator>*/}
-        <Stack.Navigator>
+        {/* <Stack.Navigator>
           {isAuthorized ? (
             <>
               <Stack.Screen name={'User'} component={UserScreen} />
@@ -53,6 +57,27 @@ const InnerApp = () => {
               />
             </>
           )}
+        </Stack.Navigator> */}
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Hospital"
+            component={HospitalScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="HospitalManagementDoctor"
+            component={HospitalManagementDoctor}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="DoctorInfoManagement"
+            component={DoctorInfoManagementScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Chi tiết lịch đặt khám"
+            component={AppointmentInfoManagementScreen}
+          />
         </Stack.Navigator>
       </NavigationContainer>
       <Toast autoHide={true} />

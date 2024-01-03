@@ -31,11 +31,11 @@ const ListAppointment = (props) => {
     <CardAppointments
       item={item}
       onPress={() => {
-        setSelectedCardAppointment(item.id),
+        setSelectedCardAppointment(item.hospitalAppointmentId),
           navigation.navigate(appointmentNextScreen, { item }),
           console.log(item)
       }}
-      onPressout={() => setSelectedCardAppointment(item.id)}
+      onPressout={() => setSelectedCardAppointment(item.hospitalAppointmentId)}
       backgroundColor={backgroundColor}
       styles={{
         cardTouchable,
@@ -47,8 +47,6 @@ const ListAppointment = (props) => {
 
 const styles = StyleSheet.create({
   cardTouchable: {
-    borderRadius: 16,
-    height: 100,
     justifyContent: 'center'
   }
 })

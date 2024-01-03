@@ -35,7 +35,10 @@ const ListDoctorOfHospital = (props) => {
       key={item.doctorId}
       onPress={() => {
         setSelectedDoctor(item.doctorId),
-          navigation.navigate(nextScreen, { item, listMedicalSpecialty }),
+          navigation.navigate(nextScreen, {
+            item,
+            listMedicalSpecialty
+          }),
           console.log(item)
       }}
       onPressout={() => setSelectedDoctor(item.doctorId)}

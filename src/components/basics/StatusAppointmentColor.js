@@ -6,11 +6,11 @@ function statusAppointmentColor(appointmentStatus) {
   const theme = useTheme()
   const themeColor = theme.colors.primary
   switch (appointmentStatus) {
-    case 'Upcoming':
+    case 'CONFIRM':
       return themeColor
-    case 'Completed':
+    case 'COMPLETED':
       return 'green'
-    case 'Cancelled':
+    case 'UNCOMFIRM':
       return 'red'
     default:
       return 'black'
