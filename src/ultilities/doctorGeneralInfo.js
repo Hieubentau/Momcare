@@ -1,66 +1,68 @@
 export const doctorGeneralInfo = [
   {
-    id: 1,
+    doctorId: 1,
     name: 'Dr. John Doe',
-    speciality: 'Cardiologist',
-    hospital: 'St. Mary Hospital',
-    rating: 4.5,
+    medicalSpecialty: 'Cardiologist',
+    hospitalId: 'St. Mary Hospital',
+    age: 53,
+    sex: 'MALE',
+    point: 4.5,
     review: 17
   },
   {
-    id: 2,
+    doctorId: 2,
     name: 'Dr. John Doe',
-    speciality: 'Cardiologist',
-    hospital: 'St. Mary Hospital',
-    rating: 4.5,
+    medicalSpecialty: 'Cardiologist',
+    hospitalId: 'St. Mary Hospital',
+    point: 4.5,
     review: 17
   },
   {
-    id: 3,
+    doctorId: 3,
     name: 'Dr. John Doe',
-    speciality: 'Cardiologist',
-    hospital: 'St. Mary Hospital',
-    rating: 4.5,
+    medicalSpecialty: 'Cardiologist',
+    hospitalId: 'St. Mary Hospital',
+    point: 4.5,
     review: 17
   },
   {
-    id: 4,
+    doctorId: 4,
     name: 'Dr. John Doe',
-    speciality: 'Cardiologist',
-    hospital: 'St. Mary Hospital',
-    rating: 4.5,
+    medicalSpecialty: 'Cardiologist',
+    hospitalId: 'St. Mary Hospital',
+    point: 4.5,
     review: 17
   },
   {
-    id: 5,
+    doctorId: 5,
     name: 'Dr. John Doe',
-    speciality: 'Cardiologist',
-    hospital: 'St. Mary Hospital',
-    rating: 4.5,
+    medicalSpecialty: 'Cardiologist',
+    hospitalId: 'St. Mary Hospital',
+    point: 4.5,
     review: 17
   },
   {
-    id: 6,
+    doctorId: 6,
     name: 'Dr. John Doe',
-    speciality: 'Cardiologist',
-    hospital: 'St. Mary Hospital',
-    rating: 4.5,
+    medicalSpecialty: 'Cardiologist',
+    hospitalId: 'St. Mary Hospital',
+    point: 4.5,
     review: 17
   },
   {
-    id: 7,
+    doctorId: 7,
     name: 'Dr. John Doe',
-    speciality: 'Cardiologist',
-    hospital: 'St. Mary Hospital',
-    rating: 4.5,
+    medicalSpecialty: 'Cardiologist',
+    hospitalId: 'St. Mary Hospital',
+    point: 4.5,
     review: 17
   },
   {
-    id: 8,
+    doctorId: 8,
     name: 'Dr. John Doe',
-    speciality: 'Cardiologist',
-    hospital: 'St. Mary Hospital',
-    rating: 4.5,
+    medicalSpecialty: 'Cardiologist',
+    hospitalId: 'St. Mary Hospital',
+    point: 4.5,
     review: 17
   }
 ]

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 import React from 'react'
 
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
@@ -8,7 +9,7 @@ const AppointmentInfo = ({ item }) => {
   const { appointmentInfoText, appointmentInfoTitle, cardPackageMethod } =
     styles
   return (
-    <View>
+    <View style={{ marginBottom: 16 }}>
       <Text style={appointmentInfoTitle}>Scheduled Appointment</Text>
       <Text style={appointmentInfoText}>{item.date}</Text>
       <Text>

@@ -1,36 +1,41 @@
+/* eslint-disable react/jsx-filename-extension */
 import React, { useContext, useState } from 'react'
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { useTheme } from 'react-native-paper'
-import CardInfo from '../basics/CardInfo'
+import CardAppointment from './CardAppointment'
 
-const CardDoctor = ({ item, onPress, backgroundColor, styles }) => (
+const CardAppointments = ({ item, onPress, backgroundColor, styles }) => (
   <TouchableOpacity
     onPress={onPress}
     style={[styles.cardTouchable, { backgroundColor }]}
   >
-    <CardInfo item={item} />
+    <CardAppointment item={item} />
   </TouchableOpacity>
 )
 
-const ListCardsInfo = (props) => {
+const ListAppointment = (props) => {
   const theme = useTheme()
   const themeColor = theme.colors.primary
-  const { navigation, item, nextScreen, selectedDoctor, setSelectedDoctor } =
-    props
+  const {
+    navigation,
+    item,
+    selectedCardAppointment,
+    setSelectedCardAppointment,
+    appointmentNextScreen
+  } = props
   const { cardTouchable } = styles
 
   const backgroundColor = 'white'
 
   return (
-    <CardDoctor
+    <CardAppointments
       item={item}
-      key={item.doctorId}
       onPress={() => {
-        setSelectedDoctor(item.doctorId),
-          navigation.navigate(nextScreen, { item }),
+        setSelectedCardAppointment(item.hospitalAppointmentId),
+          navigation.navigate(appointmentNextScreen, { item }),
           console.log(item)
       }}
-      onPressout={() => setSelectedDoctor(item.doctorId)}
+      onPressout={() => setSelectedCardAppointment(item.hospitalAppointmentId)}
       backgroundColor={backgroundColor}
       styles={{
         cardTouchable,
@@ -42,10 +47,8 @@ const ListCardsInfo = (props) => {
 
 const styles = StyleSheet.create({
   cardTouchable: {
-    borderRadius: 16,
-    height: 100,
     justifyContent: 'center'
   }
 })
 
-export default ListCardsInfo
+export default ListAppointment

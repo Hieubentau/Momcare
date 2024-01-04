@@ -102,6 +102,7 @@ const SearchDoctor = ({ navigation, route }) => {
     <ListCardsInfo
       navigation={navigation}
       item={item}
+      nextScreen="DoctorInfo"
       selectedDoctor={selectedDoctor}
       setSelectedDoctor={setSelectedDoctor}
     />

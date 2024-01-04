@@ -14,8 +14,7 @@ const AppointmentInfoText = (props) => {
 const styles = StyleSheet.create({
   appointmentInfoTextWrapper: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
+    justifyContent: 'space-between'
   }
 })
 

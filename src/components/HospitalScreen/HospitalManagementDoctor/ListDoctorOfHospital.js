@@ -1,22 +1,29 @@
+/* eslint-disable react/jsx-filename-extension */
 import React, { useContext, useState } from 'react'
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { useTheme } from 'react-native-paper'
-import CardInfo from '../basics/CardInfo'
+import CardInfoDoctor from './CardInfoDoctor'
 
 const CardDoctor = ({ item, onPress, backgroundColor, styles }) => (
   <TouchableOpacity
     onPress={onPress}
     style={[styles.cardTouchable, { backgroundColor }]}
   >
-    <CardInfo item={item} />
+    <CardInfoDoctor item={item} />
   </TouchableOpacity>
 )
 
-const ListCardsInfo = (props) => {
+const ListDoctorOfHospital = (props) => {
   const theme = useTheme()
   const themeColor = theme.colors.primary
-  const { navigation, item, nextScreen, selectedDoctor, setSelectedDoctor } =
-    props
+  const {
+    navigation,
+    item,
+    nextScreen,
+    listMedicalSpecialty,
+    selectedDoctor,
+    setSelectedDoctor
+  } = props
   const { cardTouchable } = styles
 
   const backgroundColor = 'white'
@@ -24,10 +31,14 @@ const ListCardsInfo = (props) => {
   return (
     <CardDoctor
       item={item}
+      listMedicalSpecialty={listMedicalSpecialty}
       key={item.doctorId}
       onPress={() => {
         setSelectedDoctor(item.doctorId),
-          navigation.navigate(nextScreen, { item }),
+          navigation.navigate(nextScreen, {
+            item,
+            listMedicalSpecialty
+          }),
           console.log(item)
       }}
       onPressout={() => setSelectedDoctor(item.doctorId)}
@@ -48,4 +59,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default ListCardsInfo
+export default ListDoctorOfHospital

@@ -1,12 +1,20 @@
+/* eslint-disable react/jsx-filename-extension */
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet, StatusBar } from 'react-native'
+import HospitalBottomTabs from '../components/HospitalBottomTabs'
 
 const HospitalScreen = () => {
   return (
-    <View>
-        <Text>HospitalScreen</Text>
+    <View style={styles.container}>
+      <HospitalBottomTabs />
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  }
+})
 
 export default HospitalScreen

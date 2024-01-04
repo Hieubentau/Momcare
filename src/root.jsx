@@ -8,6 +8,10 @@ import { useAuth } from './contexts'
 import { PatientNavigator } from './navigators'
 import { ROLE } from './config'
 import SearchDoctor from './screens/SearchDoctor'
+import HospitalScreen from './screens/HospitalScreen'
+import DoctorInfoManagementScreen from './screens/DoctorInfoManagementScreen'
+import HospitalManagementDoctor from './components/HospitalScreen/HospitalManagementDoctor/HospitalManagementDoctor'
+import AppointmentInfoManagementScreen from './screens/AppointmentInfoManagementScreen'
 
 const Stack = createStackNavigator()
 
@@ -60,6 +64,25 @@ const InnerApp = () => {
               />
             </>
           )}
+          <Stack.Screen
+            name="Hospital"
+            component={HospitalScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="HospitalManagementDoctor"
+            component={HospitalManagementDoctor}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="DoctorInfoManagement"
+            component={DoctorInfoManagementScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Chi tiết lịch đặt khám"
+            component={AppointmentInfoManagementScreen}
+          />
           <Stack.Screen name="SearchDoctor" component={SearchDoctor} />
         </Stack.Navigator>
       </NavigationContainer>
