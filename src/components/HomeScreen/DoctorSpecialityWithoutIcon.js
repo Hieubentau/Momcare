@@ -6,7 +6,7 @@ import { doctorSpecialityType } from '../../ultilities/doctorSpecialityType'
 import ListItemWithoutIcon from '../basics/ListItemWithoutIcon'
 import { ItemSeparatorWidth } from '../basics/ItemSeparatorWidth'
 import { useMedicalSpecialty } from '../../hooks/useMisc'
-import { AppStateContext } from '../../contexts/appStateContext'
+import { useAuth } from '../../contexts'
 
 const DoctorSpecialityWithoutIcon = (props) => {
   const [selectedIdwithoutIcon, setSelectedIdwithoutIcon] = useState()
@@ -17,7 +17,7 @@ const DoctorSpecialityWithoutIcon = (props) => {
   const { topDoctorsText } = props
   const { textHeaderWrapper, seeAllText, flatListWrapper } = styles
 
-  const { MedicalSpecialty: medicalSpecialty } = useContext(AppStateContext)
+  const { MedicalSpecialty: medicalSpecialty } = useAuth()
   const modifiedMedicalSpeciality = medicalSpecialty.map((item) => ({
     id: item.medicalSpecialtyId,
     message: item.vietnameseName

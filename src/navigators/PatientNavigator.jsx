@@ -1,7 +1,5 @@
 import React from 'react'
 import { createMaterialBottomTabNavigator } from 'react-native-paper/react-navigation'
-
-import HomeScreen from '../screens/HomeScreen'
 import AppointmentScreen from '../screens/AppointmentScreen'
 import PrescriptionScreen from '../screens/PrescriptionScreen'
 
@@ -10,10 +8,11 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import { UserScreen } from '../screens/UserScreen'
 import { Foundation } from '@expo/vector-icons'
+import { HomeScreen } from '../screens'
 
 const Tab = createMaterialBottomTabNavigator()
 
-const BottomTabs = () => {
+export const PatientNavigator = () => {
   const theme = useTheme()
   const themeColor = theme.colors.primary
 
@@ -37,13 +36,12 @@ const BottomTabs = () => {
         borderColor: '#cecece',
         overflow: 'hidden'
       }}
-      animationEasing={'ease-in-out'}
     >
       <Tab.Screen
         name="Home"
         component={HomeScreen}
         options={{
-          tabBarLabel: 'Home',
+          tabBarLabel: 'Trang chủ',
           tabBarIcon: ({ color, focused }) => (
             <Foundation name="home" color={color} size={focused ? 30 : 26} />
           )
@@ -53,7 +51,7 @@ const BottomTabs = () => {
         name="Appointment"
         component={AppointmentScreen}
         options={{
-          tabBarLabel: 'Appointment',
+          tabBarLabel: 'Đặt lịch',
           tabBarIcon: ({ color, focused }) => (
             <MaterialCommunityIcons
               name="calendar"
@@ -94,5 +92,3 @@ const BottomTabs = () => {
     </Tab.Navigator>
   )
 }
-
-export default BottomTabs

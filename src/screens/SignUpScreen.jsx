@@ -16,29 +16,22 @@ import {
   LoadableButton,
   PasswordTextInput,
   VerticalView
-} from '../components/basics'
-import { VALIDATION_STATUS } from '../config'
+} from '../components'
+import { GG_MAP_API_KEY, VALIDATION_STATUS } from '../config'
 import {
   isAgeValid,
   isEmailValid,
   isNameValid,
   isPasswordValid,
   isPhoneNumberValid
-} from '../ultilities/validations'
+} from '../ultilities'
 import { ALERT_TYPE, Dialog } from 'react-native-alert-notification'
 import * as Location from 'expo-location'
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
+import { getShortName } from '../ultilities'
 
 const FirstForm = ({ userDetail, setUserDetail, moveTo }) => {
-  const getShortName = (name) => {
-    // get the first letter of the first name and last name
-    const nameArr = name.split(' ').filter((item) => item !== '')
-    const firstName = nameArr[0]
-    if (nameArr.length === 1) {
-      return firstName[0]
-    }
-    const lastName = nameArr[nameArr.length - 1]
-    return firstName[0] + lastName[0]
-  }
   const isAllValid = useMemo(
     () =>
       userDetail.name.value !== '' &&
@@ -162,6 +155,20 @@ const SecondForm = ({ userDetail, setUserDetail, moveTo }) => {
           left={<TextInput.Icon icon={'home'} />}
         />
       </InputContainerWithHelper>
+      <InputContainerWithHelper>
+        <GooglePlacesAutocomplete
+          placeholder="Nhập địa chỉ ..."
+          query={{
+            key: GG_MAP_API_KEY,
+            language: 'vi'
+          }}
+        />
+      </InputContainerWithHelper>
+      <MapView
+        style={{ width: '100%', height: 400 }}
+        showsUserLocation={true}
+        provider={PROVIDER_GOOGLE}
+      />
       <HorizontalView>
         <LoadableButton
           mode="outlined"

@@ -5,6 +5,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { doctorSpecialityType } from '../../ultilities/doctorSpecialityType'
 import { ItemSeparatorWidth } from '../basics/ItemSeparatorWidth'
 import { useTheme } from 'react-native-paper'
+import { SpecialtyIcon } from '../DoctorSpecialty'
 
 const ItemWithIcon = ({ item, onPress, backgroundColor, styles }) => (
   <View style={styles.avatarWrapper}>
@@ -12,11 +13,7 @@ const ItemWithIcon = ({ item, onPress, backgroundColor, styles }) => (
       onPress={onPress}
       style={[styles.avatarTouchable, { backgroundColor }]}
     >
-      <MaterialCommunityIcons
-        name={item.icon}
-        size={24}
-        color={styles.themeColor}
-      />
+      <SpecialtyIcon name={item.icon} size={24} color="black" />
     </TouchableOpacity>
     <Text numberOfLines={1}>{item.message}</Text>
   </View>

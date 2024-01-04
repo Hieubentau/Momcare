@@ -15,9 +15,9 @@ import { doctorGeneralInfo } from '../ultilities/doctorGeneralInfo'
 import { useFocusEffect } from '@react-navigation/native'
 import axios from 'axios'
 import { DEV_URL_NGROK, useMedicalSpecialty } from '../hooks/useMisc'
-import { AppStateContext } from '../contexts/appStateContext'
 import { ActivityIndicator } from 'react-native-paper'
 import { ALERT_TYPE, Dialog } from 'react-native-alert-notification'
+import { useGlobalState } from '../contexts'
 
 const SearchDoctor = ({ navigation, route }) => {
   const [selectedFilterSpeciality, setSelectedFilterSpeciality] = useState('')
@@ -27,7 +27,7 @@ const SearchDoctor = ({ navigation, route }) => {
   const [selectedDoctor, setSelectedDoctor] = useState('')
   const { container, flatListWrapper } = styles
 
-  const { MedicalSpecialty } = useContext(AppStateContext)
+  const { medicalSpecialties } = useGlobalState()
 
   // search
   const [loading, setLoading] = useState(false)
@@ -87,7 +87,7 @@ const SearchDoctor = ({ navigation, route }) => {
   // map medical specialty to filter result
   const modFilterResult = (filterResult) => {
     return filterResult.map((item) => {
-      const medicalSpecialty = MedicalSpecialty.find(
+      const medicalSpecialty = medicalSpecialties.find(
         (ms) => ms.medicalSpecialtyId === item.medicalSpecialtyId
       ).vietnameseName
 

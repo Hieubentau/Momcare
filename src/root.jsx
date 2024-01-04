@@ -1,17 +1,18 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { NavigationContainer } from '@react-navigation/native'
 import Toast from 'react-native-toast-message'
 import { createStackNavigator } from '@react-navigation/stack'
 import { LoginScreen, SignUpScreen } from './screens'
 import { useAuth } from './contexts'
-import { UserScreen } from './screens/UserScreen'
+import { PatientNavigator } from './navigators'
+import { ROLE } from './config'
+import SearchDoctor from './screens/SearchDoctor'
 
 const Stack = createStackNavigator()
 
 const InnerApp = () => {
-  const { isAuthorized } = useAuth()
-
+  const { isAuthorized, user } = useAuth()
   return (
     <SafeAreaProvider>
       <NavigationContainer>
@@ -34,11 +35,17 @@ const InnerApp = () => {
         {/*  //*/}
         {/*  <Stack.Screen name={'Bo'} component={SignInScreen} />*/}
         {/*</Stack.Navigator>*/}
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName={'Login'}>
           {isAuthorized ? (
-            <>
-              <Stack.Screen name={'User'} component={UserScreen} />
-            </>
+            user.role === ROLE.PATIENT ? (
+              <Stack.Screen
+                name={'PatientNavigation'}
+                component={PatientNavigator}
+                options={{ headerShown: false }}
+              />
+            ) : (
+              <></>
+            )
           ) : (
             <>
               <Stack.Screen
@@ -53,6 +60,7 @@ const InnerApp = () => {
               />
             </>
           )}
+          <Stack.Screen name="SearchDoctor" component={SearchDoctor} />
         </Stack.Navigator>
       </NavigationContainer>
       <Toast autoHide={true} />
